@@ -8,11 +8,17 @@
         <ui:define name="title">RichFaces Sample</ui:define>
 
         <ui:define name="body">
+        <h:form id="emailForm">
+		<h:commandButton type="submit" value="Get all emails" action="#{client.getAllEmails()}"/>
+
+
+</h:form>
+<h:outputLabel value="#{client.abc}" />
          <ul>
-    		<ui:repeat value="#{bookCatalog.books}" var="book">
+    		<ui:repeat value="#{client.emails}" var="email">
         		<li>
-         		   <h:link value="#{book.title}" outcome="book">
-                <f:param name="id" value="#{book.id}" />
+         		   <h:link value="#{email.id}" outcome="book">
+                <f:param name="id" value="#{email.id}" />
          		   </h:link>
         		</li>
     		</ui:repeat>

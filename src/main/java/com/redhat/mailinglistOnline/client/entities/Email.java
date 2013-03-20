@@ -24,7 +24,55 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 	    
 	    
 	    
-	    public Email() {
+	    public ArrayList<String> getMailingLists() {
+			return mailingLists;
+		}
+
+		public void setMailingLists(ArrayList<String> mailingLists) {
+			this.mailingLists = mailingLists;
+		}
+
+		public void setId(String id) {
+			this.id = id;
+		}
+
+		public void setRoot(String root) {
+			this.root = root;
+		}
+
+		public void setInReplyTo(String inReplyTo) {
+			this.inReplyTo = inReplyTo;
+		}
+
+		public void setReplies(ArrayList<String> replies) {
+			this.replies = replies;
+		}
+
+		public void setMessageId(String messageId) {
+			this.messageId = messageId;
+		}
+
+		public void setSubject(String subject) {
+			this.subject = subject;
+		}
+
+		public void setSentDate(Date sentDate) {
+			this.sentDate = sentDate;
+		}
+
+		public void setFrom(String from) {
+			this.from = from;
+		}
+
+		public void setMainContent(ContentPart mainContent) {
+			this.mainContent = mainContent;
+		}
+
+		public void setAttachments(ArrayList<ContentPart> attachments) {
+			this.attachments = attachments;
+		}
+
+		public Email() {
 	        super();
 	    }
 	    
