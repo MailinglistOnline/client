@@ -1,56 +1,23 @@
 package com.redhat.mailinglistOnline.client.rest;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
-import org.apache.http.client.ClientProtocolException;
-import org.jboss.resteasy.client.ClientRequest;
-import org.jboss.resteasy.client.ClientResponse;
+import java.util.List;
 
+import javax.ejb.Stateless;
+
+import org.jboss.resteasy.client.ProxyFactory;
+import org.jboss.resteasy.plugins.providers.RegisterBuiltin;
+import org.jboss.resteasy.spi.ResteasyProviderFactory;
+import com.redhat.mailinglistOnline.client.entities.Email;
+
+
+@Stateless(name="restClient")
 public class RestClient {
-	
-	
-	public void method() {
-		try {
-			 
-			ClientRequest request = new ClientRequest(
-					"http://localhost:8080/RESTfulExample/json/product/get");
-			request.accept("application/xml");
-			ClientResponse<RestEmailCollection> response = request.get(RestEmailCollection.class);
-	 
-			if (response.getStatus() != 200) {
-				throw new RuntimeException("Failed : HTTP error code : "
-					+ response.getStatus());
-			}
-			
-			RestEmailCollection col =response.getEntity();
-//	 
-//			BufferedReader br = new BufferedReader(new InputStreamReader(
-//				new ByteArrayInputStream(response.getEntity().getBytes())));
-//	 
-//			String output;
-//			System.out.println("Output from Server .... \n");
-//			while ((output = br.readLine()) != null) {
-//				System.out.println(output);
-//			}
-			
-	 
-		  } catch (ClientProtocolException e) {
-	 
-			e.printStackTrace();
-	 
-		  } catch (IOException e) {
-	 
-			e.printStackTrace();
-	 
-		  } catch (Exception e) {
-	 
-			e.printStackTrace();
-	 
-		  }
-	 
-		}
+
+	public List<Email> getAllEmails() {
+			RegisterBuiltin.register(ResteasyProviderFactory.getInstance());
+			RestInterface client = ProxyFactory.create(RestInterface.class, "http://localhost:8080");
+            return client.getAllEmails(); 
 	}
+}
 

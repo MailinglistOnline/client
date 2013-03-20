@@ -8,16 +8,15 @@
         <ui:define name="title">RichFaces Sample</ui:define>
 
         <ui:define name="body">
-            <h:form prependId="false">
-                <h:outputLabel value="Name:" for="nameInput" />
-                <h:inputText id="nameInput" value="#{richBean.name}">
-                    <a4j:ajax event="keyup" render="output" />
-                </h:inputText>
-                <h:panelGroup id="output">
-                    <h:outputText value="Hello #{richBean.name}!"
-                        rendered="#{not empty richBean.name}" />
-                </h:panelGroup>
-            </h:form>
+         <ul>
+    		<ui:repeat value="#{bookCatalog.books}" var="book">
+        		<li>
+         		   <h:link value="#{book.title}" outcome="book">
+                <f:param name="id" value="#{book.id}" />
+         		   </h:link>
+        		</li>
+    		</ui:repeat>
+		 </ul>
         </ui:define>
     </ui:composition>
 </body>

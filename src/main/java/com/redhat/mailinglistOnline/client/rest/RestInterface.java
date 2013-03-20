@@ -1,0 +1,56 @@
+package com.redhat.mailinglistOnline.client.rest;
+
+import java.util.List;
+
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import org.jboss.resteasy.annotations.providers.jaxb.Wrapped;
+
+import com.redhat.mailinglistOnline.client.entities.Email;
+
+@Path("/emails")
+public interface RestInterface {
+
+
+	@GET
+    @Path("/all")
+    @Produces("application/xml")
+    @Wrapped(element="emails")
+    public List<Email> getAllEmails();
+    
+    @GET
+    @Path("/email")
+    @Produces("application/xml")
+    @Wrapped(element="emails")
+    public List<Email> getEmailById(@QueryParam("id") String id);
+    
+    @GET
+    @Path("/email")
+    @Produces("application/xml")
+    @Wrapped(element="emails")
+    public List<Email> getEmailByAuthor(@QueryParam("from") String author);
+
+    @GET
+    @Path("/mailinglist/roots/all")
+    @Produces("application/xml")
+    @Wrapped(element="emails")
+    public List<Email> getMailingListRoots(@QueryParam("mailinglist") String mailinglist);
+    
+    @GET
+    @Path("/mailinglist/roots/")
+    @Produces("application/xml")
+    @Wrapped(element="emails")
+    public List<Email> getMailingListRoots(@QueryParam("from") int fromNumber,@QueryParam("to") int toNumber,@QueryParam("mailinglist") String mailinglist);
+    
+    
+    @GET
+    @Path("/thread/")
+    @Produces("application/xml")
+    @Wrapped(element="emails")
+    public List<Email> getEmailPath(@QueryParam("id") String id);
+
+
+}

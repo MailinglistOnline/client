@@ -141,6 +141,16 @@
         	<artifactId>resteasy-jaxrs</artifactId>
         	<version>2.3.5.Final</version>
         </dependency>
+        <dependency>
+        	<groupId>org.jboss.resteasy</groupId>
+        	<artifactId>resteasy-jaxb-provider</artifactId>
+        	<version>2.3.5.Final</version>
+        </dependency>
+        <dependency>
+        	<groupId>javax</groupId>
+        	<artifactId>javaee-api</artifactId>
+        	<version>6.0</version>
+        </dependency>
     </dependencies>
 
     <profiles>
