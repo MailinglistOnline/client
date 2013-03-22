@@ -4,33 +4,28 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessorOrder;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
+@XmlRootElement(name = "email")
 	public class Email{
 		
 		private String id;
 		private String root;
 		private String inReplyTo;
-		private ArrayList<String> replies;
+		private ArrayList<String> replies= new ArrayList<String>();
 		private String messageId;
 		private String subject;
 		private Date sentDate;
-		private ArrayList<String> mailingLists;
+		private ArrayList<String> messageMailingLists=new ArrayList<String>();
 		private String from;
 		private ContentPart mainContent;
-		private ArrayList<ContentPart> attachments;
+		private ArrayList<ContentPart> attachments =new ArrayList<ContentPart>();
 	    
 	    
-	    
-	    public ArrayList<String> getMailingLists() {
-			return mailingLists;
-		}
-
-		public void setMailingLists(ArrayList<String> mailingLists) {
-			this.mailingLists = mailingLists;
-		}
 
 		public void setId(String id) {
 			this.id = id;
@@ -116,7 +111,7 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 	    @XmlElementWrapper(name="mailing_lists")
 	    @XmlElement(name="mailing_list")
 	    public ArrayList<String> getMessageMailingLists() {
-	       return mailingLists;
+	       return messageMailingLists;
 	       
 	    }
 	    @XmlElement(name="from")

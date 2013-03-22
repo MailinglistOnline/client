@@ -109,6 +109,7 @@
             <artifactId>javax.faces</artifactId>
             <scope>compile</scope>
         </dependency>
+	 
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>

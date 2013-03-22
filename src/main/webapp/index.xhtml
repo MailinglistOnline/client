@@ -9,17 +9,14 @@
 
         <ui:define name="body">
         <h:form id="emailForm">
-		<h:commandButton type="submit" value="Get all emails" action="#{client.getAllEmails()}"/>
+		<h:commandButton type="submit" value="Get all emails" action="#{response.getAllEmails()}"/>
 
 
 </h:form>
-<h:outputLabel value="#{client.abc}" />
          <ul>
-    		<ui:repeat value="#{client.emails}" var="email">
+    		<ui:repeat value="#{response.emails}" var="email">
         		<li>
-         		   <h:link value="#{email.id}" outcome="book">
-                <f:param name="id" value="#{email.id}" />
-         		   </h:link>
+         		   <h:outputLabel value="#{email.id}" />
         		</li>
     		</ui:repeat>
 		 </ul>

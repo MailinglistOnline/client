@@ -16,7 +16,17 @@ public class ContentPart{
     }
 
 
-    @XmlElement
+    public void setType(String type) {
+		this.type = type;
+	}
+
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+
+	@XmlElement
     public String getContent() {
         return content;
     }

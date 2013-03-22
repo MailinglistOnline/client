@@ -2,6 +2,7 @@ package com.redhat.mailinglistOnline.client.entities;
 
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -9,7 +10,8 @@ import javax.validation.constraints.Size;
 import com.mongodb.BasicDBObject;
 
 
-@ManagedBean
+@ManagedBean(name="user")
+@SessionScoped
 public class User extends BasicDBObject{
 
     
