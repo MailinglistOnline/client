@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 		private Date sentDate;
 		private ArrayList<String> messageMailingLists=new ArrayList<String>();
 		private String from;
-		private ContentPart mainContent;
+		private ArrayList<ContentPart> mainContent=new ArrayList<ContentPart>();
 		private ArrayList<ContentPart> attachments =new ArrayList<ContentPart>();
 	    
 	    
@@ -59,7 +59,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 			this.from = from;
 		}
 
-		public void setMainContent(ContentPart mainContent) {
+		public void setMainContent(ArrayList<ContentPart> mainContent) {
 			this.mainContent = mainContent;
 		}
 
@@ -119,8 +119,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 	        return from;
 	    }
 
-	    @XmlElement(name="main_content")
-	    public ContentPart getMainContent() {
+	    @XmlElementWrapper(name="main_content")
+	    @XmlElement(name="alternative")
+	    public ArrayList<ContentPart> getMainContent() {
 	        return mainContent;
 	    }
 	    
