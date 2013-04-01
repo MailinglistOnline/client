@@ -102,7 +102,7 @@ website at:
 .... will need to do: 
 add to standalone.xml :
 
- <security-domain name="mongo_auth" cache-type="default">
+ 				<security-domain name="mongo_auth" cache-type="default">
   				<authentication>
   				  <login-module code="com.redhat.mailinglistOnline.security.MongoDbLoginModule" flag="required">
    				   <!--module-option name="exampleProperty" value="exampleValue"/-->
