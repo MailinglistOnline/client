@@ -1,6 +1,8 @@
 package com.redhat.mailinglistOnline.client.entities;
 
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.validation.constraints.NotNull;
@@ -20,6 +22,7 @@ public class User extends BasicDBObject{
 	
 	private static final String ROOT_NAME_TAG = "name";
 	private static final String ROOT_PASSWORD_TAG = "password";
+	private static final String ROOT_ROLES_TAG = "roles";
 
 	public String getName() {
 		return getString(ROOT_NAME_TAG);
@@ -38,5 +41,13 @@ public class User extends BasicDBObject{
 	@NotNull
 	public void setPassword(String password) {
 		put(ROOT_PASSWORD_TAG, password);
+	}
+	
+	public List<String> getRoles() {
+		return (List<String>) get(ROOT_ROLES_TAG);
+	}
+
+	public void setRoles(List<String> roles) {
+		put(ROOT_PASSWORD_TAG, roles);
 	}
 }
