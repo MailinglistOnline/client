@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.Properties;
 
+import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
 
 import com.mongodb.BasicDBObject;
@@ -13,7 +14,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.WriteConcern;
 import com.redhat.mailinglistOnline.client.entities.User;
 
-@ApplicationScoped
+@Stateless
 public class DbClient {
 
 	  private static String DATABASE_PROPERTIES_FILE_NAME = "userDatabase.properties";

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jboss-web>
-  <security-domain>mongo_auth</security-domain>
+
+  <security-domain>java:/jaas/mongo_auth</security-domain>
   <disable-audit>true</disable-audit>
 </jboss-web>
 
