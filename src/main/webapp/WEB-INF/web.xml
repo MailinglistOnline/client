@@ -82,8 +82,8 @@
 	<login-config>
 		<auth-method>FORM</auth-method>
 		<form-login-config>
-			<form-login-page>/login.xhtml</form-login-page>
-			<form-error-page>/login-fail.xhtml</form-error-page>
+			<form-login-page>/login.xhtml?faces-redirect=true</form-login-page>
+			<form-error-page>/login-fail.xhtml?faces-redirect=true</form-error-page>
 		</form-login-config>
 	</login-config>
 
@@ -92,7 +92,8 @@
 
 
 	<welcome-file-list>
-		<welcome-file>/index.xhtml</welcome-file>
+		<welcome-file>/index.xhtml?faces-redirect=true</welcome-file>
+		
 		<!-- faces/index.xhtml -->
 	</welcome-file-list>
 
