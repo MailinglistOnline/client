@@ -1,12 +1,18 @@
 package com.redhat.mailinglistOnline.security;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
 import java.security.acl.Group;
 import java.util.Map;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.security.auth.Subject;
 import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.login.LoginException;
+
 
 import org.jboss.resteasy.plugins.server.embedded.SimplePrincipal;
 import org.jboss.security.SimpleGroup;
@@ -20,19 +26,29 @@ import com.redhat.mailinglistOnline.client.entities.User;
 public class MongoDbLoginModule extends UsernamePasswordLoginModule{
 
 	
-	@Inject DbClient dbClient;
+	DbClient dbClient;
 	
 	@Override
 	 public void initialize(Subject subject, CallbackHandler callbackHandler,
              Map sharedState, Map options)
 	{
 		super.initialize(subject, callbackHandler, sharedState, options);
-
+		try {
+			dbClient = (DbClient) new InitialContext().lookup("java:app/mailinglistOnline-Client/dbClient");
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	protected String getUsersPassword() throws LoginException {
-		return dbClient.getUserByName(getUsername()).getPassword();
+		User user = dbClient.getUserByName(getUsername());
+		if(user != null) {
+			return user.getPassword();
+		} else {
+			return null;
+		}
 	}
 
 	@Override

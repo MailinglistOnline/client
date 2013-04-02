@@ -3,24 +3,6 @@
     xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j">
 
 <body>
-    <ui:composition template="/templates/template.xhtml">
-
-        <ui:define name="title">RichFaces Sample</ui:define>
-
-        <ui:define name="body">
-        <h:form id="emailForm">
-		<h:commandButton type="submit" value="Get all emails" action="#{response.getAllEmails()}"/>
-
-
-</h:form>
-         <ul>
-    		<ui:repeat value="#{response.emails}" var="email">
-        		<li>
-         		   <h:outputLabel value="#{email.id}" />
-        		</li>
-    		</ui:repeat>
-		 </ul>
-        </ui:define>
-    </ui:composition>
+   <h2>failed login</h2>
 </body>
 </html>

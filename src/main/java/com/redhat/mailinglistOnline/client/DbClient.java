@@ -14,7 +14,8 @@ import com.mongodb.MongoClient;
 import com.mongodb.WriteConcern;
 import com.redhat.mailinglistOnline.client.entities.User;
 
-@Stateless
+
+@Stateless(name="dbClient")
 public class DbClient {
 
 	  private static String DATABASE_PROPERTIES_FILE_NAME = "userDatabase.properties";
@@ -47,7 +48,7 @@ public class DbClient {
 	    }
 	    
 	    public User getUserByName(String name) {
-	        BasicDBObject nameObj = new BasicDBObject("name", name);
+	        BasicDBObject nameObj = new BasicDBObject(User.ROOT_NAME_TAG, name);
 	        return (User) coll.findOne(nameObj);
 	    }
 

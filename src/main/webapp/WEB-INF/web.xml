@@ -22,12 +22,9 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.jsf</url-pattern>
+		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>/faces/*</url-pattern>
-	</servlet-mapping>
+	
 
 	<!-- Resource Servlet - serves static resources and resources for specific 
 		components -->
@@ -65,7 +62,7 @@
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>General use.</web-resource-name>
-			<url-pattern>/*</url-pattern>
+			<url-pattern>/index.xhtml</url-pattern>
 			<http-method>DELETE</http-method>
 			<http-method>GET</http-method>
 			<http-method>POST</http-method>
@@ -95,7 +92,7 @@
 
 
 	<welcome-file-list>
-		<welcome-file>faces/index.xhtml</welcome-file>
+		<welcome-file>/index.xhtml</welcome-file>
 		<!-- faces/index.xhtml -->
 	</welcome-file-list>
 

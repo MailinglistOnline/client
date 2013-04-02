@@ -20,9 +20,9 @@ public class User extends BasicDBObject{
 	private static final long serialVersionUID = -6858919384286693764L;
 
 	
-	private static final String ROOT_NAME_TAG = "name";
-	private static final String ROOT_PASSWORD_TAG = "password";
-	private static final String ROOT_ROLES_TAG = "roles";
+	public static final String ROOT_NAME_TAG = "username";
+	public static final String ROOT_PASSWORD_TAG = "password";
+	public static final String ROOT_ROLES_TAG = "roles";
 
 	public String getName() {
 		return getString(ROOT_NAME_TAG);
