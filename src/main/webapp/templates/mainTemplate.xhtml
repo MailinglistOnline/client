@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+
+
+<h:head>
+<title>Mailinglist Online</title>
+<h:outputStylesheet library="css" name="main.css"  />
+
+</h:head>
+
+
+
+
+<h:body>
+		<div id="wrapper">
+			<div id="header">
+			<rich:toolbar height="26px">
+            <rich:dropDownMenu mode="ajax">
+                <f:facet name="label">
+                    <h:panelGroup>
+                        <h:outputText value="Mailinglist Onlin" />
+                    </h:panelGroup>
+                </f:facet>
+
+ 
+            </rich:dropDownMenu>
+ 
+            <rich:dropDownMenu mode="ajax">
+                <f:facet name="label">
+                    <h:panelGrid cellpadding="0" cellspacing="0" columns="2" style="vertical-align:middle">
+                        <h:outputText value="Links" />
+                    </h:panelGrid>
+                </f:facet>
+                <rich:menuItem submitMode="client" onclick="document.location.href='http://labs.jboss.com/jbossrichfaces/'">
+                    <h:outputText value="RichFaces Home Page" />
+                </rich:menuItem>
+                <rich:menuItem submitMode="client"
+                    onclick="document.location.href='http://jboss.com/index.html?module=bb&amp;op=viewforum&amp;f=261'">
+                    <h:outputText value="RichFaces Forum" />
+                </rich:menuItem>
+            </rich:dropDownMenu>
+        </rich:toolbar>
+				<ui:insert name="header"></ui:insert>
+			</div>
+			<div id="contentliquid"> <div id="content">
+					<ui:insert name="content"> abc </ui:insert>
+			</div></div>	
+			<div id="leftcolumn">
+				<ui:insert name="leftcolumn"> menu</ui:insert>
+			</div>
+			<div id="rightcolumn">
+				<ui:insert name="rightcolumn"> </ui:insert>
+			</div>
+			
+			
+			<div id="footer">
+				<p>This is the Footer</p>
+			</div>
+			</div>
+		
+
+	
+</h:body>
+</html>

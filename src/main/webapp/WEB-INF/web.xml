@@ -62,7 +62,7 @@
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>General use.</web-resource-name>
-			<url-pattern>/index.xhtml</url-pattern>
+			<url-pattern>/user/*</url-pattern>
 			<http-method>DELETE</http-method>
 			<http-method>GET</http-method>
 			<http-method>POST</http-method>
@@ -92,7 +92,7 @@
 
 
 	<welcome-file-list>
-		<welcome-file>/index.xhtml?faces-redirect=true</welcome-file>
+		<welcome-file>/index.xhtml</welcome-file>
 		
 		<!-- faces/index.xhtml -->
 	</welcome-file-list>

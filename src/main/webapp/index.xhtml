@@ -1,26 +1,43 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich">
 
 <body>
-    <ui:composition template="/templates/template.xhtml">
+	<ui:composition template="/templates/mainTemplate.xhtml">
 
-        <ui:define name="title">RichFaces Sample</ui:define>
+		<ui:define name="leftcolumn">
+			<h:form id="emailForm">
+				<h:commandLink value="Get all emails"
+					action="#{response.getAllEmails()}" />
+				
+			</h:form>
+		</ui:define>
+		<ui:define name="content">
 
-        <ui:define name="body">
-        <h:form id="emailForm">
-		<h:commandButton type="submit" value="Get all emails" action="#{response.getAllEmails()}"/>
+			<ul>
 
-
-</h:form>
-         <ul>
-    		<ui:repeat value="#{response.emails}" var="email">
-        		<li>
-         		   <h:outputLabel value="#{email.id}" />
-        		</li>
-    		</ui:repeat>
-		 </ul>
-        </ui:define>
-    </ui:composition>
+				<ui:repeat value="#{response.emails}" var="email">
+				<div id="email-list">
+						<b>ID:  </b><h:outputLabel value="#{email.id}" />
+						<br />
+					    <b>From: </b><h:outputLabel value="#{email.from}" />
+						<br />
+						<b>Content: </b><h:outputLabel value="#{email.mainContent[0].content}" />
+						<br />
+						<ui:repeat value="#{email.replies}" var="reply">
+						<h:commandLink value="Get all emails" action="#{response.getAllEmails()}" />
+						</ui:repeat>
+						
+						<br />
+						<h:outputLabel value="From: #{email.id}" />
+						<br />
+					 </div>
+				</ui:repeat>
+			</ul>
+		</ui:define>
+	</ui:composition>
 </body>
 </html>
