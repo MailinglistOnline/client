@@ -9,8 +9,8 @@
 
 
 <h:head>
-<title>Mailinglist Online</title>
-<h:outputStylesheet library="css" name="main.css"  />
+	<title>Mailinglist Online</title>
+	<h:outputStylesheet library="css" name="main.css" />
 
 </h:head>
 
@@ -18,50 +18,69 @@
 
 
 <h:body>
-		
-			<div id="header">
-			<rich:toolbar height="35px" itemClass="myHeader">
-            <rich:menuItem itemClass="myHeaderDropDown" submitMode="client" onclick="document.location.href='http://labs.jboss.com/jbossrichfaces/'">
-                    <h:outputText value="MailingListOnline" />
-            </rich:menuItem>
- 
-            <rich:dropDownMenu itemClass="myHeaderDropDown" mode="ajax">
-                <f:facet name="label">
-                    <h:panelGrid cellpadding="0" cellspacing="0" columns="2" style="vertical-align:middle">
-                        <h:outputText value="Links" />
-                    </h:panelGrid>
-                </f:facet>
-                <rich:menuItem submitMode="client" onclick="document.location.href='http://labs.jboss.com/jbossrichfaces/'">
-                    <h:outputText value="RichFaces Home Page" />
-                </rich:menuItem>
-                <rich:menuItem submitMode="client"
-                    onclick="document.location.href='http://jboss.com/index.html?module=bb&amp;op=viewforum&amp;f=261'">
-                    <h:outputText value="RichFaces Forum" />
-                </rich:menuItem>
-            </rich:dropDownMenu>
-        </rich:toolbar>
-				<ui:insert name="header"></ui:insert>
+
+	<div id="header">
+		<rich:toolbar height="35px" itemClass="myHeader">
+			<rich:menuItem itemClass="myHeaderDropDown" submitMode="client"
+				onclick="document.location.href='http://localhost:8080/mailinglistOnline-Client/'">
+				<h:outputText value="MailingListOnline" />
+			</rich:menuItem>
+
+			<rich:dropDownMenu itemClass="myHeaderDropDown" mode="ajax">
+				<f:facet name="label">
+					<h:panelGrid cellpadding="0" cellspacing="0" columns="2"
+						style="vertical-align:middle">
+						<h:outputText value="Links" />
+					</h:panelGrid>
+				</f:facet>
+				<rich:menuItem submitMode="client" 
+					onclick="document.location.href='http://labs.jboss.com/jbossrichfaces/'">
+					<h:outputText value="RichFaces Home Page" />
+				</rich:menuItem>
+				<rich:menuItem submitMode="client"
+					onclick="document.location.href='http://jboss.com/index.html?module=bb&amp;op=viewforum&amp;f=261'">
+					<h:outputText value="RichFaces Forum" />
+				</rich:menuItem>
+			</rich:dropDownMenu>
+
+            <rich:toolbarGroup location="right" >
+                <rich:menuItem itemClass="myHeaderDropDown" submitMode="client"
+				onclick="document.location.href='login.xhtml'">
+				<h:outputText value="Login" />
+			</rich:menuItem>
+            </rich:toolbarGroup>
+           
+                
+		</rich:toolbar>
+		<ui:insert name="header"></ui:insert>
+	</div>
+	<div id="wrapper">
+		<div id="contentliquid">
+			<div id="content">
+				<ui:insert name="content"> abc </ui:insert>
 			</div>
-			<div id="wrapper">
-			<div id="contentliquid"> <div id="content">
-					<ui:insert name="content"> abc </ui:insert>
-			</div></div>	
-			<div id="leftcolumn">
-				<ui:insert name="leftcolumn"> menu</ui:insert>
+		</div>
+		<div id="leftcolumn">
+			<ui:insert name="leftcolumnBeforeMenu"> </ui:insert>
+			<div id="leftcolumnMenu">
+				<h:form>
+						<ui:insert name="leftcolumnMenu"></ui:insert>
+					
+				</h:form>
 			</div>
+			<ui:insert name="leftcolumnAfterMenu"> </ui:insert>
+		</div>
 			<div id="rightcolumn">
-				<ui:insert name="rightcolumn"> </ui:insert>
+				<ui:insert name="rightcolumn">
+				</ui:insert>
 			</div>
-			
-			
+
+
 			<div id="footer">
 
- 
+
 				<p>This is the Footer</p>
 			</div>
-			</div>
-		
-
-	
+		</div>
 </h:body>
 </html>

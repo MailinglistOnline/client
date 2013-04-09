@@ -99,8 +99,19 @@ border:0;
 }
 
 #leftcolumnMenu {
+	text-decoration: none;
+	font-weight: bold;
+	margin-left: 40px;
     
 }
+
+#leftcolumnMenu a{
+	text-decoration: none;
+	color:grey;
+    
+}
+
+
 
 #controlBackgroundColor{
 	 background-color: #fae6b0;

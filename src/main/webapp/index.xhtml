@@ -6,14 +6,16 @@
 	xmlns:rich="http://richfaces.org/rich">
 
 <body>
+
 	<ui:composition template="/templates/mainTemplate.xhtml">
 
-		<ui:define name="leftcolumn">
-			<h:form id="emailForm">
+		<ui:define name="leftcolumnMenu">
+		
 				<h:commandLink value="Get all emails"
 					action="#{response.getAllEmails()}" />
-				
-			</h:form>
+
+
+			
 		</ui:define>
 		<ui:define name="content">
 
