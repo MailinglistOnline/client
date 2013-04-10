@@ -62,8 +62,23 @@ public class MongoDbLoginModule extends UsernamePasswordLoginModule{
         } catch (Exception e) {
             throw new LoginException("Failed to create group member for " + group);
         }
+        
         return new Group[] { group };
 	}
+	
+	@Override
+	protected String createPasswordHash(String username, String password, String digestOption) throws LoginException {
+		String hash= super.createPasswordHash(username, password, digestOption);
+		return hash;
+	}
+	
+	@Override
+	protected boolean validatePassword(String inputPassword, String expectedPassword) {
+		boolean result= super.validatePassword(inputPassword, expectedPassword);
+		return result;
+		
+	}
+	
 	
 	 //validatePassword(String inputPassword, String expectedPassword) for hash
 

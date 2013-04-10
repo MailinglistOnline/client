@@ -33,7 +33,7 @@
 						<h:outputText value="Links" />
 					</h:panelGrid>
 				</f:facet>
-				<rich:menuItem submitMode="client" 
+				<rich:menuItem submitMode="client"
 					onclick="document.location.href='http://labs.jboss.com/jbossrichfaces/'">
 					<h:outputText value="RichFaces Home Page" />
 				</rich:menuItem>
@@ -43,14 +43,28 @@
 				</rich:menuItem>
 			</rich:dropDownMenu>
 
-            <rich:toolbarGroup location="right" >
-                <rich:menuItem itemClass="myHeaderDropDown" submitMode="client"
-				onclick="document.location.href='login.xhtml'">
-				<h:outputText value="Login" />
-			</rich:menuItem>
-            </rich:toolbarGroup>
-           
-                
+			<rich:toolbarGroup location="right">
+				<rich:menuItem rendered="#{empty request.remoteUser}"
+					itemClass="myHeaderDropDown" submitMode="client"
+					onclick="document.location.href='user/user.xhtml'">
+					<h:outputText value="Login" />
+				</rich:menuItem>
+				<rich:dropDownMenu rendered="#{not empty request.remoteUser}" itemClass="myHeaderDropDown" mode="ajax">
+					<f:facet name="label">
+						<h:panelGrid cellpadding="0" cellspacing="0" columns="2"
+							style="vertical-align:middle">
+							<h:outputText value="#{request.remoteUser}" />
+						</h:panelGrid>
+					</f:facet>
+					<rich:menuItem 
+						itemClass="myHeaderDropDown" submitMode="client"
+						action="#{userSession.logout()}" >
+						<h:outputText value="logout" />
+					</rich:menuItem>
+				</rich:dropDownMenu>
+			</rich:toolbarGroup>
+
+
 		</rich:toolbar>
 		<ui:insert name="header"></ui:insert>
 	</div>
@@ -61,26 +75,28 @@
 			</div>
 		</div>
 		<div id="leftcolumn">
-			<ui:insert name="leftcolumnBeforeMenu"> </ui:insert>
+			<ui:insert name="leftcolumnBeforeMenu">
+			</ui:insert>
 			<div id="leftcolumnMenu">
 				<h:form>
-						<ui:insert name="leftcolumnMenu"></ui:insert>
-					
+					<ui:insert name="leftcolumnMenu"></ui:insert>
+
 				</h:form>
 			</div>
-			<ui:insert name="leftcolumnAfterMenu"> </ui:insert>
+			<ui:insert name="leftcolumnAfterMenu">
+			</ui:insert>
 		</div>
-			<div id="rightcolumn">
-				<ui:insert name="rightcolumn">
-				</ui:insert>
-			</div>
-
-
-			<div id="footer">
-
-
-				<p>This is the Footer</p>
-			</div>
+		<div id="rightcolumn">
+			<ui:insert name="rightcolumn">
+			</ui:insert>
 		</div>
+
+
+		<div id="footer">
+
+
+			<p>This is the Footer</p>
+		</div>
+	</div>
 </h:body>
 </html>

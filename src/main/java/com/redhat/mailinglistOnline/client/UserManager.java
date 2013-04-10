@@ -2,9 +2,14 @@ package com.redhat.mailinglistOnline.client;
 
 
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import com.redhat.mailinglistOnline.client.entities.User;
 
+@SessionScoped
+@ManagedBean(name="userSession")
 public class UserManager {
 	
 	@Inject
@@ -23,8 +28,9 @@ public class UserManager {
 		}
 	}
 	
-	public User getUserByName(String name) {
-		return dbClient.getUserByName(name);
+	public String logout() {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "/index.xhtml?faces-redirect=true";
 	}
 	
 }
