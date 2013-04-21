@@ -45,6 +45,18 @@ border:0;
 }
 
 
+
+.rf-tab-hdr-spcr{
+	border: none;
+	background: #FFFFFF  ;
+	outline: none;
+}
+.rf-tab-hdr-tabline-vis.rf-tab-hdr-tabline-top, .rf-tab-cnt,.rf-tab-hdr-inact, .rf-tab-hdr-act{
+	border-color: #FFFFFF !important;
+	background: none !important;
+	outline: none;
+}
+
 .myHeader{
     background: #E8E8E8  ;
     border: transient;
@@ -69,8 +81,7 @@ border:0;
 }
 
 #header {
-	
-	
+
 	margin: 0 0 20px;
     float: left;
     height: 35px;
@@ -85,12 +96,42 @@ border:0;
 }
 
 #content {
+	
     margin-left: 150px;
     margin-right: 150px;
     padding-left:2cm;
     padding-right:2cm;
  
 }
+#contentMenu{
+	max-width: 1000px;
+}
+
+
+.rf-tab-hdr{
+	background-color:transient;
+	border:none;'
+}
+#contentMenuRF{
+		
+}
+
+
+.rich-tabhdr-side-cell{
+border: none;
+background: transparent;
+}
+
+#contentEmails {
+	
+    topmargin:300px;
+    padding-left:2cm;
+    padding-right:2cm;
+ 
+}
+
+
+
 
 #leftcolumn {
     width: 150px;
