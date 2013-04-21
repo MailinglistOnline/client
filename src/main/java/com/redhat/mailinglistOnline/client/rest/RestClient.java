@@ -25,19 +25,31 @@ public class RestClient {
 	
 	private static String SERVER_PROPERTIES_FILE_NAME = "server.properties";
 	private String serverUrl;
+	RestEmailInterface emailClient;
+	RestMailingListInterface mailingListsClient;
 
 
 	public RestClient() throws IOException {
 		Properties prop = new Properties();
+		RegisterBuiltin.register(ResteasyProviderFactory.getInstance());
         prop.load(DbClient.class.getClassLoader().getResourceAsStream((SERVER_PROPERTIES_FILE_NAME)));
         serverUrl = prop.getProperty("serverUrl");
+        emailClient = ProxyFactory.create(RestEmailInterface.class, serverUrl);
+        mailingListsClient = ProxyFactory.create(RestMailingListInterface.class, serverUrl);
         
 	}
 	
 	public List<Email> getAllEmails() {
-			RegisterBuiltin.register(ResteasyProviderFactory.getInstance());
-			RestInterface client = ProxyFactory.create(RestInterface.class, serverUrl);
-			return client.getAllEmails(); 
+			return emailClient.getAllEmails(); 
+	}
+	
+	public List<String> getAllMailingLists() {
+			MailingListWrapper wrapper= mailingListsClient.getAllMailingLists();
+			return wrapper.getMailinglists();
+	}
+
+	public List<Email> getMailingListRoot(String mailingList) {
+		return emailClient.getMailingListRoots(mailingList);
 	}
 
 }

@@ -12,7 +12,7 @@
 		<ui:define name="leftcolumnMenu">
 
 			<h:commandLink value="Get all emails"
-				action="#{response.getAllEmails()}" />
+				action="#{contentResponse.getAllEmails()}" />
 
 
 
@@ -24,21 +24,16 @@
 							
 						</rich:tab>
 						<rich:tab style="border:none" header="Mailinglists">
-							<p>We are working hard on RichFaces 4.0 which will have full
-								JSF 2 integration. That is not all though, here is a summary of
-								updates and features:</p>
-							<ul>
-								<li>Redesigned modular repository and build system.</li>
-								<li>Simplified Component Development Kit with annotations,
-									faces-config extensions, advanced templates support and more..</li>
-								<li>Ajax framework improvements extending the JSF 2
-									specification.</li>
-								<li>Component review for consistency, usability, and
-									redesign following semantic HTML principles where possible.</li>
-								<li>Both server-side and client-side performance
-									optimization.</li>
-								<li>Strict code clean-up and review.</li>
-							</ul>
+						<ul>
+						<ui:repeat value="#{mailinglists.mailingLists}" var="mailinglist">
+						<li>
+						<h:form>
+						<h:commandLink value="#{mailinglist}"
+									action="#{contentResponse.getMailingListRoot(mailinglist)}" />
+									</h:form>
+						</li>
+						</ui:repeat>
+						</ul>
 						</rich:tab>
 					</rich:tabPanel>
 				
@@ -46,7 +41,7 @@
 
 			<div >
 				<ul>
-					<ui:repeat value="#{response.emails}" var="email">
+					<ui:repeat value="#{contentResponse.emails}" var="email">
 
 						<div id="email-list">
 							<b>ID: </b>
@@ -57,12 +52,12 @@
 							<h:outputLabel value="#{email.mainContent[0].content}" />
 							<br />
 							<ui:repeat value="#{email.replies}" var="reply">
-								<h:commandLink value="Get all emails"
-									action="#{response.getAllEmails()}" />
+								<b>Reply: </b><h:outputLabel value="#{reply}" />
+								<br />
 							</ui:repeat>
 
 							<br />
-							<h:outputLabel value="From: #{email.id}" />
+							<h:outputLabel value="Thread root: #{email.root}" />
 							<br />
 						</div>
 					</ui:repeat>
