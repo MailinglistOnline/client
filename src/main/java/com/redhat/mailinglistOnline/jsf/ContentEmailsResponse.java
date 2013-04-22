@@ -37,6 +37,10 @@ public class ContentEmailsResponse {
 	public void setEmails(List<Email> emails) {
 		this.emails = emails;
 	}
+	
+	public String selectedEmail(Email email) {
+		return "index";
+	}
 
 
 	

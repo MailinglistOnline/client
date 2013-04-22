@@ -14,6 +14,13 @@ public class ContentPart{
     public String getType() {
         return type;
     }
+    
+    public String getShorterContent(int length) {
+    	if(content.length()< length) {
+    		length=content.length();
+    	}
+    	return content.substring(0,length);
+    }
 
 
     public void setType(String type) {

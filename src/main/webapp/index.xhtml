@@ -43,17 +43,27 @@
 				<ul>
 					<ui:repeat value="#{contentResponse.emails}" var="email">
 
-						<div id="email-list">
+						<div style="border-bottom:solid #E8E8E8 ;" id="email-list">
 							<b>ID: </b>
 							<h:outputLabel value="#{email.id}" />
 							<br /> <b>From: </b>
 							<h:outputLabel value="#{email.from}" />
+							<h:form>
 							<br /> <b>Content: </b>
-							<h:outputLabel value="#{email.mainContent[0].content}" />
+							<h:outputLabel value="#{email.mainContent[0].getShorterContent(100)}" />...
+							
+							<h:commandLink value="more"
+									action="#{detailedEmail.setEmail(email)}" />
+							
+						 
+							</h:form>
 							<br />
 							<ui:repeat value="#{email.replies}" var="reply">
-								<b>Reply: </b><h:outputLabel value="#{reply}" />
+							<h:form>
+								<b>Reply: </b><h:commandLink value="#{reply}"
+									action="#{detailedEmail.setEmail(reply)}" />
 								<br />
+								</h:form>
 							</ui:repeat>
 
 							<br />

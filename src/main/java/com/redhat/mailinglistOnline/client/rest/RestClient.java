@@ -43,6 +43,10 @@ public class RestClient {
 			return emailClient.getAllEmails(); 
 	}
 	
+	public Email getEmailById(String id) {
+		return emailClient.getEmailById(id); 
+	}
+	
 	public List<String> getAllMailingLists() {
 			MailingListWrapper wrapper= mailingListsClient.getAllMailingLists();
 			return wrapper.getMailinglists();
