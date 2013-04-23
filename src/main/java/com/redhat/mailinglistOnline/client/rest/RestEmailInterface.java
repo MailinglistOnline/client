@@ -28,6 +28,12 @@ public interface RestEmailInterface {
     public Email getEmailById(@QueryParam("id") String id);
     
     @GET
+    @Path("/email/repliesfrom/")
+    @Produces("application/xml")
+    @Wrapped(element="emails")
+    public List<Email> getEmailReplies(@QueryParam("id") String id);
+    
+    @GET
     @Path("/email")
     @Produces("application/xml")
     @Wrapped(element="emails")

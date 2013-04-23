@@ -11,19 +11,27 @@
 
 		<ui:define name="content">
 
-				<div style="font-size:20px;" id="email">
-						<b>ID:  </b><h:outputLabel value="#{detailedEmail.email.id}" />
-						<br />
-					    <b>From: </b><h:outputLabel value="#{detailedEmail.email.from}" />
-						<br />
-						<b>Content: </b><h:outputLabel value="#{detailedEmail.email.mainContent[0].content}" />
-						<br />
-						<ui:repeat value="#{detailedEmail.email.replies}" var="reply">
-						
-						</ui:repeat>
-						
-						
-					 </div>
+			<div style="font-size: 16px; margin-top: 30px;" id="email">
+				<b>ID: </b>
+				<h:outputLabel value="#{detailedEmail.email.id}" />
+				<br /> <b>From: </b>
+				<h:outputLabel value="#{detailedEmail.email.from}" />
+				<br /> <b>Content: </b>
+				<h:outputLabel value="#{detailedEmail.email.mainContent[0].content}" />
+				<br />
+				
+					<rich:dataGrid value="#{detailedEmail.replies}" style="border:none" var="reply"
+						columns="3" border="0">
+							<h:panelGrid >
+								<h:outputText value="ID: #{reply.id}"></h:outputText>
+								<h:outputText value="From: #{reply.from}"></h:outputText>
+								<h:outputText value="#{reply.mainContent[0].getShorterContent(250)}"></h:outputText>
+							</h:panelGrid>
+					</rich:dataGrid>
+				
+
+
+			</div>
 
 		</ui:define>
 	</ui:composition>

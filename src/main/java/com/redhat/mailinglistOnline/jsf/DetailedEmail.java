@@ -1,5 +1,7 @@
 package com.redhat.mailinglistOnline.jsf;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -18,19 +20,30 @@ public class DetailedEmail {
 	RestClient restClient;
 	
 	private Email email;
+	private List<Email> replies;
 	
 	public String setEmail(Email email) {
 		this.email=email;
+		replies = restClient.getEmailReplies(email);
 		return "/email/index.xhtml";
 	}
 	
 	public String setEmail(String emailId) {
 		email =restClient.getEmailById(emailId);
+		replies = restClient.getEmailReplies(email);
 		return "/email/index.xhtml";
 	}
 	
 	public Email getEmail() {
 		return email;
+	}
+	
+	public List<Email> getReplies() {
+		return replies;
+	}
+	
+	public void setReplies(List<Email> replies) {
+		this.replies=replies;
 	}
 	
 	public RestClient getRestClient() {

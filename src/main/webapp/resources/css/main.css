@@ -49,12 +49,23 @@ border:0;
 .rf-tab-hdr-spcr{
 	border: none;
 	background: #FFFFFF  ;
-	outline: none;
+	
+	
+	
 }
+.rf-tab-hdr-tabline-vis.rf-tab-hdr-tabline-top{
+	margin-left:auto !important;
+margin-right:auto !important;
+width:12%;
+
+}
+
 .rf-tab-hdr-tabline-vis.rf-tab-hdr-tabline-top, .rf-tab-cnt,.rf-tab-hdr-inact, .rf-tab-hdr-act{
 	border-color: #FFFFFF !important;
 	background: none !important;
 	outline: none;
+	
+	
 }
 
 .myHeader{

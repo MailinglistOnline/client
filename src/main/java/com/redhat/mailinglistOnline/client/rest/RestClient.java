@@ -55,6 +55,10 @@ public class RestClient {
 	public List<Email> getMailingListRoot(String mailingList) {
 		return emailClient.getMailingListRoots(mailingList);
 	}
+	
+	public List<Email> getEmailReplies(Email email) {
+		return emailClient.getEmailReplies(email.getId());
+	}
 
 }
 

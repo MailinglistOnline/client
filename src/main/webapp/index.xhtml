@@ -18,51 +18,63 @@
 
 		</ui:define>
 		<ui:define name="content">
+	<center>
+			<rich:tabPanel style="border:none" switchType="client" headerAlignment="center" >
 			
-					<rich:tabPanel style="border:none" switchType="client">
-						<rich:tab  style="border:none" header="Search">
-							
-						</rich:tab>
-						<rich:tab style="border:none" header="Mailinglists">
-						<ul>
-						<ui:repeat value="#{mailinglists.mailingLists}" var="mailinglist">
-						<li>
-						<h:form>
-						<h:commandLink value="#{mailinglist}"
-									action="#{contentResponse.getMailingListRoot(mailinglist)}" />
-									</h:form>
-						</li>
-						</ui:repeat>
-						</ul>
-						</rich:tab>
-					</rich:tabPanel>
-				
-			
+				<rich:tab style="border:none" header="Search">
+						 	Search 
+							<h:inputText value="search" />
+							in 
+							<h:selectOneMenu value="abc">
+						<f:selectItem id="item1" itemLabel="Content" itemValue="1" />
+						<f:selectItem id="item2" itemLabel="Author" itemValue="2" />
+						<f:selectItem id="item3" itemLabel="Mailing list" itemValue="3" />
 
-			<div >
+
+					</h:selectOneMenu>
+				</rich:tab>
+				<rich:tab style="border:none" header="Mailinglists">
+					<ul>
+						<ui:repeat value="#{mailinglists.mailingLists}" var="mailinglist">
+							<li style=" list-style-type: none;"><h:form>
+									<h:commandLink value="#{mailinglist}"
+										action="#{contentResponse.getMailingListRoot(mailinglist)}" />
+								</h:form></li>
+						</ui:repeat>
+					</ul>
+				</rich:tab>
+				
+			</rich:tabPanel>
+</center>
+
+
+			<div>
 				<ul>
 					<ui:repeat value="#{contentResponse.emails}" var="email">
 
-						<div style="border-bottom:solid #E8E8E8 ;" id="email-list">
+						<div style="border-bottom: solid #E8E8E8;" id="email-list">
 							<b>ID: </b>
 							<h:outputLabel value="#{email.id}" />
 							<br /> <b>From: </b>
 							<h:outputLabel value="#{email.from}" />
 							<h:form>
-							<br /> <b>Content: </b>
-							<h:outputLabel value="#{email.mainContent[0].getShorterContent(100)}" />...
+								<br />
+								<b>Content: </b>
+								<h:outputLabel
+									value="#{email.mainContent[0].getShorterContent(100)}" />...
 							
 							<h:commandLink value="more"
 									action="#{detailedEmail.setEmail(email)}" />
-							
-						 
+
+
 							</h:form>
 							<br />
 							<ui:repeat value="#{email.replies}" var="reply">
-							<h:form>
-								<b>Reply: </b><h:commandLink value="#{reply}"
-									action="#{detailedEmail.setEmail(reply)}" />
-								<br />
+								<h:form>
+									<b>Reply: </b>
+									<h:commandLink value="#{reply}"
+										action="#{detailedEmail.setEmail(reply)}" />
+									<br />
 								</h:form>
 							</ui:repeat>
 
