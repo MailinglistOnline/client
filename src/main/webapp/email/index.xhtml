@@ -6,6 +6,11 @@
 	xmlns:rich="http://richfaces.org/rich">
 
 <body>
+<f:metadata>
+    <f:viewParam name="id" value="#{detailedEmail.selectedId}" />
+    <f:event type="preRenderView" listener="#{detailedEmail.load()}"/>   
+    
+</f:metadata>
 
 	<ui:composition template="/templates/mainTemplate.xhtml">
 
@@ -19,13 +24,19 @@
 				<br /> <b>Content: </b>
 				<h:outputLabel value="#{detailedEmail.email.mainContent[0].content}" />
 				<br />
-				
+				<br/>
+				<p ><strong>Replies:</strong></p> <br/>
 					<rich:dataGrid value="#{detailedEmail.replies}" style="border:none" var="reply"
 						columns="3" border="0">
 							<h:panelGrid >
-								<h:outputText value="ID: #{reply.id}"></h:outputText>
+							<h:form>
+								<strong>ID:</strong>
+								<h:link value="#{reply.id}" outcome="/email/index.xhtml">
+   								 <f:param name="id" value="#{reply.id}" />
+								</h:link>
+										</h:form>
 								<h:outputText value="From: #{reply.from}"></h:outputText>
-								<h:outputText value="#{reply.mainContent[0].getShorterContent(250)}"></h:outputText>
+								<h:outputText value="#{reply.mainContent[0].getShorterContent(250)}"></h:outputText>...
 							</h:panelGrid>
 					</rich:dataGrid>
 				

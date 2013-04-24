@@ -8,37 +8,12 @@
 <body>
 
 	<ui:composition template="/templates/mainTemplate.xhtml">
-
-		<ui:define name="leftcolumnMenu">
+	<ui:define name="content">
+	
+		<div style="center">	
+			<h1> Login specific information</h1>
 		
-				<h:commandLink value="Get all emails"
-					action="#{response.getAllEmails()}" />
-
-
-			
-		</ui:define>
-		<ui:define name="content">
-
-			<ul>
-
-				<ui:repeat value="#{response.emails}" var="email">
-				<div id="email-list">
-						<b>ID:  </b><h:outputLabel value="#{email.id}" />
-						<br />
-					    <b>From: </b><h:outputLabel value="#{email.from}" />
-						<br />
-						<b>Content: </b><h:outputLabel value="#{email.mainContent[0].content}" />
-						<br />
-						<ui:repeat value="#{email.replies}" var="reply">
-						<h:commandLink value="Get all emails" action="#{response.getAllEmails()}" />
-						</ui:repeat>
-						
-						<br />
-						<h:outputLabel value="From: #{email.id}" />
-						<br />
-					 </div>
-				</ui:repeat>
-			</ul>
+		</div>
 		</ui:define>
 	</ui:composition>
 </body>

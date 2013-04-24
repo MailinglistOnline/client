@@ -46,7 +46,7 @@
 			<rich:toolbarGroup location="right">
 				<rich:menuItem rendered="#{empty request.remoteUser}"
 					itemClass="myHeaderDropDown" submitMode="client"
-					onclick="document.location.href='user/user.xhtml'">
+					onclick="document.location.href='#{request.contextPath}/user/user.xhtml'">
 					<h:outputText value="Login" />
 				</rich:menuItem>
 				<rich:dropDownMenu rendered="#{not empty request.remoteUser}" itemClass="myHeaderDropDown" mode="ajax">

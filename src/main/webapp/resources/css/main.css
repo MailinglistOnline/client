@@ -46,21 +46,27 @@ border:0;
 
 
 
-.rf-tab-hdr-spcr{
+.rf-tab-hdr-spcr{ /* content menu */
 	border: none;
 	background: #FFFFFF  ;
-	
-	
-	
+
 }
-.rf-tab-hdr-tabline-vis.rf-tab-hdr-tabline-top{
+ 
+.rf-dg-c {  /* richfaces replies */
+border-bottom: none !important;
+border-right :none !important;
+
+}
+
+
+.rf-tab-hdr-tabline-vis.rf-tab-hdr-tabline-top{ /* content menu */
 	margin-left:auto !important;
 margin-right:auto !important;
 width:12%;
 
 }
 
-.rf-tab-hdr-tabline-vis.rf-tab-hdr-tabline-top, .rf-tab-cnt,.rf-tab-hdr-inact, .rf-tab-hdr-act{
+.rf-tab-hdr-tabline-vis.rf-tab-hdr-tabline-top, .rf-tab-cnt,.rf-tab-hdr-inact, .rf-tab-hdr-act{ /* content menu */
 	border-color: #FFFFFF !important;
 	background: none !important;
 	outline: none;
@@ -68,14 +74,32 @@ width:12%;
 	
 }
 
-.myHeader{
+.myHeader{ /*  the top menu */
     background: #E8E8E8  ;
     border: transient;
 }
 .myHeaderDropDown{
     background: #D8D8D8   ;
     border: transient;
+    
 }
+
+.leftContent{
+    width:40%;
+	border-right: solid;
+	margin:auto;
+	float:left;
+	text-align:right;
+	padding-right:15px;
+}
+
+.rightContent{
+     width:40%;  
+     margin:auto;
+     float:left;
+     padding-left:15px;
+}
+
 
 
 #email-list {  

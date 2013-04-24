@@ -62,9 +62,10 @@
 								<b>Content: </b>
 								<h:outputLabel
 									value="#{email.mainContent[0].getShorterContent(100)}" />...
-							
-							<h:commandLink value="more"
-									action="#{detailedEmail.setEmail(email)}" />
+							<h:link value="more" outcome="/email/index.xhtml">
+   								        <f:param name="id" value="#{email.id}" />
+								   </h:link>
+						
 
 
 							</h:form>
@@ -72,8 +73,10 @@
 							<ui:repeat value="#{email.replies}" var="reply">
 								<h:form>
 									<b>Reply: </b>
-									<h:commandLink value="#{reply}"
-										action="#{detailedEmail.setEmail(reply)}" />
+									<h:link value="#{reply}" outcome="/email/index.xhtml">
+   								        <f:param name="id" value="#{reply}" />
+								   </h:link>
+									
 									<br />
 								</h:form>
 							</ui:repeat>

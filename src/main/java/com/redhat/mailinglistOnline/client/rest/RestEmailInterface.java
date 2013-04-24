@@ -22,19 +22,19 @@ public interface RestEmailInterface {
     public List<Email> getAllEmails();
     
     @GET
-    @Path("/email")
+    @Path("/email/id")
     @Produces("application/xml")
-    //@Wrapped(element="emails")
+    @Wrapped(element="emails")
     public Email getEmailById(@QueryParam("id") String id);
     
     @GET
-    @Path("/email/repliesfrom/")
+    @Path("/replies/id")
     @Produces("application/xml")
     @Wrapped(element="emails")
     public List<Email> getEmailReplies(@QueryParam("id") String id);
     
     @GET
-    @Path("/email")
+    @Path("/from")
     @Produces("application/xml")
     @Wrapped(element="emails")
     public List<Email> getEmailByAuthor(@QueryParam("from") String author);
