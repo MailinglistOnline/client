@@ -1,5 +1,6 @@
 package com.redhat.mailinglistOnline.client.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement(name = "email")
-	public class Email{
+	public class Email implements Serializable{
 		
 		private String id;
 		private String root;

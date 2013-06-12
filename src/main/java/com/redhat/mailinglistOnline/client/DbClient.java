@@ -51,7 +51,7 @@ public class DbClient {
 	        BasicDBObject nameObj = new BasicDBObject(User.ROOT_NAME_TAG, name);
 	        return (User) coll.findOne(nameObj);
 	    }
-
+	    
 
 		public boolean saveUser(User user) {
 	        coll.insert(user);

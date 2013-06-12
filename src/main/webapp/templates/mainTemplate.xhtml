@@ -3,6 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:rich="http://richfaces.org/rich">
 
 
@@ -26,22 +27,27 @@
 				<h:outputText value="MailingListOnline" />
 			</rich:menuItem>
 
+			
+			<rich:toolbarGroup location="center">
+			<center>
 			<rich:dropDownMenu itemClass="myHeaderDropDown" mode="ajax">
-				<f:facet name="label">
-					<h:panelGrid cellpadding="0" cellspacing="0" columns="2"
-						style="vertical-align:middle">
-						<h:outputText value="Links" />
-					</h:panelGrid>
-				</f:facet>
-				<rich:menuItem submitMode="client"
-					onclick="document.location.href='http://labs.jboss.com/jbossrichfaces/'">
-					<h:outputText value="RichFaces Home Page" />
-				</rich:menuItem>
-				<rich:menuItem submitMode="client"
-					onclick="document.location.href='http://jboss.com/index.html?module=bb&amp;op=viewforum&amp;f=261'">
-					<h:outputText value="RichFaces Forum" />
-				</rich:menuItem>
+					<f:facet name="label">
+						<h:panelGrid cellpadding="0" cellspacing="0"
+							style="vertical-align:middle">
+							<h:outputText value="Selected mailinglist: #{userSession.selectedMailingList}" />
+						</h:panelGrid>
+					</f:facet>
+					<c:forEach var="mailinglist" items="#{mailinglists.mailingLists}">
+	  					<rich:menuItem submitMode="client" value="abc" action="#{userSession.selectMailingList(mailinglist)}">
+	  						<h:outputText value="#{mailinglist}" />
+	  					</rich:menuItem>
+					</c:forEach>
+					
 			</rich:dropDownMenu>
+			</center>
+			
+			</rich:toolbarGroup>
+			
 
 			<rich:toolbarGroup location="right">
 				<rich:menuItem rendered="#{empty request.remoteUser}"

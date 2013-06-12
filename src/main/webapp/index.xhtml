@@ -7,6 +7,12 @@
 
 <body>
 
+<f:metadata>
+    <f:viewParam name="mailinglist" value="#{detailedEmail.selectedId}" />
+    <f:event type="preRenderView" listener="#{detailedEmail.load()}"/>   
+    
+</f:metadata>
+
 	<ui:composition template="/templates/mainTemplate.xhtml">
 
 		<ui:define name="leftcolumnMenu">

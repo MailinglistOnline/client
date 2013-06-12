@@ -1,5 +1,6 @@
 package com.redhat.mailinglistOnline.jsf;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -12,7 +13,7 @@ import com.redhat.mailinglistOnline.client.rest.RestClient;
 
 @ManagedBean(name="contentResponse")
 @ViewScoped
-public class ContentEmailsResponse {
+public class ContentEmailsResponse implements Serializable{
 
 	@ManagedProperty(value="#{client}")
 	RestClient client;
