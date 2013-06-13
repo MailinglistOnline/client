@@ -98,7 +98,7 @@
 
 
 	<welcome-file-list>
-		<welcome-file>/index.xhtml</welcome-file>
+		<welcome-file>/index.xhtml?mailinglist=list@linux.sk</welcome-file>
 		
 		<!-- faces/index.xhtml -->
 	</welcome-file-list>

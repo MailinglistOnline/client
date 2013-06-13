@@ -2,6 +2,7 @@ package com.redhat.mailinglistOnline.jsf;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -14,13 +15,18 @@ import com.redhat.mailinglistOnline.client.rest.RestClient;
 @SessionScoped
 public class MailingListsResponse {
 	
-	private List<String> mailingLists;
+	public static List<String> mailingLists;
 
 	@ManagedProperty(value="#{client}")
 	RestClient client;
 	
 	public MailingListsResponse() {
 		
+	}
+	
+	@PostConstruct
+	public void init() {
+		mailingLists=client.getAllMailingLists();
 	}
 	
 	public RestClient getClient() {
@@ -33,14 +39,15 @@ public class MailingListsResponse {
 
 
 	public List<String> getMailingLists() {
-		if(mailingLists == null) {
-			mailingLists=client.getAllMailingLists();
-		}
 		return mailingLists;
 	}
 
 	public void setMailingLists(List<String> emails) {
 		this.mailingLists = emails;
+	}
+	
+	public boolean isMailingList(String list) {
+		return mailingLists.contains(list);
 	}
 
 

@@ -50,6 +50,9 @@ public class ContentEmailsResponse implements Serializable{
 	}
 	
 	public void getMailingListRoot(String mailingList) {
+		if(mailingList == null) {
+			return;
+		}
 		emails=client.getMailingListRoot(mailingList);
 	}
 

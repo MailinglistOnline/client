@@ -3,9 +3,12 @@
   xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
                       http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
 
-	<url-mapping id="login">
-		<pattern value="/login" />
-		<view-id value="/legacy/user/login.jsp" />
-	</url-mapping>
+
+
+	<url-mapping id="index">
+		<pattern value="/#{mailinglist}" />
+		<view-id value="/index.xhtml" />
+    </url-mapping>
+	
 
 </pretty-config>

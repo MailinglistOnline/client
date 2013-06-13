@@ -6,11 +6,11 @@
 	xmlns:rich="http://richfaces.org/rich">
 
 <body>
-<!-- <f:metadata>
-    <f:viewParam name="mailinglist" value="#{userSession.selectedMailingList}" />
-    <f:event type="preRenderView" listener="#{contentResponse.getMailingListRoot(mailinglist)}"/>   
+<f:metadata>
+    <f:viewParam name="mailinglist" value="#{detailedEmail.selectedId}" />
+    <f:event type="preRenderView" listener="#{detailedEmail.load()}"/>   
     
-</f:metadata> -->
+</f:metadata>
 
 	<ui:composition template="/templates/mainTemplate.xhtml">
 
