@@ -9,6 +9,8 @@
 		<pattern value="/#{mailinglist}" />
 		<view-id value="/index.xhtml" />
     </url-mapping>
+    
+    
 	
 
 </pretty-config>

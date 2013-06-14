@@ -7,52 +7,46 @@
 
 <body>
 
-  <f:metadata>
-    <f:viewParam name="mailinglist" value="#{userSession.selectedMailingList}" />
-    <f:event type="preRenderView" listener="#{contentResponse.getMailingListRoot(mailinglist)}"/>   
-    
-</f:metadata>  
+	<f:metadata>
+		<f:viewParam name="mailinglist"
+			value="#{userSession.selectedMailingList}" />
+	<f:event type="postAddToView"
+			listener="#{contentResponse.getMailingListRoot(userSession.selectedMailingList)}" /> 
+	</f:metadata>
+	
 
 	<ui:composition template="/templates/mainTemplate.xhtml">
-
 		<ui:define name="leftcolumnMenu">
-
-			<h:commandLink value="Get all emails"
-				action="#{contentResponse.getAllEmails()}" />
-
-
-
+			
 		</ui:define>
 		<ui:define name="content">
-	<center>
-			<rich:tabPanel style="border:none" switchType="client" headerAlignment="center" >
-			
-				<rich:tab style="border:none" header="Search">
-						 	Search 
+		<center><h:outputLabel value="#{userSession.selectedMailingList}" /></center>
+			<h:form id="form">
+				<rich:tabPanel style="border:none" switchType="server"
+					headerAlignment="left"  itemChangeListener="#{panelChangeListener.processItemChange}">
+
+					<rich:tab style="border:none" name="topics" header="Topics" >
+
+					</rich:tab>
+					<rich:tab style="border:none" name="all" header="All"  >
+
+					</rich:tab>
+
+					<rich:tab style="border:none" header="Search">
+						<center>
+							Search
 							<h:inputText value="search" />
-							in 
+							in
 							<h:selectOneMenu value="abc">
-						<f:selectItem id="item1" itemLabel="Content" itemValue="1" />
-						<f:selectItem id="item2" itemLabel="Author" itemValue="2" />
-						<f:selectItem id="item3" itemLabel="Mailing list" itemValue="3" />
+								<f:selectItem id="item1" itemLabel="Content" itemValue="1" />
+								<f:selectItem id="item2" itemLabel="Author" itemValue="2" />
+								<f:selectItem id="item3" itemLabel="Mailing list" itemValue="3" />
+							</h:selectOneMenu>
+						</center>
+					</rich:tab>
 
-
-					</h:selectOneMenu>
-				</rich:tab>
-				<rich:tab style="border:none" header="Mailinglists">
-					<ul>
-						<ui:repeat value="#{mailinglists.mailingLists}" var="mailinglist">
-							<li style=" list-style-type: none;"><h:form>
-									<h:commandLink value="#{mailinglist}"
-										action="#{contentResponse.getMailingListRoot(mailinglist)}" />
-								</h:form></li>
-						</ui:repeat>
-					</ul>
-				</rich:tab>
-				
-			</rich:tabPanel>
-</center>
-
+				</rich:tabPanel>
+			</h:form>
 
 			<div>
 				<ul>
@@ -69,9 +63,9 @@
 								<h:outputLabel
 									value="#{email.mainContent[0].getShorterContent(100)}" />...
 							<h:link value="more" outcome="/email/index.xhtml">
-   								        <f:param name="id" value="#{email.id}" />
-								   </h:link>
-						
+									<f:param name="id" value="#{email.id}" />
+								</h:link>
+
 
 
 							</h:form>
@@ -80,9 +74,9 @@
 								<h:form>
 									<b>Reply: </b>
 									<h:link value="#{reply}" outcome="/email/index.xhtml">
-   								        <f:param name="id" value="#{reply}" />
-								   </h:link>
-									
+										<f:param name="id" value="#{reply}" />
+									</h:link>
+
 									<br />
 								</h:form>
 							</ui:repeat>
@@ -94,6 +88,9 @@
 					</ui:repeat>
 				</ul>
 			</div>
+
+
+
 
 		</ui:define>
 	</ui:composition>

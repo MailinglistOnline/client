@@ -1,5 +1,6 @@
 package com.redhat.mailinglistOnline.client;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -20,10 +21,15 @@ public class UserSession {
 
 
 
-	private String selectedMailingList="abc";
+	private String selectedMailingList;
 	
 	
 	public UserSession() {
+	}
+	
+	@PostConstruct
+	public void init() {
+		selectedMailingList=mailinglistResponse.getMailingLists().get(0);
 	}
 		
 	public void setSelectedMailingList(String newMailingList) {

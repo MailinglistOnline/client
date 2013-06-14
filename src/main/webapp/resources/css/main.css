@@ -46,25 +46,25 @@ border:0;
 
 
 
-.rf-tab-hdr-spcr{ /* content menu */
+/* .rf-tab-hdr-spcr{ content menu
 	border: none;
 	background: #FFFFFF  ;
 
 }
  
-.rf-dg-c {  /* richfaces replies */
+.rf-dg-c {  richfaces replies
 border-bottom: none !important;
 border-right :none !important;
 
 }
 
 
-.rf-tab-hdr-tabline-vis.rf-tab-hdr-tabline-top{ /* content menu */
+.rf-tab-hdr-tabline-vis.rf-tab-hdr-tabline-top{ content menu
 	margin-left:auto !important;
 margin-right:auto !important;
 width:12%;
-
-}
+ 
+}*/
 
 .rf-tab-hdr-tabline-vis.rf-tab-hdr-tabline-top, .rf-tab-cnt,.rf-tab-hdr-inact, .rf-tab-hdr-act{ /* content menu */
 	border-color: #FFFFFF !important;

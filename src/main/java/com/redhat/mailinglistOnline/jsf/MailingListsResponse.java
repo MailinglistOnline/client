@@ -49,6 +49,7 @@ public class MailingListsResponse {
 	public boolean isMailingList(String list) {
 		return mailingLists.contains(list);
 	}
+	
 
 
 
