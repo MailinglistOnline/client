@@ -51,14 +51,19 @@ border:0;
 	background: #FFFFFF  ;
 
 }
- 
-.rf-dg-c {  richfaces replies
+*/ 
+.rf-dg-c {  /* richfaces replies */
 border-bottom: none !important;
 border-right :none !important;
 
 }
+/* tab height */
+.rf-tab{
+	height:0px !important;
+}
 
 
+/*
 .rf-tab-hdr-tabline-vis.rf-tab-hdr-tabline-top{ content menu
 	margin-left:auto !important;
 margin-right:auto !important;

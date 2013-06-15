@@ -49,6 +49,12 @@ public class MailingListsResponse {
 	public boolean isMailingList(String list) {
 		return mailingLists.contains(list);
 	}
+
+	public String getDefaultMailinglist() {
+		return mailingLists.get(0);
+	}
+	
+
 	
 
 

@@ -3,15 +3,17 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:rich="http://richfaces.org/rich">
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces" >
+	
 
 <body>
 
 	<f:metadata>
 		<f:viewParam name="mailinglist"
-			value="#{userSession.selectedMailingList}" />
+			value="#{contentResponse.mailinglist}" />
 	<f:event type="postAddToView"
-			listener="#{contentResponse.getMailingListRoot(userSession.selectedMailingList)}" /> 
+			listener="#{contentResponse.getMailingListRoot()}" /> 
 	</f:metadata>
 	
 
@@ -20,19 +22,19 @@
 			
 		</ui:define>
 		<ui:define name="content">
-		<center><h:outputLabel value="#{userSession.selectedMailingList}" /></center>
+		<center><h:outputLabel value="#{mailinglist}" /></center>
 			<h:form id="form">
 				<rich:tabPanel style="border:none" switchType="server"
 					headerAlignment="left"  itemChangeListener="#{panelChangeListener.processItemChange}">
 
-					<rich:tab style="border:none" name="topics" header="Topics" >
+					<rich:tab style="" name="topics" header="Topics" >
 
 					</rich:tab>
-					<rich:tab style="border:none" name="all" header="All"  >
+					<rich:tab style="" name="all" header="All"  >
 
 					</rich:tab>
 
-					<rich:tab style="border:none" header="Search">
+					<rich:tab style="" name="search" header="Search">
 						<center>
 							Search
 							<h:inputText value="search" />
@@ -62,9 +64,13 @@
 								<b>Content: </b>
 								<h:outputLabel
 									value="#{email.mainContent[0].getShorterContent(100)}" />...
-							<h:link value="more" outcome="/email/index.xhtml">
-									<f:param name="id" value="#{email.id}" />
-								</h:link>
+							    <pretty:link mappingId="email">
+							        <f:param value="#{mailinglist}" />
+									<f:param value="#{email.id}" />
+									more
+								</pretty:link>
+								
+								
 
 
 
@@ -73,9 +79,11 @@
 							<ui:repeat value="#{email.replies}" var="reply">
 								<h:form>
 									<b>Reply: </b>
-									<h:link value="#{reply}" outcome="/email/index.xhtml">
-										<f:param name="id" value="#{reply}" />
-									</h:link>
+									<pretty:link mappingId="email">
+							        <f:param value="#{mailinglist}" />
+									<f:param value="#{reply}" />
+									<h:outputLabel value="#{reply}" />
+								</pretty:link>
 
 									<br />
 								</h:form>

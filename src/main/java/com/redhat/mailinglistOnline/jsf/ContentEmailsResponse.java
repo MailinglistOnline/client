@@ -2,8 +2,11 @@ package com.redhat.mailinglistOnline.jsf;
 
 import java.io.Serializable;
 import java.util.List;
+
+import javax.enterprise.context.ConversationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
@@ -19,8 +22,17 @@ public class ContentEmailsResponse implements Serializable{
 	RestClient client;
 
 	private List<Email> emails;
+	private String mailinglist;
 	
 	
+	public String getMailinglist() {
+		return mailinglist;
+	}
+
+	public void setMailinglist(String mailinglist) {
+		this.mailinglist = mailinglist;
+	}
+
 	public RestClient getClient() {
 		return client;
 	}
@@ -29,6 +41,9 @@ public class ContentEmailsResponse implements Serializable{
 		this.client = client;
 	}
 
+	public void clear() {
+		emails.clear();
+	}
 
 
 	public List<Email> getEmails() {
@@ -49,11 +64,11 @@ public class ContentEmailsResponse implements Serializable{
 		emails=client.getAllEmails();
 	}
 	
-	public void getMailingListRoot(String mailingList) {
-		if(mailingList == null) {
+	public void getMailingListRoot() {
+		if(mailinglist == null) {
 			return;
 		}
-		emails=client.getMailingListRoot(mailingList);
+		emails=client.getMailingListRoot(mailinglist);
 	}
 
 }

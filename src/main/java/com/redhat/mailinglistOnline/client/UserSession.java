@@ -1,9 +1,13 @@
 package com.redhat.mailinglistOnline.client;
 
+import java.io.IOException;
+
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ConversationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import com.redhat.mailinglistOnline.client.entities.User;
@@ -21,7 +25,7 @@ public class UserSession {
 
 
 
-	private String selectedMailingList;
+
 	
 	
 	public UserSession() {
@@ -29,23 +33,26 @@ public class UserSession {
 	
 	@PostConstruct
 	public void init() {
-		selectedMailingList=mailinglistResponse.getMailingLists().get(0);
+		//selectedMailingList=mailinglistResponse.getMailingLists().get(0);
 	}
 		
-	public void setSelectedMailingList(String newMailingList) {
+	/*public void setSelectedMailingList(String newMailingList) throws IOException {
 		if(mailinglistResponse.isMailingList(newMailingList)) {
 			selectedMailingList=newMailingList;
+		} else {
+			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+	        ec.redirect(ec.getRequestContextPath() + "/" + getSelectedMailingList());
 		}
-	}
+	}*/
 	
-	public String selectMailingList(String list) {
-		selectedMailingList=list;
+	/*public String selectMailingList(String list) throws IOException {
+		setSelectedMailingList(list);
 		return "/index.xhtml?faces-redirect=true";
 	}
 	
 	public String getSelectedMailingList() {
 		return selectedMailingList;
-	}
+	}*/
 	
 	
 	public String logout() {

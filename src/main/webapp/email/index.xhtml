@@ -3,11 +3,13 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:rich="http://richfaces.org/rich">
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces">
 
 <body>
 <f:metadata>
-    <f:viewParam name="mailinglist" value="#{detailedEmail.selectedId}" />
+    <f:viewParam name="id" value="#{detailedEmail.selectedId}" />
+    <f:viewParam name="mailinglist" value="#{detailedEmail.selectedMailinglist}" />
     <f:event type="preRenderView" listener="#{detailedEmail.load()}"/>   
     
 </f:metadata>
@@ -31,9 +33,12 @@
 							<h:panelGrid >
 							<h:form>
 								<strong>ID:</strong>
-								<h:link value="#{reply.id}" outcome="/email/index.xhtml">
-   								 <f:param name="id" value="#{reply.id}" />
-								</h:link>
+								<pretty:link mappingId="email">
+							        <f:param value="#{mailinglist}" />
+									<f:param value="#{reply.id}" />
+									<h:outputLabel value="#{reply.id}" />
+								</pretty:link>
+								
 										</h:form>
 								<h:outputText value="From: #{reply.from}"></h:outputText>
 								<h:outputText value="#{reply.mainContent[0].getShorterContent(250)}"></h:outputText>...

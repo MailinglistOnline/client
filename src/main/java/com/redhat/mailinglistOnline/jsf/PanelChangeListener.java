@@ -26,7 +26,9 @@ public class PanelChangeListener implements ItemChangeListener{
 		if(event.getNewItemName().equals("all") ) {
 			contentEmails.getAllEmails();
 		} else if (event.getNewItemName().equals("topics") ) {
-			contentEmails.getMailingListRoot(user.getSelectedMailingList());
+			contentEmails.getMailingListRoot();
+		} else if (event.getNewItemName().equals("search") ) {
+			contentEmails.clear();
 		}
 		
 	}
