@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 		private String inReplyTo;
 		private ArrayList<String> replies= new ArrayList<String>();
 		private String messageId;
+		private String mainContentHtml;
 		private String subject;
 		private Date sentDate;
 		private ArrayList<String> messageMailingLists=new ArrayList<String>();

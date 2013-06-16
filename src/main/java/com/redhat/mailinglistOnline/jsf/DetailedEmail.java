@@ -44,6 +44,7 @@ public class DetailedEmail {
 
 	public void load() throws IOException {
 		email= restClient.getEmailById(selectedId);
+		//email.getMainContent().get(0).getContent().replaceAll("(\r\n|\n)", "<br />"));
 		if(isInMailinglist(selectedMailinglist) && selectedMailinglist!=null) {
 			replies = restClient.getEmailReplies(email);
 		} else {

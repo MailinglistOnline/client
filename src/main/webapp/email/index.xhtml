@@ -24,7 +24,8 @@
 				<br /> <b>From: </b>
 				<h:outputLabel value="#{detailedEmail.email.from}" />
 				<br /> <b>Content: </b>
-				<h:outputLabel value="#{detailedEmail.email.mainContent[0].content}" />
+				
+				<h:outputText value="${detailedEmail.email.mainContent[0].content}" style="white-space: pre;"/>
 				<br />
 				<br/>
 				<p ><strong>Replies:</strong></p> <br/>
