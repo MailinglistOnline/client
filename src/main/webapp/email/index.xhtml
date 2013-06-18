@@ -20,7 +20,11 @@
 
 			<div style="font-size: 16px; margin-top: 30px;" id="email">
 				<b>ID: </b>
-				<h:outputLabel value="#{detailedEmail.email.id}" />
+				<h:outputLabel value="#{detailedEmail.email.id}" /> <br />
+				<b>Tags: </b>
+				<ui:repeat value="#{detailedEmail.email.tags}" var="tag">
+					<h:outputLabel value="#{tag} " />
+				</ui:repeat>
 				<br /> <b>From: </b>
 				<h:outputLabel value="#{detailedEmail.email.from}" />
 				<br /> <b>Content: </b>

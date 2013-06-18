@@ -17,15 +17,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 		private String id;
 		private String root;
 		private String inReplyTo;
-		private ArrayList<String> replies= new ArrayList<String>();
+		private List<String> replies= new ArrayList<String>();
 		private String messageId;
 		private String mainContentHtml;
 		private String subject;
 		private Date sentDate;
-		private ArrayList<String> messageMailingLists=new ArrayList<String>();
+		private List<String> messageMailingLists=new ArrayList<String>();
 		private String from;
-		private ArrayList<ContentPart> mainContent=new ArrayList<ContentPart>();
-		private ArrayList<ContentPart> attachments =new ArrayList<ContentPart>();
+		private List<ContentPart> mainContent=new ArrayList<ContentPart>();
+		private List<ContentPart> attachments =new ArrayList<ContentPart>();
+		private List<String> tags=new ArrayList<String>();
 	    
 	    
 
@@ -68,6 +69,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 		public void setAttachments(ArrayList<ContentPart> attachments) {
 			this.attachments = attachments;
 		}
+		
+		 public void setTags(ArrayList<String> tags) {
+		        this.tags=tags;
+		    }
+
 
 		public Email() {
 	        super();
@@ -112,7 +118,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    
 	    @XmlElementWrapper(name="mailing_lists")
 	    @XmlElement(name="mailing_list")
-	    public ArrayList<String> getMessageMailingLists() {
+	    public List<String> getMessageMailingLists() {
 	       return messageMailingLists;
 	       
 	    }
@@ -123,16 +129,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 	    @XmlElementWrapper(name="main_content")
 	    @XmlElement(name="alternative")
-	    public ArrayList<ContentPart> getMainContent() {
+	    public List<ContentPart> getMainContent() {
 	        return mainContent;
 	    }
 	    
 	    @XmlElementWrapper(name="attachments")
 	    @XmlElement(name="attachment")
-	    public ArrayList<ContentPart> getAttachments() {
+	    public List<ContentPart> getAttachments() {
 	        return attachments;
 	    }
-
+	    
+	    @XmlElement(name="tags")
+	    public List<String> getTags() {
+	        return tags;
+	    }
+	    
+	   
 
 	}
 

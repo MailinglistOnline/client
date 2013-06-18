@@ -126,11 +126,7 @@
 			<artifactId>javax.faces-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>javax.faces</artifactId>
-			<scope>compile</scope>
-		</dependency>
+
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -203,11 +199,7 @@
 					<artifactId>javax.faces-api</artifactId>
 					<scope>provided</scope>
 				</dependency>
-				<dependency>
-					<groupId>org.glassfish</groupId>
-					<artifactId>javax.faces</artifactId>
-					<scope>provided</scope>
-				</dependency>
+
 				<dependency>
 					<groupId>javax.transaction</groupId>
 					<artifactId>jta</artifactId>
