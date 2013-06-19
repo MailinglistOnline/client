@@ -70,5 +70,18 @@ public class ContentEmailsResponse implements Serializable{
 		}
 		emails=client.getMailingListRoot(mailinglist);
 	}
+	
+	// said to be probably bug in JBOSS 7.1.1, when passing integer in EL, 
+	//it says there is no method with long parameter. Can be deleted afterwards
+	public void getLatest(Long number) {
+		getLatest(number.intValue());
+	}
+	
+	public void getLatest(Integer number) {
+		if(mailinglist == null) {
+			return;
+		}
+		emails=client.getMailinglistLatest(mailinglist, number);
+	}
 
 }

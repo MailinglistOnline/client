@@ -14,6 +14,8 @@ import com.redhat.mailinglistOnline.client.UserSession;
 @ViewScoped
 public class PanelChangeListener implements ItemChangeListener{
 	
+	private static int LATEST_NUMBER = 10;
+	
 	@ManagedProperty(value="#{userSession}") 
 	private UserSession user;
 	
@@ -23,8 +25,8 @@ public class PanelChangeListener implements ItemChangeListener{
 	@Override
 	public void processItemChange(ItemChangeEvent event)
 			throws AbortProcessingException {
-		if(event.getNewItemName().equals("all") ) {
-			contentEmails.getAllEmails();
+		if(event.getNewItemName().equals("latest") ) {
+			contentEmails.getLatest(LATEST_NUMBER);
 		} else if (event.getNewItemName().equals("topics") ) {
 			contentEmails.getMailingListRoot();
 		} else if (event.getNewItemName().equals("search") ) {

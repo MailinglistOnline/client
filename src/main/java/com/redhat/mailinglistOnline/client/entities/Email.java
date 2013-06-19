@@ -1,6 +1,7 @@
 package com.redhat.mailinglistOnline.client.entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -144,6 +145,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 	        return tags;
 	    }
 	    
+	    
+	    public String getDateInString() {
+	    	return new SimpleDateFormat("yyyy-MM-dd").format(sentDate);
+	    }
+	    
+
 	   
 
 	}

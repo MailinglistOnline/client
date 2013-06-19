@@ -60,5 +60,14 @@ public class RestClient {
 		return emailClient.getEmailReplies(email.getId());
 	}
 
+	public void addTagToEmail(String id, String tag) {
+		emailClient.addTag(id, tag);
+		
+	}
+	
+	public List<Email> getMailinglistLatest(String mailinglist, int number) {
+		return emailClient.getMailinglistLatest(mailinglist,number);
+	}
+
 }
 

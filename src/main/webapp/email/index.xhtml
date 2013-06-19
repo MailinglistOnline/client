@@ -4,15 +4,17 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:pretty="http://ocpsoft.com/prettyfaces">
 
 <body>
-<f:metadata>
-    <f:viewParam name="id" value="#{detailedEmail.selectedId}" />
-    <f:viewParam name="mailinglist" value="#{detailedEmail.selectedMailinglist}" />
-    <f:event type="preRenderView" listener="#{detailedEmail.load()}"/>   
-    
-</f:metadata>
+	<f:metadata>
+		<f:viewParam name="id" value="#{detailedEmail.selectedId}" />
+		<f:viewParam name="mailinglist"
+			value="#{detailedEmail.selectedMailinglist}" />
+		<f:event type="preRenderView" listener="#{detailedEmail.load()}" />
+
+	</f:metadata>
 
 	<ui:composition template="/templates/mainTemplate.xhtml">
 
@@ -20,36 +22,75 @@
 
 			<div style="font-size: 16px; margin-top: 30px;" id="email">
 				<b>ID: </b>
-				<h:outputLabel value="#{detailedEmail.email.id}" /> <br />
-				<b>Tags: </b>
+				<h:outputLabel value="#{detailedEmail.email.id}" /> <br/>
+				<b>Date: </b>
+				<h:outputLabel value="#{detailedEmail.email.dateInString}" />
+				
+				<br /> <b>Tags: </b>
 				<ui:repeat value="#{detailedEmail.email.tags}" var="tag">
 					<h:outputLabel value="#{tag} " />
 				</ui:repeat>
+				<h:outputLink value="#" id="ll">
+				<rich:componentControl event="click" operation="show" target="pp">
+				 <a4j:param name="event" value="event" noEscape="true" />
+                <rich:hashParam>
+                    <a4j:param noEscape="true" name="top"
+                        value="jQuery(#{rich:element('ll')}).offset().top " />
+                    <a4j:param noEscape="true" name="left" value="jQuery(#{rich:element('ll')}).offset().left" />
+                </rich:hashParam>
+				</rich:componentControl>
+				add tag
+				</h:outputLink>
+				<rich:popupPanel id="pp" autosized="true" modal="false"
+					moveable="false" resizeable="false" followByScroll="true">
+					<h:form>
+					<h:panelGrid columns="1">
+						<h:outputText value="New Tag:" />
+						<h:inputText id="newTag" value="#{detailedEmail.newTag}"/>
+					</h:panelGrid>
+					<h:outputLink
+						onclick="#{rich:component('pp')}.hide(event); return false;"
+						value="#">cancel
+                    </h:outputLink>
+                    
+                    <h:commandLink style="float:right;"
+					    action="#{detailedEmail.addTag()}" 
+						value="#">add
+                    </h:commandLink>
+                    </h:form>
+				</rich:popupPanel>
+				
 				<br /> <b>From: </b>
 				<h:outputLabel value="#{detailedEmail.email.from}" />
-				<br /> <b>Content: </b>
-				
-				<h:outputText value="${detailedEmail.email.mainContent[0].content}" style="white-space: pre;"/>
+				<br /> <b>Subject: </b>
+							<h:outputLabel value="#{detailedEmail.email.subject}" />
+				<br /> <br /> <b>Content: </b>
+
+				<h:outputText value="${detailedEmail.email.mainContent[0].content}"
+					style="white-space: pre;" />
+				<br /> <br />
+				<p>
+					<strong>Replies:</strong>
+				</p>
 				<br />
-				<br/>
-				<p ><strong>Replies:</strong></p> <br/>
-					<rich:dataGrid value="#{detailedEmail.replies}" style="border:none" var="reply"
-						columns="3" border="0">
-							<h:panelGrid >
-							<h:form>
-								<strong>ID:</strong>
-								<pretty:link mappingId="email">
-							        <f:param value="#{mailinglist}" />
-									<f:param value="#{reply.id}" />
-									<h:outputLabel value="#{reply.id}" />
-								</pretty:link>
-								
-										</h:form>
-								<h:outputText value="From: #{reply.from}"></h:outputText>
-								<h:outputText value="#{reply.mainContent[0].getShorterContent(250)}"></h:outputText>...
+				<rich:dataGrid value="#{detailedEmail.replies}" style="border:none"
+					var="reply" columns="3" border="0">
+					<h:panelGrid>
+						<h:form>
+							<strong>ID:</strong>
+							<pretty:link mappingId="email">
+								<f:param value="#{mailinglist}" />
+								<f:param value="#{reply.id}" />
+								<h:outputLabel value="#{reply.id}" />
+							</pretty:link>
+
+						</h:form>
+						<h:outputText value="From: #{reply.from}"></h:outputText>
+						<h:outputText
+							value="#{reply.mainContent[0].getShorterContent(250)}"></h:outputText>...
 							</h:panelGrid>
-					</rich:dataGrid>
-				
+				</rich:dataGrid>
+
 
 
 			</div>

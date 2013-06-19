@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 
 import com.redhat.mailinglistOnline.client.UserSession;
@@ -32,7 +33,9 @@ public class DetailedEmail {
 	private Email email;
 	private List<Email> replies;
 	
+	// Now comes input fields:
 	private String selectedMailinglist;
+	private String newTag;
 
 	public String getSelectedMailinglist() {
 		return selectedMailinglist;
@@ -97,6 +100,18 @@ public class DetailedEmail {
 	
 	public boolean isInMailinglist(String mailinglist) {
 		return email.getMessageMailingLists().get(0).equals(mailinglist);
+	}
+	
+	public void addTag() throws IOException {
+		restClient.addTagToEmail(email.getId(),newTag);
+	}
+
+	public String getNewTag() {
+		return newTag;
+	}
+
+	public void setNewTag(String newTag) {
+		this.newTag = newTag;
 	}
 	
 
