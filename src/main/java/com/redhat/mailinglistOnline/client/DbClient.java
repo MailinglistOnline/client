@@ -49,7 +49,8 @@ public class DbClient {
 	    
 	    public User getUserByName(String name) {
 	        BasicDBObject nameObj = new BasicDBObject(User.ROOT_NAME_TAG, name);
-	        return (User) coll.findOne(nameObj);
+	        User user = (User)coll.findOne(nameObj);
+	        return user;
 	    }
 	    
 

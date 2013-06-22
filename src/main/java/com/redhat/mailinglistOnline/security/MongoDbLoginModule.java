@@ -66,8 +66,8 @@ public class MongoDbLoginModule extends UsernamePasswordLoginModule{
         return new Group[] { group };
 	}
 	
-	@Override
-	protected String createPasswordHash(String username, String password, String digestOption) throws LoginException {
+	@Override //was protected
+	public String createPasswordHash(String username, String password, String digestOption) throws LoginException {
 		String hash= super.createPasswordHash(username, password, digestOption);
 		return hash;
 	}

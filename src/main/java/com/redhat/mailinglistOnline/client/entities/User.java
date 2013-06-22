@@ -48,6 +48,6 @@ public class User extends BasicDBObject{
 	}
 
 	public void setRoles(List<String> roles) {
-		put(ROOT_PASSWORD_TAG, roles);
+		put(ROOT_ROLES_TAG, roles);
 	}
 }
