@@ -5,19 +5,19 @@
 
 <body>
 
-	<ui:composition template="/templates/mainTemplate.xhtml">
+<ui:composition template="/templates/mainTemplate.xhtml">
 
-		<ui:define name="content">
-		<div class="leftContent">
-		<h2 > Login </h2>
-			<form method="post" action="j_security_check">
-			
-			<h:outputLabel value="Username: " />
-                    <input  type="text" name="j_username" />
+<ui:define name="content">
+<div class="leftContent">
+<h2 > Login </h2>
+<form method="post" action="j_security_check">
+
+<h:outputLabel value="Username: " />
+                    <input type="text" name="j_username" />
                     <br />
-                    <h:outputLabel  value="Password: " />
-                    <input  type="password" size="15" name="j_password" />
-                     <input  type="submit" value="Login"/>
+                    <h:outputLabel value="Password: " />
+                    <input type="password" size="15" name="j_password" /> <br/>
+                     <input type="submit" value="Login"/>
                
             </form>
             
@@ -25,19 +25,24 @@
             
          <div class="rightContent">
          <h2 > Register </h2>
-         <h:outputLabel  value="Username: " />
-         <h:inputText  value="" />
+         <h:form>
+         <h:outputLabel value="Username: " />
+         <h:inputText value="#{detailedEmail.selectedId}" />
          <br />
-         <h:outputLabel  value="Password: " />
-         <h:inputSecret  value="" /> 
+         <h:outputLabel value="Password: " />
+         <h:inputSecret value="#{reg.password}" />
          <br />
-         <h:outputLabel  value="Password again: " />
-         <h:inputSecret value="" /> 
+         <h:outputLabel value="Password again: " />
+         <h:inputSecret value="#{reg.passwordAgain}" />
          <br />
+         <h:commandButton type="submit" value="Register"
+                action="#{reg.register}"></h:commandButton>
+         </h:form>
+
          </div>
 
-		</ui:define>
-	</ui:composition>
+</ui:define>
+</ui:composition>
 </body>
 
 </html>
