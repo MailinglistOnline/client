@@ -1,6 +1,7 @@
 package com.redhat.mailinglistOnline.jsf;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -9,6 +10,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -19,9 +21,11 @@ import com.redhat.mailinglistOnline.client.rest.RestClient;
 
 @ManagedBean(name="detailedEmail")
 @ViewScoped 
-public class DetailedEmail {
+public class DetailedEmail implements Serializable{
 	
-	@ManagedProperty(value="#{client}")
+	
+
+	@Inject
 	private RestClient restClient;
 	
 	@ManagedProperty(value="#{mailinglists}") 

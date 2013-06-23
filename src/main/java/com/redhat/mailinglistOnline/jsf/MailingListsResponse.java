@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
 
 import com.redhat.mailinglistOnline.client.entities.Email;
 import com.redhat.mailinglistOnline.client.rest.RestClient;
@@ -17,7 +18,7 @@ public class MailingListsResponse {
 	
 	public static List<String> mailingLists;
 
-	@ManagedProperty(value="#{client}")
+	@Inject
 	RestClient client;
 	
 	public MailingListsResponse() {

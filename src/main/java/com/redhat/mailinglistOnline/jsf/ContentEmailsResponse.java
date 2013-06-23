@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
 
 
 import com.redhat.mailinglistOnline.client.entities.Email;
@@ -18,7 +19,7 @@ import com.redhat.mailinglistOnline.client.rest.RestClient;
 @ViewScoped
 public class ContentEmailsResponse implements Serializable{
 
-	@ManagedProperty(value="#{client}")
+	@Inject
 	RestClient client;
 
 	private List<Email> emails;

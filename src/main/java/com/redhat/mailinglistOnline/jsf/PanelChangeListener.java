@@ -1,5 +1,7 @@
 package com.redhat.mailinglistOnline.jsf;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -12,7 +14,7 @@ import com.redhat.mailinglistOnline.client.UserSession;
 
 @ManagedBean(name="panelChangeListener")
 @ViewScoped
-public class PanelChangeListener implements ItemChangeListener{
+public class PanelChangeListener implements ItemChangeListener, Serializable{
 	
 	private static int LATEST_NUMBER = 10;
 

@@ -59,7 +59,7 @@ public class RegisterUser {
 				dbClient.saveUser(user);
 				facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Successfully registered", null);
 				logger.info("User " + user.getName() + " registered");
-				logger.error("this is a message error");   
+				logger.debug("this is a message debug");   
 			} else {
 				facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "User already exists", null);
 			}

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Properties;
 
 
+import javax.ejb.Stateless;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.SessionScoped;
@@ -19,8 +20,7 @@ import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import com.redhat.mailinglistOnline.client.DbClient;
 import com.redhat.mailinglistOnline.client.entities.Email;
 
-@ManagedBean(name="client")
-@ApplicationScoped
+@Stateless(name="client")
 public class RestClient {
 	
 	private static String SERVER_PROPERTIES_FILE_NAME = "server.properties";
