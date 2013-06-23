@@ -1,48 +1,98 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
 
 
 <body>
 
-<ui:composition template="/templates/mainTemplate.xhtml">
+	<ui:composition template="/templates/mainTemplate.xhtml">
 
-<ui:define name="content">
-<div class="leftContent">
-<h2 > Login </h2>
-<form method="post" action="j_security_check">
+		<ui:define name="content">
+			<center><h:messages id="topMessages" for="topMessages" infoStyle="color:darkgreen" errorStyle="color:darkred" /> </center>
+			<div class="leftContent">
+				<h2>Login</h2>
+				<form style="float:right;" method="post" action="j_security_check">
+ 
+					<table >
+						<tr>
+							<td><h:outputLabel value="Username: " /></td>
+							<td><input type="text" name="j_username" /></td>
+						</tr>
+						<tr>
+							<td><h:outputLabel value="Password: " /></td>
+							<td><input type="password" name="j_password" /></td>
+						</tr>
+					</table> 
+					<input type="submit" value="Login" />
 
-<h:outputLabel value="Username: " />
-                    <input type="text" name="j_username" />
-                    <br />
-                    <h:outputLabel value="Password: " />
-                    <input type="password" size="15" name="j_password" /> <br/>
-                     <input type="submit" value="Login"/>
-               
-            </form>
-            
-            </div>
-            
-         <div class="rightContent">
-         <h2 > Register </h2>
-         <h:form>
-         <h:outputLabel value="Username: " />
+
+
+
+				</form>
+
+			</div>
+
+			<div class="rightContent">
+				<h2>Register</h2>
+				<h:form>
+		 			
+					<table>
+					<tr>
+							<td colspan="2"><h:message for="username" style="color:red" />
+							</td>
+						</tr>
+						<tr>
+							<td>Name:</td>
+							<td><h:inputText value="#{reg.username}" id="username">
+								</h:inputText></td>
+						</tr>
+						
+
+						<tr>
+							<td colspan="2"><h:message for="password" style="color:red" />
+							</td>
+						</tr>
+						<tr>
+							<td>Password:</td>
+							<td><h:inputSecret value="#{reg.password}" id="password">
+								</h:inputSecret></td>
+						</tr>
+						
+			
+						<tr>
+							<td colspan="2"><h:message for="passwordAgain"
+									style="color:red" /></td>
+						</tr>
+						<tr>
+							<td>Password again:</td>
+							<td><h:inputSecret value="#{reg.passwordAgain}" id="passwordAgain">
+								</h:inputSecret></td>
+						</tr>
+						
+					</table>
+					<!--    <h:outputLabel value="Username: " />
+         <h:message for="username" style="color:red"/>
          <h:inputText value="#{reg.username}" />
          <br />
          <h:outputLabel value="Password: " />
+         <h:message for="password" style="color:red"/>
          <h:inputSecret value="#{reg.password}" />
          <br />
          <h:outputLabel value="Password again: " />
+         <h:message for="passwordAgain" style="color:red"/>
          <h:inputSecret value="#{reg.passwordAgain}" />
-         <br />
-         <h:commandButton type="submit" value="Register"
-                action="#{reg.register}"></h:commandButton>
-         </h:form>
+         <br /> -->
+					<h:commandButton type="submit" value="Register"
+						action="#{reg.register}"></h:commandButton>
+				</h:form>
 
-         </div>
+			</div>
 
-</ui:define>
-</ui:composition>
+		</ui:define>
+	</ui:composition>
 </body>
 
 </html>

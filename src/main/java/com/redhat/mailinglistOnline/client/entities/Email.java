@@ -147,7 +147,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 	    
 	    
 	    public String getDateInString() {
-	    	return new SimpleDateFormat("yyyy-MM-dd").format(sentDate);
+	    	if(sentDate != null) {
+	    		return new SimpleDateFormat("yyyy-MM-dd").format(sentDate);
+	    	} else {
+	    		return null;
+	    	}
+	    	
 	    }
 	    
 

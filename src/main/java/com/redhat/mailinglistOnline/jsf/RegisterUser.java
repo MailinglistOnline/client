@@ -6,10 +6,13 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.security.auth.login.LoginException;
+import javax.validation.constraints.Size;
 
 import org.jboss.security.auth.spi.Util;
 
@@ -21,8 +24,11 @@ import com.redhat.mailinglistOnline.security.MongoDbLoginModule;
 @ViewScoped
 public class RegisterUser {
 
+	@Size(min=3, message="Username must have at least 3 characters")
 	private String username;
+	@Size(min=5, message="Password must have at least 5 characters")
 	private String password;
+	@Size(min=5, message="Password must have at least 5 characters")
 	private String passwordAgain;
 
 	@Inject
@@ -34,6 +40,7 @@ public class RegisterUser {
 	}
 
 	public String register() throws LoginException {
+		FacesMessage facesMessage;
 		if (password.equals(passwordAgain)) {
 			if (dbClient.getUserByName(username) == null) {
 				User user = new User();
@@ -45,8 +52,15 @@ public class RegisterUser {
 				roles.add("user");
 				user.setRoles(roles);
 				dbClient.saveUser(user);
+				facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Successfully registered", null);
+			} else {
+				facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "User already exists", null);
 			}
+		} else {
+			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Passwords are not equal", null);
 		}
+		FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage("myForm:topMessages", facesMessage);
 		return "home";
 	}
 

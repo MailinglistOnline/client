@@ -30,7 +30,7 @@ public class User extends BasicDBObject{
 	}
 	@NotNull
 	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
-	@Size(min = 1, max = 25)
+	@Size(min = 5, max = 25)
 	public void setName(String name) {
 		put(ROOT_NAME_TAG, name);
 	}
