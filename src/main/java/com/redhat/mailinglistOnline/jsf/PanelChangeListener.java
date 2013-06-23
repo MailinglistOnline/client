@@ -15,9 +15,7 @@ import com.redhat.mailinglistOnline.client.UserSession;
 public class PanelChangeListener implements ItemChangeListener{
 	
 	private static int LATEST_NUMBER = 10;
-	
-	@ManagedProperty(value="#{userSession}") 
-	private UserSession user;
+
 	
 	@ManagedProperty(value="#{contentResponse}") 
 	private ContentEmailsResponse contentEmails;
@@ -35,13 +33,6 @@ public class PanelChangeListener implements ItemChangeListener{
 		
 	}
 
-	public UserSession getUser() {
-		return user;
-	}
-
-	public void setUser(UserSession user) {
-		this.user = user;
-	}
 
 	public ContentEmailsResponse getContentEmails() {
 		return contentEmails;

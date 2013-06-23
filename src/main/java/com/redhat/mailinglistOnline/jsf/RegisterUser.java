@@ -14,6 +14,8 @@ import javax.inject.Inject;
 import javax.security.auth.login.LoginException;
 import javax.validation.constraints.Size;
 
+
+import org.apache.log4j.Logger;
 import org.jboss.security.auth.spi.Util;
 
 import com.redhat.mailinglistOnline.client.DbClient;
@@ -33,6 +35,9 @@ public class RegisterUser {
 
 	@Inject
 	DbClient dbClient;
+	@Inject
+	private Logger logger;
+	
 	MongoDbLoginModule module;
 	
 	public RegisterUser() {
@@ -53,6 +58,8 @@ public class RegisterUser {
 				user.setRoles(roles);
 				dbClient.saveUser(user);
 				facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Successfully registered", null);
+				logger.info("User " + user.getName() + " registered");
+				logger.error("this is a message error");   
 			} else {
 				facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "User already exists", null);
 			}
@@ -60,7 +67,7 @@ public class RegisterUser {
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Passwords are not equal", null);
 		}
 		FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage("myForm:topMessages", facesMessage);
+        context.addMessage("topMessages", facesMessage);
 		return "home";
 	}
 
