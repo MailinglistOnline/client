@@ -46,7 +46,6 @@ public class ContentEmailsResponse implements Serializable{
 		emails.clear();
 	}
 
-
 	public List<Email> getEmails() {
 		return emails;
 	}
@@ -59,8 +58,6 @@ public class ContentEmailsResponse implements Serializable{
 		return "index";
 	}
 
-
-	
 	public void getAllEmails() {
 		emails=client.getAllEmails();
 	}
@@ -84,5 +81,11 @@ public class ContentEmailsResponse implements Serializable{
 		}
 		emails=client.getMailinglistLatest(mailinglist, number);
 	}
+	
+	public void searchEmailsByContent(String content) {
+		this.emails=client.searchEmailsByContent(content);
+	}
+	
+	
 
 }

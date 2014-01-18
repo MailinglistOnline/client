@@ -12,11 +12,17 @@ import org.richfaces.event.ItemChangeListener;
 
 import com.redhat.mailinglistOnline.client.UserSession;
 
+/*
+ * Selection on the top from latest, search, roots of the selected mailinglist
+ */
 @ManagedBean(name="panelChangeListener")
 @ViewScoped
 public class PanelChangeListener implements ItemChangeListener, Serializable{
 	
 	private static int LATEST_NUMBER = 10;
+	
+	@ManagedProperty(value="#{searchOption}") 
+	private String searchOption;
 
 	
 	@ManagedProperty(value="#{contentResponse}") 
@@ -30,6 +36,9 @@ public class PanelChangeListener implements ItemChangeListener, Serializable{
 		} else if (event.getNewItemName().equals("topics") ) {
 			contentEmails.getMailingListRoot();
 		} else if (event.getNewItemName().equals("search") ) {
+			if ("content".equals(searchOption)) {
+				contentEmails.se
+			}
 			contentEmails.clear();
 		}
 		

@@ -116,7 +116,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 	        return sentDate;
 	    }
 
-	    
 	    @XmlElementWrapper(name="mailing_lists")
 	    @XmlElement(name="mailing_list")
 	    public List<String> getMessageMailingLists() {

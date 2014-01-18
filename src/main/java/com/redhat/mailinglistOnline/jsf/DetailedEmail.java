@@ -19,24 +19,18 @@ import com.redhat.mailinglistOnline.client.entities.Email;
 import com.redhat.mailinglistOnline.client.rest.RestClient;
 
 
+/* It is not only an email but contains information about replies*/
 @ManagedBean(name="detailedEmail")
 @ViewScoped 
 public class DetailedEmail implements Serializable{
-	
-	
 
 	@Inject
 	private RestClient restClient;
-	
 	@ManagedProperty(value="#{mailinglists}") 
 	private MailingListsResponse mailinglistResponse;
-	
-	
-	
 	private String selectedId;
 	private Email email;
 	private List<Email> replies;
-	
 	// Now comes input fields:
 	private String selectedMailinglist;
 	private String newTag;
@@ -55,6 +49,7 @@ public class DetailedEmail implements Serializable{
 		if(isInMailinglist(selectedMailinglist) && selectedMailinglist!=null) {
 			replies = restClient.getEmailReplies(email);
 		} else {
+			//redirect to default mailinglist if there is none in which this email is
 			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 	        ec.redirect(ec.getRequestContextPath() + "/" + mailinglistResponse.getDefaultMailinglist());
 		}

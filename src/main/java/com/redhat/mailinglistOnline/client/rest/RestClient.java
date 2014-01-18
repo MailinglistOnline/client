@@ -68,6 +68,10 @@ public class RestClient {
 	public List<Email> getMailinglistLatest(String mailinglist, int number) {
 		return emailClient.getMailinglistLatest(mailinglist,number);
 	}
+	
+	public List<Email> searchEmailsByContent(String content) {
+		return emailClient.searchEmailByContent(content);
+	}
 
 }
 

@@ -65,8 +65,18 @@ public interface RestEmailInterface {
     @Produces("application/xml")
     @Wrapped(element="emails")
     public List<Email> getMailinglistLatest(@QueryParam("mailinglist") String mailinglist, @QueryParam("number") int number);
+    
+    
+    
+    /* SEARCH */
+    @GET
+    @Path("/search/")
+    @Produces("application/xml")
+    @Wrapped(element="emails")
+    public List<Email> searchEmailByText(@QueryParam("text") String text);
  
 
+    /* DATA MANIPULATION */
 	@POST
     @Path("/email/tag/")
     public void addTag(@QueryParam("id") String id,@QueryParam("tag") String tag);

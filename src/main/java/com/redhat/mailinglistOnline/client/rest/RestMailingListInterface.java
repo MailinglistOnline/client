@@ -9,21 +9,13 @@ import javax.ws.rs.Produces;
 
 import org.jboss.resteasy.annotations.providers.jaxb.Wrapped;
 
-
-
 @Path("/mailinglists")
 public interface RestMailingListInterface {
-
-
 		@GET
 	    @Path("/all")
 	    @Produces("application/xml")
 	    @Wrapped(element="mailinglists")
 	    public MailingListWrapper getAllMailingLists();
-
-
-
-
 }
 
  

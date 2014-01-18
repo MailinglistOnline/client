@@ -26,12 +26,9 @@
 			<h:form id="form">
 				<rich:tabPanel style="border:none" switchType="server"
 					headerAlignment="left"  itemChangeListener="#{panelChangeListener.processItemChange}">
-
 					<rich:tab style="" name="latest" header="Latest" >
-
 					</rich:tab>
 					<rich:tab style="" name="topics" header="Topics"  >
-
 					</rich:tab>
 
 					<rich:tab style="" name="search" header="Search">
@@ -39,10 +36,10 @@
 							Search
 							<h:inputText value="search" />
 							in
-							<h:selectOneMenu value="abc">
-								<f:selectItem id="item1" itemLabel="Content" itemValue="1" />
-								<f:selectItem id="item2" itemLabel="Author" itemValue="2" />
-								<f:selectItem id="item3" itemLabel="Mailing list" itemValue="3" />
+							<h:selectOneMenu value="#{panelChangeListener.searchOption}">
+								<f:selectItem id="content" itemLabel="Content" itemValue="content" />
+								<f:selectItem id="author" itemLabel="Author" itemValue="author" />
+								<f:selectItem id="mailinglist" itemLabel="Mailing list" itemValue="mailinglist" />
 							</h:selectOneMenu>
 						</center>
 					</rich:tab>
@@ -53,7 +50,6 @@
 			<div>
 				<ul>
 					<ui:repeat value="#{contentResponse.emails}" var="email">
-
 						<div style="border-bottom: solid #E8E8E8;" id="email-list">
 							<b>ID: </b>
 							<h:outputLabel value="#{email.id}" />
@@ -74,12 +70,7 @@
 									<f:param value="#{email.id}" />
 									more
 								</pretty:link>
-								
-								
-
-
-
-							</h:form>
+					</h:form>
 							<br />
 							<ui:repeat value="#{email.replies}" var="reply">
 								<h:form>
