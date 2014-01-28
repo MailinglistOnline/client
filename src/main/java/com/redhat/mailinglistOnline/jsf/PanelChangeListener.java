@@ -37,7 +37,7 @@ public class PanelChangeListener implements ItemChangeListener, Serializable{
 			contentEmails.getMailingListRoot();
 		} else if (event.getNewItemName().equals("search") ) {
 			if ("content".equals(searchOption)) {
-				contentEmails.se
+				//TODO: contentEmails.se
 			}
 			contentEmails.clear();
 		}
