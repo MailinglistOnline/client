@@ -10,7 +10,6 @@ import javax.faces.event.AbortProcessingException;
 import org.richfaces.event.ItemChangeEvent;
 import org.richfaces.event.ItemChangeListener;
 
-import com.redhat.mailinglistOnline.client.UserSession;
 
 /*
  * Selection on the top from latest, search, roots of the selected mailinglist
@@ -19,10 +18,13 @@ import com.redhat.mailinglistOnline.client.UserSession;
 @ViewScoped
 public class PanelChangeListener implements ItemChangeListener, Serializable{
 	
-	private static int LATEST_NUMBER = 10;
+	private static int LATEST_EMAIL_COUNT = 10;
 	
 	@ManagedProperty(value="#{searchOption}") 
 	private String searchOption;
+	
+	@ManagedProperty(value="#{searchString}") 
+	private String searchString;
 
 	
 	@ManagedProperty(value="#{contentResponse}") 
@@ -32,19 +34,18 @@ public class PanelChangeListener implements ItemChangeListener, Serializable{
 	public void processItemChange(ItemChangeEvent event)
 			throws AbortProcessingException {
 		if(event.getNewItemName().equals("latest") ) {
-			contentEmails.getLatest(LATEST_NUMBER);
+			contentEmails.getLatest(LATEST_EMAIL_COUNT);
 		} else if (event.getNewItemName().equals("topics") ) {
 			contentEmails.getMailingListRoot();
-		} else if (event.getNewItemName().equals("search") ) {
-			if ("content".equals(searchOption)) {
-				//TODO: contentEmails.se
-			}
-			contentEmails.clear();
-		}
-		
+		} 
 	}
 
 
+	public void search() {
+		if ("content".equals(searchOption)) {
+			contentEmails.searchEmailsByContent(searchString);
+		}
+	}
 	public ContentEmailsResponse getContentEmails() {
 		return contentEmails;
 	}
@@ -53,5 +54,19 @@ public class PanelChangeListener implements ItemChangeListener, Serializable{
 		this.contentEmails = contentEmails;
 	}
 
-
+	public String getSearchOption() {
+		return searchOption;
+	}
+	
+	public void setSearchOption(String value) {
+		searchOption = value;
+	}
+	
+	public String getSearchString() {
+		return searchString;
+	}
+	
+	public void setSearchString(String value) {
+		searchString = value;
+	}
 }

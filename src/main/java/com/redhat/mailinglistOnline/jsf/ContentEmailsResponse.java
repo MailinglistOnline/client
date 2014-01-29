@@ -15,6 +15,9 @@ import javax.inject.Inject;
 import com.redhat.mailinglistOnline.client.entities.Email;
 import com.redhat.mailinglistOnline.client.rest.RestClient;
 
+/*
+ * A response from the server containing the list of emails as the result for the given query (latest, search etc).
+ */
 @ManagedBean(name="contentResponse")
 @ViewScoped
 public class ContentEmailsResponse implements Serializable{

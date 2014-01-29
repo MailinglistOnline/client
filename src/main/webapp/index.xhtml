@@ -34,13 +34,14 @@
 					<rich:tab style="" name="search" header="Search">
 						<center>
 							Search
-							<h:inputText value="search" />
+							<h:inputText value="#{panelChangeListener.searchString}" />
 							in
 							<h:selectOneMenu value="#{panelChangeListener.searchOption}">
-								<f:selectItem id="content" itemLabel="Content" itemValue="content" />
+								<f:selectItem id="content" name="content" itemLabel="Content" itemValue="content" />
 								<f:selectItem id="author" itemLabel="Author" itemValue="author" />
 								<f:selectItem id="mailinglist" itemLabel="Mailing list" itemValue="mailinglist" />
 							</h:selectOneMenu>
+							<h:commandButton value="search" type="search" action="#{panelChangeListener.search}" />
 						</center>
 					</rich:tab>
 
