@@ -70,7 +70,7 @@ public interface RestEmailInterface {
     
     /* SEARCH */
     @GET
-    @Path("/search/")
+    @Path("/search/content")
     @Produces("application/xml")
     @Wrapped(element="emails")
     public List<Email> searchEmailByContent(@QueryParam("content") String content);

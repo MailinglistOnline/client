@@ -13,149 +13,91 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement(name = "email")
-	public class Email implements Serializable{
-		
-		private String id;
-		private String root;
-		private String inReplyTo;
-		private List<String> replies= new ArrayList<String>();
-		private String messageId;
-		private String mainContentHtml;
-		private String subject;
-		private Date sentDate;
-		private List<String> messageMailingLists=new ArrayList<String>();
-		private String from;
-		private List<ContentPart> mainContent=new ArrayList<ContentPart>();
-		private List<ContentPart> attachments =new ArrayList<ContentPart>();
-		private List<String> tags=new ArrayList<String>();
-	    
-	    
+public class Email extends MiniEmail{
 
-		public void setId(String id) {
-			this.id = id;
-		}
+    public static final String ROOT_MONGO_TAG = "root";
+    public static final String IN_REPLY_TO_MONGO_TAG = "in-reply-to";
+    public static final String REPLIES_MONGO_TAG = "replies";
+    public static final String ATTACHMENTS_MONGO_TAG = "attachments";
+    public static final String MAIN_CONTENT_MONGO_TAG = "mainContent";
+    
+    
+    public Email() {
+        super();
+        put(REPLIES_MONGO_TAG,new ArrayList());
+    }
+    
+    @XmlElement(name="root")
+    public MiniEmail getRoot() {
+        return (MiniEmail)get(ROOT_MONGO_TAG);
+    }
 
-		public void setRoot(String root) {
-			this.root = root;
-		}
+    public void setRoot(MiniEmail root) {
+        put(ROOT_MONGO_TAG, new MiniEmail(root));
+    }
 
-		public void setInReplyTo(String inReplyTo) {
-			this.inReplyTo = inReplyTo;
-		}
+    @XmlElement(name="in_reply_to")
+    public MiniEmail getInReplyTo() {
+        return (MiniEmail) get(IN_REPLY_TO_MONGO_TAG);
+    }
+    
+    public void setInReplyTo(MiniEmail inReplyTo) {
+        put(IN_REPLY_TO_MONGO_TAG, new MiniEmail(inReplyTo));
+    }
 
-		public void setReplies(ArrayList<String> replies) {
-			this.replies = replies;
-		}
-
-		public void setMessageId(String messageId) {
-			this.messageId = messageId;
-		}
-
-		public void setSubject(String subject) {
-			this.subject = subject;
-		}
-
-		public void setSentDate(Date sentDate) {
-			this.sentDate = sentDate;
-		}
-
-		public void setFrom(String from) {
-			this.from = from;
-		}
-
-		public void setMainContent(ArrayList<ContentPart> mainContent) {
-			this.mainContent = mainContent;
-		}
-
-		public void setAttachments(ArrayList<ContentPart> attachments) {
-			this.attachments = attachments;
-		}
-		
-		 public void setTags(ArrayList<String> tags) {
-		        this.tags=tags;
-		    }
+    
+    
+    public void setReplies(List<MiniEmail> replies) {
+       put(REPLIES_MONGO_TAG,replies);
+    }
 
 
-		public Email() {
-	        super();
-	    }
-	    
-	    @XmlElement(name="id")
-	    public String getId() {
-	        return id;
-	        
-	    }
-	    @XmlElement(name="root")
-	    public String getRoot() {
-	        return root;
-	    }
 
-	    @XmlElement(name="in_reply_to")
-	    public String getInReplyTo() {
-	        return inReplyTo;
-	    }
-	    
-	    @XmlElementWrapper(name="replies")
-	    @XmlElement(name="reply")
-	     public List<String> getReplies() {
-	       return replies;
-	    }
+    public void addReply(MiniEmail reply) {
+        ArrayList<MiniEmail> list = (ArrayList<MiniEmail>)get(REPLIES_MONGO_TAG);
+        if(list == null) {
+            put(REPLIES_MONGO_TAG,new ArrayList());
+            list = (ArrayList<MiniEmail>)get(REPLIES_MONGO_TAG);
+        }
+        list.add(new MiniEmail(reply));
+    }
+    
+    @XmlElementWrapper(name="replies")
+    @XmlElement(name="reply")
+    public List<MiniEmail> getReplies() {
+       return (ArrayList<MiniEmail>)get(REPLIES_MONGO_TAG);
+    }
 
-	    @XmlElement(name="message_id")
-	    public String getMessageId() {
-	        return messageId;
-	    }
+    public void addAttachment(ContentPart part) {
+        ArrayList<ContentPart> list = (ArrayList<ContentPart>)get(ATTACHMENTS_MONGO_TAG);
+        if(list == null) {
+            put(ATTACHMENTS_MONGO_TAG,new ArrayList());
+            list = (ArrayList<ContentPart>)get(ATTACHMENTS_MONGO_TAG);
+        }
+        list.add(part);
+    }
+    public void setAttachments(List<ContentPart> attachments) {
+        put(ATTACHMENTS_MONGO_TAG,attachments);
+    }
 
-	    @XmlElement(name="subject")
-	    public String getSubject() {
-	        return subject;
-	    }
+    @XmlElementWrapper(name="main_content")
+    @XmlElement(name="alternative")
+    public ArrayList<ContentPart> getMainContent() {
+        ArrayList<ContentPart> list = (ArrayList<ContentPart>)get(MAIN_CONTENT_MONGO_TAG);
+        return list;
+    }
 
-	    @XmlElement(name="sent_date")
-	    public Date getSentDate() {
-	        return sentDate;
-	    }
+    public void setMainContent(List<ContentPart> mainContent) {
+         put(MAIN_CONTENT_MONGO_TAG, mainContent);
+    }
+    
+    @XmlElementWrapper(name="attachments")
+    @XmlElement(name="attachment")
+    public ArrayList<ContentPart> getAttachments() {
+        ArrayList<ContentPart> list =(ArrayList<ContentPart>) get(ATTACHMENTS_MONGO_TAG);
+        return list;
+    }
+    
+}
 
-	    @XmlElementWrapper(name="mailing_lists")
-	    @XmlElement(name="mailing_list")
-	    public List<String> getMessageMailingLists() {
-	       return messageMailingLists;
-	       
-	    }
-	    @XmlElement(name="from")
-	    public String getFrom() {
-	        return from;
-	    }
-
-	    @XmlElementWrapper(name="main_content")
-	    @XmlElement(name="alternative")
-	    public List<ContentPart> getMainContent() {
-	        return mainContent;
-	    }
-	    
-	    @XmlElementWrapper(name="attachments")
-	    @XmlElement(name="attachment")
-	    public List<ContentPart> getAttachments() {
-	        return attachments;
-	    }
-	    
-	    @XmlElement(name="tags")
-	    public List<String> getTags() {
-	        return tags;
-	    }
-	    
-	    
-	    public String getDateInString() {
-	    	if(sentDate != null) {
-	    		return new SimpleDateFormat("yyyy-MM-dd").format(sentDate);
-	    	} else {
-	    		return null;
-	    	}
-	    	
-	    }
-	    
-
-	   
-
-	}
 

@@ -4,18 +4,15 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
-
-import com.redhat.mailinglistOnline.client.UserSession;
 import com.redhat.mailinglistOnline.client.entities.Email;
+import com.redhat.mailinglistOnline.client.entities.MiniEmail;
 import com.redhat.mailinglistOnline.client.rest.RestClient;
 
 
@@ -30,7 +27,7 @@ public class DetailedEmail implements Serializable{
 	private MailingListsResponse mailinglistResponse;
 	private String selectedId;
 	private Email email;
-	private List<Email> replies;
+	private List<MiniEmail> replies;
 	// Now comes input fields:
 	private String selectedMailinglist;
 	private String newTag;
@@ -44,10 +41,8 @@ public class DetailedEmail implements Serializable{
 	}
 
 	public void load() throws IOException {
-		email= restClient.getEmailById(selectedId);
-		//email.getMainContent().get(0).getContent().replaceAll("(\r\n|\n)", "<br />"));
 		if(isInMailinglist(selectedMailinglist) && selectedMailinglist!=null) {
-			replies = restClient.getEmailReplies(email);
+		email= restClient.getEmailById(selectedId);
 		} else {
 			//redirect to default mailinglist if there is none in which this email is
 			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
@@ -81,11 +76,11 @@ public class DetailedEmail implements Serializable{
 	public void setSelectedId(String selectedId) {
 		this.selectedId=selectedId;
 	}
-	public List<Email> getReplies() {
+	public List<MiniEmail> getReplies() {
 		return replies;
 	}
 	
-	public void setReplies(List<Email> replies) {
+	public void setReplies(List<MiniEmail> replies) {
 		this.replies=replies;
 	}
 	
@@ -98,7 +93,7 @@ public class DetailedEmail implements Serializable{
 	}
 	
 	public boolean isInMailinglist(String mailinglist) {
-		return email.getMessageMailingLists().get(0).equals(mailinglist);
+		return email.getMessageMailingList().equals(mailinglist);
 	}
 	
 	public void addTag() throws IOException {
