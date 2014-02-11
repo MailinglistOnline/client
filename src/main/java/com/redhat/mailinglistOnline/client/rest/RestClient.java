@@ -2,16 +2,10 @@ package com.redhat.mailinglistOnline.client.rest;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-
 import javax.ejb.Stateless;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.SessionScoped;
-import javax.inject.Inject;
 
 import org.jboss.resteasy.client.ProxyFactory;
 import org.jboss.resteasy.plugins.providers.RegisterBuiltin;
@@ -19,6 +13,7 @@ import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
 import com.redhat.mailinglistOnline.client.DbClient;
 import com.redhat.mailinglistOnline.client.entities.Email;
+import com.redhat.mailinglistOnline.client.entities.Mailinglist;
 
 @Stateless(name="client")
 public class RestClient {
@@ -47,9 +42,8 @@ public class RestClient {
 		return emailClient.getEmailById(id); 
 	}
 	
-	public List<String> getAllMailingLists() {
-			MailingListWrapper wrapper= mailingListsClient.getAllMailingLists();
-			return wrapper.getMailinglists();
+	public List<Mailinglist> getAllMailingLists() {
+			return mailingListsClient.getAllMailingLists();
 	}
 
 	public List<Email> getMailingListRoot(String mailingList) {

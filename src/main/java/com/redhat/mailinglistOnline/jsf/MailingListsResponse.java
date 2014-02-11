@@ -4,11 +4,10 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
-import com.redhat.mailinglistOnline.client.entities.Email;
+import com.redhat.mailinglistOnline.client.entities.Mailinglist;
 import com.redhat.mailinglistOnline.client.rest.RestClient;
 
 
@@ -16,7 +15,7 @@ import com.redhat.mailinglistOnline.client.rest.RestClient;
 @SessionScoped
 public class MailingListsResponse {
 	
-	public static List<String> mailingLists;
+	public static List<Mailinglist> mailingLists;
 
 	@Inject
 	RestClient client;
@@ -39,11 +38,11 @@ public class MailingListsResponse {
 	}
 
 
-	public List<String> getMailingLists() {
+	public List<Mailinglist> getMailingLists() {
 		return mailingLists;
 	}
 
-	public void setMailingLists(List<String> emails) {
+	public void setMailingLists(List<Mailinglist> emails) {
 		this.mailingLists = emails;
 	}
 	
@@ -51,7 +50,7 @@ public class MailingListsResponse {
 		return mailingLists.contains(list);
 	}
 
-	public String getDefaultMailinglist() {
+	public Mailinglist getDefaultMailinglist() {
 		return mailingLists.get(0);
 	}
 	

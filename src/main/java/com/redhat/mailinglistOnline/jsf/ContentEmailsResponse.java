@@ -3,16 +3,12 @@ package com.redhat.mailinglistOnline.jsf;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.ConversationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
-
 import com.redhat.mailinglistOnline.client.entities.Email;
+import com.redhat.mailinglistOnline.client.entities.Mailinglist;
 import com.redhat.mailinglistOnline.client.rest.RestClient;
 
 /*
@@ -26,15 +22,15 @@ public class ContentEmailsResponse implements Serializable{
 	RestClient client;
 
 	private List<Email> emails;
-	private String mailinglist;
+	private String viewMailinglist;
 	
 	
-	public String getMailinglist() {
-		return mailinglist;
+	public String getViewMailinglist() {
+		return viewMailinglist;
 	}
 
-	public void setMailinglist(String mailinglist) {
-		this.mailinglist = mailinglist;
+	public void setViewMailinglist(String mailinglist) {
+		this.viewMailinglist = mailinglist;
 	}
 
 	public RestClient getClient() {
@@ -66,10 +62,10 @@ public class ContentEmailsResponse implements Serializable{
 	}
 	
 	public void getMailingListRoot() {
-		if(mailinglist == null) {
+		if(viewMailinglist == null) {
 			return;
 		}
-		emails=client.getMailingListRoot(mailinglist);
+		emails=client.getMailingListRoot(viewMailinglist);
 	}
 	
 	// said to be probably bug in JBOSS 7.1.1, when passing integer in EL, 
@@ -79,10 +75,10 @@ public class ContentEmailsResponse implements Serializable{
 	}
 	
 	public void getLatest(Integer number) {
-		if(mailinglist == null) {
+		if(viewMailinglist == null) {
 			return;
 		}
-		emails=client.getMailinglistLatest(mailinglist, number);
+		emails=client.getMailinglistLatest(viewMailinglist, number);
 	}
 	
 	public void searchEmailsByContent(String content) {
