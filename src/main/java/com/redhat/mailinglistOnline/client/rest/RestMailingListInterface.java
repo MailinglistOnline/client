@@ -6,7 +6,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-import org.jboss.resteasy.annotations.providers.jaxb.Wrapped;
+//import org.jboss.resteasy.annotations.providers.jaxb.Wrapped;
 
 import com.redhat.mailinglistOnline.client.entities.Mailinglist;
 
@@ -14,8 +14,8 @@ import com.redhat.mailinglistOnline.client.entities.Mailinglist;
 public interface RestMailingListInterface {
 		@GET
 	    @Path("/all")
-	    @Produces("application/xml")
-	    @Wrapped(element="mailinglists")
+	    @Produces("application/json")
+	    //@Wrapped(element="mailinglists")
 	    public List<Mailinglist> getAllMailingLists();
 }
 

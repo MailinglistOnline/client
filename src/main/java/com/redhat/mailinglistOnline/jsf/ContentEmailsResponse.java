@@ -8,7 +8,7 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import com.redhat.mailinglistOnline.client.entities.Email;
-import com.redhat.mailinglistOnline.client.entities.Mailinglist;
+import com.redhat.mailinglistOnline.client.entities.MiniEmail;
 import com.redhat.mailinglistOnline.client.rest.RestClient;
 
 /*
@@ -21,7 +21,7 @@ public class ContentEmailsResponse implements Serializable{
 	@Inject
 	RestClient client;
 
-	private List<Email> emails;
+	private List<? extends MiniEmail> emails;
 	private String viewMailinglist;
 	
 	
@@ -45,15 +45,15 @@ public class ContentEmailsResponse implements Serializable{
 		emails.clear();
 	}
 
-	public List<Email> getEmails() {
+	public List<? extends MiniEmail> getEmails() {
 		return emails;
 	}
 
-	public void setEmails(List<Email> emails) {
+	public void setEmails(List<MiniEmail> emails) {
 		this.emails = emails;
 	}
 	
-	public String selectedEmail(Email email) {
+	public String selectedEmail(MiniEmail email) {
 		return "index";
 	}
 
@@ -79,6 +79,7 @@ public class ContentEmailsResponse implements Serializable{
 			return;
 		}
 		emails=client.getMailinglistLatest(viewMailinglist, number);
+		System.out.println();
 	}
 	
 	public void searchEmailsByContent(String content) {

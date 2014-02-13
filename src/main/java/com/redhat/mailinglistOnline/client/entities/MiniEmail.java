@@ -23,6 +23,9 @@ public class MiniEmail extends BasicDBObject{
     // message snippet is the first x letters from the email
     public static final String MESSAGE_SNIPPET_MONGO_TAG = "message_snippet";
     public static final String TAGS_MONGO_TAG = "tags";
+	private static final String HIGHLIGHTED_MAIN_CONTENT = "highlighted_main_content";
+    
+    private List<String> highlightedTexts;
     
     
     public MiniEmail() {
@@ -36,13 +39,26 @@ public class MiniEmail extends BasicDBObject{
     	setMailingList(email.getMessageMailingList());
     	setMessageId(email.getMessageId());
     	setSubject(email.getSubject());
-    	setSentDate(email.getSentDate());
+    	setDate(email.getDate());
     	setFrom(email.getFrom());
     	setMessageSnippet(email.getMessageSnippet());
     	setTags(email.getTags());
     }
     
-    @XmlElement(name="id")
+    @XmlElement(name=HIGHLIGHTED_MAIN_CONTENT)
+    public List<String> getHighlightedTexts() {
+		return highlightedTexts;
+    }
+    
+    public void setHighlightedTexts(List<String> texts) {
+    	highlightedTexts=texts;
+    }
+    
+    public void addHighLight(String highLight) {
+    	highlightedTexts.add(highLight);
+	}
+    
+    @XmlElement(name=ID_MONGO_TAG)
     public String getId() {
         return getString(ID_MONGO_TAG);
         
@@ -57,7 +73,7 @@ public class MiniEmail extends BasicDBObject{
     	put(MAILINGLIST_MONGO_TAG, mailinglist);
     }
     
-    @XmlElement(name="message_id")
+    @XmlElement(name=MESSAGE_ID_MONGO_TAG)
     public String getMessageId() {
         return getString(MESSAGE_ID_MONGO_TAG);
     }
@@ -66,7 +82,7 @@ public class MiniEmail extends BasicDBObject{
         put(MESSAGE_ID_MONGO_TAG, messageId);
     }
     
-    @XmlElement(name="message_")
+    @XmlElement(name=MESSAGE_SNIPPET_MONGO_TAG)
     public String getMessageSnippet() {
         return getString(MESSAGE_SNIPPET_MONGO_TAG);
     }
@@ -75,7 +91,7 @@ public class MiniEmail extends BasicDBObject{
         put(MESSAGE_SNIPPET_MONGO_TAG, messageSnippet);
     }
 
-    @XmlElement(name="subject")
+    @XmlElement(name=SUBJECT_MONGO_TAG)
     public String getSubject() {
         return getString(SUBJECT_MONGO_TAG);
     }
@@ -84,21 +100,21 @@ public class MiniEmail extends BasicDBObject{
          put(SUBJECT_MONGO_TAG, subject);
     }
     
-    @XmlElement(name="sent_date")
-    public Date getSentDate() {
-        return getDate(DATE_MONGO_TAG);
+    @XmlElement(name=DATE_MONGO_TAG)
+    public long getDate() {
+        return getLong(DATE_MONGO_TAG);
     }
 
-    public void setSentDate(Date sentDate) {
+    public void setDate(long sentDate) {
          put(DATE_MONGO_TAG, sentDate);
     }
     
-    @XmlElement(name="mailing_list")
+    @XmlElement(name=MAILINGLIST_MONGO_TAG)
     public String getMessageMailingList() {
        return getString(MAILINGLIST_MONGO_TAG);
        
     }
-    @XmlElement(name="from")
+    @XmlElement(name=FROM_MONGO_TAG)
     public String getFrom() {
         return getString(FROM_MONGO_TAG);
     }
@@ -107,7 +123,7 @@ public class MiniEmail extends BasicDBObject{
          put(FROM_MONGO_TAG, from);
     }
         
-    @XmlElement(name="tags")
+    @XmlElement(name=TAGS_MONGO_TAG)
     public ArrayList<String> getTags() {
         ArrayList<String> list =(ArrayList<String>) get(TAGS_MONGO_TAG);
         return list;

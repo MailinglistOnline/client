@@ -14,6 +14,7 @@ import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import com.redhat.mailinglistOnline.client.DbClient;
 import com.redhat.mailinglistOnline.client.entities.Email;
 import com.redhat.mailinglistOnline.client.entities.Mailinglist;
+import com.redhat.mailinglistOnline.client.entities.MiniEmail;
 
 @Stateless(name="client")
 public class RestClient {
@@ -50,7 +51,7 @@ public class RestClient {
 		return emailClient.getMailingListRoots(mailingList);
 	}
 	
-	public List<Email> getEmailReplies(Email email) {
+	public List<Email> getEmailReplies(MiniEmail email) {
 		return emailClient.getEmailReplies(email.getId());
 	}
 
@@ -63,7 +64,7 @@ public class RestClient {
 		return emailClient.getMailinglistLatest(mailinglist,number);
 	}
 	
-	public List<Email> searchEmailsByContent(String content) {
+	public List<MiniEmail> searchEmailsByContent(String content) {
 		return emailClient.searchEmailByContent(content);
 	}
 

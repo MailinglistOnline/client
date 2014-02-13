@@ -61,33 +61,61 @@
 							<br /> <b>Subject: </b>
 							<h:outputLabel value="#{email.subject}" />
 							<br /> <br />
-							<h:form>
+							<div rendered="#{email.highlightedTexts.size() == 0}">
+							<h:form  >
 								<br />
 								<b>Content: </b>
 								<h:outputLabel
-									value="#{email.mainContent[0].getShorterContent(100)}" />...
-							    <pretty:link mappingId="email">
+									value="#{email.messageSnippet}" />...
+							    <!-- <pretty:link mappingId="email">
 							        <f:param value="#{mailinglist}" />
 									<f:param value="#{email.id}" />
 									more
-								</pretty:link>
-					</h:form>
+								</pretty:link> -->
+						    </h:form>
 							<br />
-							<ui:repeat value="#{email.replies}" var="reply">
+							<ui:repeat value="#{email.replies}" var="reply" rendered="#{email.replies.size() > 0}">
 								<h:form>
 									<b>Reply: </b>
-									<pretty:link mappingId="email">
+									<!-- <pretty:link mappingId="email">
 							        <f:param value="#{mailinglist}" />
-									<f:param value="#{reply}" />
-									<h:outputLabel value="#{reply}" />
-								</pretty:link>
+									<f:param value="#{reply.id}" />
+									<h:outputLabel value="#{reply.id}" />
+								</pretty:link> -->
 
 									<br />
 								</h:form>
 							</ui:repeat>
-
+							
 							<br />
 							<h:outputLabel value="Thread root: #{email.root}" />
+							</div>
+							
+							<div rendered="#{email.highlightedTexts.size() > 0}">
+							<h:form  >
+								<br />
+								<b>Content: </b>
+								<h:outputLabel
+									value="#{email.messageSnippet}" />...
+							    <!-- <pretty:link mappingId="email">
+							        <f:param value="#{mailinglist}" />
+									<f:param value="#{email.id}" />
+									more
+								</pretty:link> -->
+						    </h:form>
+							<br />
+							<ui:repeat value="#{email.highlightedTexts}" var="highlight">
+								<h:form>
+									<h:outputLabel value="#{highlight}" />
+									<br />
+								</h:form>
+							</ui:repeat>
+							
+							
+							<br />
+							<h:outputLabel value="Thread root: #{email.root}" />
+							</div>
+							
 							<br />
 						</div>
 					</ui:repeat>
