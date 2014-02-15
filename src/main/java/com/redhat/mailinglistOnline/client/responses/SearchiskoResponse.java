@@ -11,25 +11,24 @@ import com.google.common.collect.Lists;
 import com.redhat.mailinglistOnline.client.entities.Email;
 import com.redhat.mailinglistOnline.client.entities.MiniEmail;
 
-/*
- * A response from the server containing the list of emails as the result for the given query (latest, search etc).
- */
-@Named("contentResponse")
-@RequestScoped
-public class EmailsResponse implements Serializable {
 
-	private List<Email> emails;
+
+@Named("searchResponse")
+@RequestScoped
+public class SearchiskoResponse implements Serializable {
+
+	private List<MiniEmail> emails;
 	
 
 	private String viewMailinglist;
 	
     
 	
-	public void addEmails(List<Email> emails) {
+	public void addEmails(List<MiniEmail> emails) {
 		this.emails = emails;
 	}
 
-	public List<? extends MiniEmail> getEmails() {
+	public List<MiniEmail> getEmails() {
 		return emails;
 	}
 
@@ -41,8 +40,8 @@ public class EmailsResponse implements Serializable {
 		if (emails == null || emails.size() == 0) {
 			return;
 		}
-		List<Email> filtered = Lists.newArrayList();
-		for (Email e : emails) {
+		List<MiniEmail> filtered = Lists.newArrayList();
+		for (MiniEmail e : emails) {
 			if (selectedMailinglist == null
 					|| selectedMailinglist
 							.equals(MailingListsResponse.ALL_MAILINGLISTS)

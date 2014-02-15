@@ -21,29 +21,16 @@ public class MailingListsResponse {
 	public static List<Mailinglist> mailingLists;
 	public final static String ALL_MAILINGLISTS="all";
 	
-	@Produces
-	@SelectedMailinglist
-	private String selectedMailinglist;
-
+	
 	@Inject
 	RestClient client;
-	
-    @Inject
-    @SelectedMailinglist
-    Event<String> mailinglistEvent;
+
 	
 	@PostConstruct
 	public void init() {
 		mailingLists=client.getAllMailingLists();
 	}
-
 	
-	public void selectMailinglist(String mailinglist) {
-		if(isMailingList(mailinglist)) {
-			mailinglistEvent.fire(mailinglist);
-		}
-	}
-
 	public List<Mailinglist> getMailingLists() {
 		return mailingLists;
 	}

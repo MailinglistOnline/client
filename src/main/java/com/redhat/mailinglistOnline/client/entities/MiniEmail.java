@@ -1,20 +1,21 @@
 package com.redhat.mailinglistOnline.client.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAccessorOrder;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import org.bson.types.ObjectId;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 import com.mongodb.BasicDBObject;
 
-@XmlRootElement(name = "miniemail")
-@XmlAccessorOrder
-public class MiniEmail extends BasicDBObject{
+public class MiniEmail  extends BasicDBObject implements Serializable{
 
-    public static final String ID_MONGO_TAG = "_id";
+	private static final long serialVersionUID = 9069501944384263364L;
+	public static final String ID_MONGO_TAG = "_id";
     public static final String MAILINGLIST_MONGO_TAG = "mailinglist";
     public static final String MESSAGE_ID_MONGO_TAG = "message_id";
     public static final String SUBJECT_MONGO_TAG = "subject";
@@ -26,7 +27,6 @@ public class MiniEmail extends BasicDBObject{
 	private static final String HIGHLIGHTED_MAIN_CONTENT = "highlighted_main_content";
     
     private List<String> highlightedTexts;
-    
     
     public MiniEmail() {
         super();
@@ -58,12 +58,17 @@ public class MiniEmail extends BasicDBObject{
     	highlightedTexts.add(highLight);
 	}
     
+    /*
+     * TODO: Waiting to know how to make it work.. Jackson issue.
+     */
     @XmlElement(name=ID_MONGO_TAG)
+    @JsonProperty("_id")
     public String getId() {
-        return getString(ID_MONGO_TAG);
-        
+    	return getString(ID_MONGO_TAG);
     }
 
+
+    @JsonProperty("_id")
     public void setId(String id) {
     	put(ID_MONGO_TAG, id);
         
@@ -116,7 +121,7 @@ public class MiniEmail extends BasicDBObject{
     }
     @XmlElement(name=FROM_MONGO_TAG)
     public String getFrom() {
-        return getString(FROM_MONGO_TAG);
+    	return getString(FROM_MONGO_TAG);
     }
 
     public void setFrom(String from) {

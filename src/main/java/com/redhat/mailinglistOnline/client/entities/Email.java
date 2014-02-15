@@ -11,6 +11,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.codehaus.jackson.annotate.JsonProperty;
+
 
 @XmlRootElement(name = "email")
 public class Email extends MiniEmail{
@@ -34,6 +36,7 @@ public class Email extends MiniEmail{
     public void setRoot(MiniEmail root) {
         put(ROOT_MONGO_TAG, new MiniEmail(root));
     }
+
 
     @XmlElement(name=IN_REPLY_TO_MONGO_TAG)
     public MiniEmail getInReplyTo() {

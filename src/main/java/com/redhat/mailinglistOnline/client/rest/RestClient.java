@@ -70,9 +70,8 @@ public class RestClient {
 		return emailClient.getMailinglistLatest(mailinglist,number);
 	}
 	
-	public List<MiniEmail> searchEmailsByContent(String content, EmailsResponse response) {
+	public List<MiniEmail> searchEmailsByContent(String content) {
 		List<MiniEmail> emails = emailClient.searchEmailByContent(content);
-		response.addEmails(emails);
 		return emails;
 	
 	}
