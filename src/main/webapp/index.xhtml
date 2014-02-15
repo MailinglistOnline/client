@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://richfaces.org/sandbox/bootstrap"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:pretty="http://ocpsoft.com/prettyfaces" >
@@ -12,8 +13,8 @@
 	<f:metadata>
 		<f:viewParam name="mailinglist"
 			value="#{contentResponse.viewMailinglist}" />
-	<f:event type="postAddToView"
-			listener="#{contentResponse.getLatest(10)}" /> 
+	<!-- <f:event type="postAddToView"
+			listener="#{client.getMailinglistLatest(#{mailinglist},10)}" /> r -->
 	</f:metadata>
 	
 
@@ -23,6 +24,8 @@
 		</ui:define>
 		<ui:define name="content">
 		<center><h:outputLabel value="#{mailinglist}" /></center>
+		    <b:label>
+    
 			<h:form id="form">
 				<rich:tabPanel style="border:none" switchType="server"
 					headerAlignment="left"  itemChangeListener="#{panelChangeListener.processItemChange}">
@@ -33,14 +36,10 @@
 
 					<rich:tab style="" name="search" header="Search">
 						<center>
-							Search
+							<h:outputLabel value="Text:" />
 							<h:inputText value="#{panelChangeListener.searchString}" />
-							in
-							<h:selectOneMenu value="#{panelChangeListener.searchOption}">
-								<f:selectItem id="content" name="content" itemLabel="Content" itemValue="content" />
-								<f:selectItem id="author" itemLabel="Author" itemValue="author" />
-								<f:selectItem id="mailinglist" itemLabel="Mailing list" itemValue="mailinglist" />
-							</h:selectOneMenu>
+							<h:outputLabel value="Specify tags (separated by commas):" />
+							<h:inputText value="#{panelChangeListener.tagString}" />
 							<h:commandButton value="search" type="search" action="#{panelChangeListener.search}" />
 						</center>
 					</rich:tab>
@@ -57,7 +56,7 @@
 							<br /> <b>From: </b>
 							<h:outputLabel value="#{email.from}" /> <br/>
 							<b>Date: </b>
-				            <h:outputLabel render="#{email.dateInString}" value="#{email.dateInString}" />
+				            <h:outputLabel render="#{email.date}" value="#{email.date}" />
 							<br /> <b>Subject: </b>
 							<h:outputLabel value="#{email.subject}" />
 							<br /> <br />
@@ -94,7 +93,7 @@
 							<div rendered="#{email.highlightedTexts.size() > 0}">
 							<h:form  >
 								<br />
-								<b>Content: </b>
+								<b>Search hits: </b>
 								<h:outputLabel
 									value="#{email.messageSnippet}" />...
 							    <!-- <pretty:link mappingId="email">
@@ -106,8 +105,7 @@
 							<br />
 							<ui:repeat value="#{email.highlightedTexts}" var="highlight">
 								<h:form>
-									<h:outputLabel value="#{highlight}" />
-									<br />
+									<h:outputLabel value="#{highlight}" />...
 								</h:form>
 							</ui:repeat>
 							
@@ -121,6 +119,9 @@
 					</ui:repeat>
 				</ul>
 			</div>
+			
+			
+    	</b:label>
 
 
 

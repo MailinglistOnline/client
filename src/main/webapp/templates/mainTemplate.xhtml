@@ -46,6 +46,7 @@
 					<c:forEach var="mailinglist" items="#{mailinglists.mailingLists}">
 	  					<rich:menuItem submitMode="client" value="abc" onclick="document.location.href='#{request.contextPath}/#{mailinglist.name}'">>
 	  						<h:outputText value="#{mailinglist.name}" />
+	  						<h:outputText value="#{mailinglist.description}" />
 	  					</rich:menuItem>
 					</c:forEach>
 					

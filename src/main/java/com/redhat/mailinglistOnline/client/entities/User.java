@@ -28,9 +28,9 @@ public class User extends BasicDBObject{
 		return getString(ROOT_NAME_TAG);
 		
 	}
-	@NotNull
+	/*@NotNull
 	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
-	@Size(min = 5, max = 25)
+	@Size(min = 5, max = 25)*/
 	public void setName(String name) {
 		put(ROOT_NAME_TAG, name);
 	}
@@ -38,7 +38,7 @@ public class User extends BasicDBObject{
 	public String getPassword() {
 		return getString(ROOT_PASSWORD_TAG);
 	}
-	@NotNull
+	
 	public void setPassword(String password) {
 		put(ROOT_PASSWORD_TAG, password);
 	}

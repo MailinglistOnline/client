@@ -16,13 +16,8 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 
-
-
-
 @Stateless
 public class Loggers {
-	
-
 	
 	@Produces
 	public Logger getLogger(InjectionPoint ip) throws IOException {

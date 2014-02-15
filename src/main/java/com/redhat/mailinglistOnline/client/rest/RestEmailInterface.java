@@ -9,6 +9,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 //import org.jboss.resteasy.annotations.providers.jaxb.Wrapped;
 
+
+
 import com.redhat.mailinglistOnline.client.entities.Email;
 import com.redhat.mailinglistOnline.client.entities.MiniEmail;
 
@@ -65,6 +67,11 @@ public interface RestEmailInterface {
     //@Wrapped(element="emails")
     public List<Email> getMailinglistLatest(@QueryParam("mailinglist") String mailinglist, @QueryParam("number") int number);
     
+    @GET
+    @Path("/email/")
+    @Produces("application/json")
+	public List<Email> getEmails(@QueryParam("mailinglist") String mailinglist, @QueryParam("from") String from,
+			@QueryParam("tag") List<String> tag);
     
     
     /* SEARCH */
@@ -79,6 +86,8 @@ public interface RestEmailInterface {
 	@POST
     @Path("/email/tag/")
     public void addTag(@QueryParam("id") String id,@QueryParam("tag") String tag);
+
+	
 
 	
     

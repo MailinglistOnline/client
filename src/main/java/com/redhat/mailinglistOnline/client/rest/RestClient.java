@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Properties;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 import org.jboss.resteasy.client.ProxyFactory;
 import org.jboss.resteasy.plugins.providers.RegisterBuiltin;
@@ -15,6 +16,7 @@ import com.redhat.mailinglistOnline.client.DbClient;
 import com.redhat.mailinglistOnline.client.entities.Email;
 import com.redhat.mailinglistOnline.client.entities.Mailinglist;
 import com.redhat.mailinglistOnline.client.entities.MiniEmail;
+import com.redhat.mailinglistOnline.client.responses.EmailsResponse;
 
 @Stateless(name="client")
 public class RestClient {
@@ -23,6 +25,9 @@ public class RestClient {
 	private String serverUrl;
 	RestEmailInterface emailClient;
 	RestMailingListInterface mailingListsClient;
+	
+	@Inject 
+	EmailsResponse response;
 
 
 	public RestClient() throws IOException {
@@ -32,11 +37,12 @@ public class RestClient {
         serverUrl = prop.getProperty("serverUrl");
         emailClient = ProxyFactory.create(RestEmailInterface.class, serverUrl);
         mailingListsClient = ProxyFactory.create(RestMailingListInterface.class, serverUrl);
-        
 	}
 	
-	public List<Email> getAllEmails() {
-			return emailClient.getAllEmails(); 
+	public EmailsResponse getAllEmails() {
+		
+		response.addEmails(emailClient.getAllEmails());
+		return response;
 	}
 	
 	public Email getEmailById(String id) {
@@ -64,9 +70,19 @@ public class RestClient {
 		return emailClient.getMailinglistLatest(mailinglist,number);
 	}
 	
-	public List<MiniEmail> searchEmailsByContent(String content) {
-		return emailClient.searchEmailByContent(content);
+	public List<MiniEmail> searchEmailsByContent(String content, EmailsResponse response) {
+		List<MiniEmail> emails = emailClient.searchEmailByContent(content);
+		response.addEmails(emails);
+		return emails;
+	
 	}
+
+	// this method should be after some time always used instead of getEmailById etc...
+	public List<Email> getEmails(String selectedMailinglist, String fromString,
+			List<String> tagString) {
+		return emailClient.getEmails(selectedMailinglist,fromString,tagString);
+	}
+
 
 }
 

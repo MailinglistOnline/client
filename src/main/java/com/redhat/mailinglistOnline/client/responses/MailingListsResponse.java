@@ -1,12 +1,15 @@
-package com.redhat.mailinglistOnline.jsf;
+package com.redhat.mailinglistOnline.client.responses;
 
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.event.Event;
+import javax.enterprise.inject.Produces;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
+import com.redhat.mailinglistOnline.client.SelectedMailinglist;
 import com.redhat.mailinglistOnline.client.entities.Mailinglist;
 import com.redhat.mailinglistOnline.client.rest.RestClient;
 
@@ -16,27 +19,30 @@ import com.redhat.mailinglistOnline.client.rest.RestClient;
 public class MailingListsResponse {
 	
 	public static List<Mailinglist> mailingLists;
+	public final static String ALL_MAILINGLISTS="all";
+	
+	@Produces
+	@SelectedMailinglist
+	private String selectedMailinglist;
 
 	@Inject
 	RestClient client;
 	
-	public MailingListsResponse() {
-		
-	}
+    @Inject
+    @SelectedMailinglist
+    Event<String> mailinglistEvent;
 	
 	@PostConstruct
 	public void init() {
 		mailingLists=client.getAllMailingLists();
 	}
+
 	
-	public RestClient getClient() {
-		return client;
+	public void selectMailinglist(String mailinglist) {
+		if(isMailingList(mailinglist)) {
+			mailinglistEvent.fire(mailinglist);
+		}
 	}
-
-	public void setClient(RestClient client) {
-		this.client = client;
-	}
-
 
 	public List<Mailinglist> getMailingLists() {
 		return mailingLists;
@@ -54,9 +60,4 @@ public class MailingListsResponse {
 		return mailingLists.get(0);
 	}
 	
-
-	
-
-
-
 }

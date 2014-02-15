@@ -21,7 +21,6 @@ public class Email extends MiniEmail{
     public static final String ATTACHMENTS_MONGO_TAG = "attachments";
     public static final String MAIN_CONTENT_MONGO_TAG = "main_content";
     
-    
     public Email() {
         super();
         put(REPLIES_MONGO_TAG,new ArrayList());
