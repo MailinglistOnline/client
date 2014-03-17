@@ -43,22 +43,25 @@ public class PanelChangeListener implements ItemChangeListener, Serializable {
 
 	@Inject
 	private EmailsResponse contentEmails;
+	
+	@Inject 
+	CurrentlySelectedMailinglist selectedMailinglist;
 
 	@Override
 	public void processItemChange(ItemChangeEvent event)
 			throws AbortProcessingException {
 		if (event.getNewItemName().equals("latest")) {
-			loader.getMailinglistLatest(contentEmails.getViewMailinglist(), LATEST_EMAIL_COUNT);
+			loader.getMailinglistLatest(selectedMailinglist.getMailinglist(), LATEST_EMAIL_COUNT);
 			/*List<Email> miniEmails = (List<Email>)contentEmails.getEmails();
 			List<MiniEmail> replies = miniEmails.get(1).getReplies();
 			System.out.println(); only for debug purposes*/
 		} else if (event.getNewItemName().equals("topics")) {
-			loader.getMailingListRoot(contentEmails.getViewMailinglist());
+			loader.getMailingListRoot(selectedMailinglist.getMailinglist());
 		}
 	}
 
 	public void search() {
-		loader.searchEmailsByContent(searchString, contentEmails.getViewMailinglist(),
+		loader.searchEmailsByContent(searchString, selectedMailinglist.getMailinglist(),
 				fromString, Arrays.asList(tagString.split("\\s*,\\s*")));
 
 	}

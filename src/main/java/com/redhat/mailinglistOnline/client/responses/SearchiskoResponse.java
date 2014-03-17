@@ -8,21 +8,17 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import com.google.common.collect.Lists;
-import com.redhat.mailinglistOnline.client.entities.Email;
 import com.redhat.mailinglistOnline.client.entities.MiniEmail;
-
-
 
 @Named("searchResponse")
 @RequestScoped
 public class SearchiskoResponse implements Serializable {
 
+	private static final long serialVersionUID = -1774919204816517393L;
+
 	private List<MiniEmail> emails;
 	
-
 	private String viewMailinglist;
-	
-    
 	
 	public void addEmails(List<MiniEmail> emails) {
 		this.emails = emails;
@@ -45,7 +41,7 @@ public class SearchiskoResponse implements Serializable {
 			if (selectedMailinglist == null
 					|| selectedMailinglist
 							.equals(MailingListsResponse.ALL_MAILINGLISTS)
-					|| selectedMailinglist.equals(e.getMessageMailingList())) {
+					|| selectedMailinglist.equals(e.getMailinglist())) {
 				if (fromString == null || fromString.equals("")
 						|| fromString.equals(e.getFrom())) {
 					if (tags == null || tags.size() == 0) {

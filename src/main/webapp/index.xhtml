@@ -11,7 +11,7 @@
 
 	<f:metadata>
 		<f:viewParam name="mailinglist"
-			value="#{contentResponse.viewMailinglist}" />
+			value="#{selectedMailinglist.mailinglist}" />
 	<!-- <f:event type="postAddToView"
 			listener="#{client.getMailinglistLatest(#{mailinglist},10)}" /> r -->
 	</f:metadata>
@@ -53,7 +53,7 @@
 							<b>ID: </b>
 							<!-- No idea why but email.id will not call getId... 
 							The same goes for "from", getFrom is never called -->
-							<h:outputLabel value="#{email.getId()}" />
+							<h:outputLabel value="#{email.id}" />
 							<br /> <b>From: </b>
 							<h:outputLabel value="#{email.from}" /> <br/>
 							<b>Date: </b>
@@ -67,21 +67,23 @@
 								<b>Content: </b>
 								<h:outputLabel
 									value="#{email.getMessageSnippet()}" />...
-							    <!-- <pretty:link mappingId="email">
+									  
+							     <pretty:link mappingId="email">
 							        <f:param value="#{mailinglist}" />
-									<f:param value="#{email}" />
+									<f:param value="#{email.getId()}" />
 									more
-								</pretty:link> -->
+								</pretty:link> 
+								
 						    </h:form>
 							<br />
 							<ui:repeat value="#{email.replies}" var="reply" rendered="#{email.getReplies().size() > 0}">
 								<h:form>
 									<b>Reply: </b>
-									<!--  <pretty:link mappingId="email">
+									  <pretty:link mappingId="email">
 							        <f:param value="#{mailinglist}" />
-									<f:param value="#{reply.id}" />
-									<h:outputLabel value="#{reply.id}" />
-								</pretty:link>  -->
+									<f:param value="#{reply.getId()}" />
+									<h:outputLabel value="#{reply.getId()}" />
+								</pretty:link>  
 
 									<br />
 								</h:form>
@@ -96,14 +98,15 @@
 								<b>Search hits: </b>
 								<h:outputLabel
 									value="#{email.messageSnippet}" />...
-							    <!-- <pretty:link mappingId="email">
+							     <pretty:link mappingId="email">
 							        <f:param value="#{mailinglist}" />
-									<f:param value="#{email.id}" />
+									<f:param value="#{email.getId()}" />
 									more
-								</pretty:link> -->
+								</pretty:link> 
 						    </h:form>
 							<br />
 							<ui:repeat value="#{email.highlightedTexts}" var="highlight">
+							
 								<h:form>
 									<h:outputLabel value="#{highlight}" />...
 								</h:form>

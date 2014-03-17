@@ -1,14 +1,11 @@
 package com.redhat.mailinglistOnline.client.entities;
 
-import java.io.Serializable;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAccessorOrder;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -17,87 +14,104 @@ import org.codehaus.jackson.annotate.JsonProperty;
 @XmlRootElement(name = "email")
 public class Email extends MiniEmail{
 
+	private static final long serialVersionUID = 9122202937488854481L;
 	public static final String ROOT_MONGO_TAG = "thread_root";
     public static final String IN_REPLY_TO_MONGO_TAG = "in_reply_to";
     public static final String REPLIES_MONGO_TAG = "replies";
     public static final String ATTACHMENTS_MONGO_TAG = "attachments";
     public static final String MAIN_CONTENT_MONGO_TAG = "main_content";
+    public static final String SHARD_KEY_MONGO_TAG = "email_shard_key";
+    
+    private MiniEmail root;
+    private MiniEmail inReplyTo;
+    private List<MiniEmail> replies= new ArrayList<MiniEmail>();
+    private List<ContentPart> mainContent=new ArrayList<ContentPart>();
+    private List<ContentPart> attachments =new ArrayList<ContentPart>();
+    private String shardKey;
     
     public Email() {
         super();
-        put(REPLIES_MONGO_TAG,new ArrayList());
     }
     
-    @XmlElement(name=ROOT_MONGO_TAG)
+    @JsonProperty(ROOT_MONGO_TAG)
     public MiniEmail getRoot() {
-        return (MiniEmail)get(ROOT_MONGO_TAG);
+        return root;
     }
 
+    @JsonProperty(ROOT_MONGO_TAG)
     public void setRoot(MiniEmail root) {
-        put(ROOT_MONGO_TAG, new MiniEmail(root));
+        this.root=root;
     }
 
 
-    @XmlElement(name=IN_REPLY_TO_MONGO_TAG)
+    @JsonProperty(IN_REPLY_TO_MONGO_TAG)
     public MiniEmail getInReplyTo() {
-        return (MiniEmail) get(IN_REPLY_TO_MONGO_TAG);
+        return inReplyTo;
     }
     
+    @JsonProperty(IN_REPLY_TO_MONGO_TAG)
     public void setInReplyTo(MiniEmail inReplyTo) {
-        put(IN_REPLY_TO_MONGO_TAG, new MiniEmail(inReplyTo));
+        this.inReplyTo=inReplyTo;
     }
 
     
-    
+    @JsonProperty(REPLIES_MONGO_TAG)
     public void setReplies(List<MiniEmail> replies) {
-       put(REPLIES_MONGO_TAG,replies);
+    	this.replies=replies;
     }
-
-
 
     public void addReply(MiniEmail reply) {
-        ArrayList<MiniEmail> list = (ArrayList<MiniEmail>)get(REPLIES_MONGO_TAG);
-        if(list == null) {
-            put(REPLIES_MONGO_TAG,new ArrayList());
-            list = (ArrayList<MiniEmail>)get(REPLIES_MONGO_TAG);
+        if(replies == null) {
+        	replies = new ArrayList<MiniEmail>();
         }
-        list.add(new MiniEmail(reply));
+        replies.add(new MiniEmail(reply));
     }
     
-    @XmlElementWrapper(name=REPLIES_MONGO_TAG)
-    @XmlElement(name="reply")
+    @JsonProperty(REPLIES_MONGO_TAG)
     public List<MiniEmail> getReplies() {
-       return (ArrayList<MiniEmail>)get(REPLIES_MONGO_TAG);
+       return replies;
     }
 
     public void addAttachment(ContentPart part) {
-        ArrayList<ContentPart> list = (ArrayList<ContentPart>)get(ATTACHMENTS_MONGO_TAG);
-        if(list == null) {
-            put(ATTACHMENTS_MONGO_TAG,new ArrayList());
-            list = (ArrayList<ContentPart>)get(ATTACHMENTS_MONGO_TAG);
+        if(attachments == null) {
+        	attachments =new ArrayList<ContentPart>();
         }
-        list.add(part);
-    }
-    public void setAttachments(List<ContentPart> attachments) {
-        put(ATTACHMENTS_MONGO_TAG,attachments);
-    }
-
-    @XmlElementWrapper(name=MAIN_CONTENT_MONGO_TAG)
-    @XmlElement(name="alternative")
-    public ArrayList<ContentPart> getMainContent() {
-        ArrayList<ContentPart> list = (ArrayList<ContentPart>)get(MAIN_CONTENT_MONGO_TAG);
-        return list;
-    }
-
-    public void setMainContent(List<ContentPart> mainContent) {
-         put(MAIN_CONTENT_MONGO_TAG, mainContent);
+        attachments.add(part);
     }
     
-    @XmlElementWrapper(name=ATTACHMENTS_MONGO_TAG)
-    @XmlElement(name="attachment")
-    public ArrayList<ContentPart> getAttachments() {
-        ArrayList<ContentPart> list =(ArrayList<ContentPart>) get(ATTACHMENTS_MONGO_TAG);
-        return list;
+    @JsonProperty(ATTACHMENTS_MONGO_TAG)
+    public void setAttachments(List<ContentPart> attachments) {
+    	this.attachments=attachments;
+    }
+
+    @JsonProperty(MAIN_CONTENT_MONGO_TAG)
+    public List<ContentPart> getMainContent() {
+        return mainContent;
+    }
+
+    @JsonProperty(MAIN_CONTENT_MONGO_TAG)
+    public void setMainContent(List<ContentPart> mainContent) {
+         this.mainContent=mainContent;
+    }
+    
+    @JsonProperty(ATTACHMENTS_MONGO_TAG)
+    public List<ContentPart> getAttachments() {
+        return attachments;
+    }
+    
+    public String getDateInString() {
+    	DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+    	return df.format(new Date(getDate()));
+    }
+    
+    @JsonProperty(SHARD_KEY_MONGO_TAG)
+    public String getShardKey() {
+        return shardKey;
+    }
+
+    @JsonProperty(SHARD_KEY_MONGO_TAG)
+    public void setShardKey(String key) {
+        this.shardKey=key;
     }
     
 }

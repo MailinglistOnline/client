@@ -1,43 +1,41 @@
 package com.redhat.mailinglistOnline.client.entities;
 
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.codehaus.jackson.annotate.JsonProperty;
 
 @XmlRootElement(name = "ContentPart")
 public class ContentPart{
-	
+
+	private static final long serialVersionUID = 7103483924512914564L;
 	private String type;
-	private String content;
+    private String content;
+    private String link;
 
-
-    @XmlElement
+    @JsonProperty("type")
     public String getType() {
-        return type;
+        return this.type;
     }
-    
-    public String getShorterContent(int length) {
-    	if(content.length()< length) {
-    		length=content.length();
-    	}
-    	return content.substring(0,length);
-    }
-
-
+    @JsonProperty("type")
     public void setType(String type) {
-		this.type = type;
-	}
-
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-
-	@XmlElement
+        this.type=type;
+    }
+    @JsonProperty("text")
     public String getContent() {
         return content;
     }
-
-
+    @JsonProperty("text")
+    public void setContent(String content) {
+        this.content=content;
+    }
+    @JsonProperty("link")
+    public String getLink() {
+        return link;
+    }
+    @JsonProperty("link")
+    public void setLink(String link) {
+    	this.link=link;
+    }
+    
     
 }

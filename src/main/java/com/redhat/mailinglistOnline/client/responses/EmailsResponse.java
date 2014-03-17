@@ -19,11 +19,7 @@ import com.redhat.mailinglistOnline.client.entities.MiniEmail;
 public class EmailsResponse implements Serializable {
 
 	private List<Email> emails;
-	
 
-	private String viewMailinglist;
-	
-    
 	
 	public void addEmails(List<Email> emails) {
 		this.emails = emails;
@@ -46,7 +42,7 @@ public class EmailsResponse implements Serializable {
 			if (selectedMailinglist == null
 					|| selectedMailinglist
 							.equals(MailingListsResponse.ALL_MAILINGLISTS)
-					|| selectedMailinglist.equals(e.getMessageMailingList())) {
+					|| selectedMailinglist.equals(e.getMailinglist())) {
 				if (fromString == null || fromString.equals("")
 						|| fromString.equals(e.getFrom())) {
 					if (tags == null || tags.size() == 0) {
@@ -62,14 +58,6 @@ public class EmailsResponse implements Serializable {
 			}
 		}
 		emails = filtered;
-	}
-
-	public String getViewMailinglist() {
-		return viewMailinglist;
-	}
-
-	public void setViewMailinglist(String mlist) {
-		this.viewMailinglist = mlist;
 	}
 
 }
