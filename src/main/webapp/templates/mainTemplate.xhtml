@@ -29,7 +29,7 @@
 	<div id="header">
 		<rich:toolbar height="35px" itemClass="myHeader">
 			<rich:menuItem itemClass="myHeaderDropDown" submitMode="client"
-				onclick="document.location.href='http://localhost:8080/mailinglistOnline-Client/#{mailinglist}'">
+				onclick="document.location.href='#{request.contextPath}'">
 				<h:outputText value="MailingListOnline" />
 			</rich:menuItem>
 
@@ -59,7 +59,7 @@
 			<rich:toolbarGroup location="right">
 				<rich:menuItem rendered="#{empty request.remoteUser}"
 					itemClass="myHeaderDropDown" submitMode="client"
-					onclick="document.location.href='#{request.contextPath}/user/user.xhtml'">
+					onclick="document.location.href='#{request.contextPath}/user/index.xhtml'">
 					<h:outputText value="Login" />
 				</rich:menuItem>
 				<rich:dropDownMenu rendered="#{not empty request.remoteUser}" itemClass="myHeaderDropDown" mode="ajax">

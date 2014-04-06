@@ -34,7 +34,7 @@ public class MongoDbLoginModule extends UsernamePasswordLoginModule{
 	{
 		super.initialize(subject, callbackHandler, sharedState, options);
 		try {
-			dbClient = (DbClient) new InitialContext().lookup("java:app/mailinglistOnline-Client/dbClient");
+			dbClient = (DbClient) new InitialContext().lookup("java:app/client/dbClient");
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
