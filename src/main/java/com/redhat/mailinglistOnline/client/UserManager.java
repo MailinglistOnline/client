@@ -3,14 +3,14 @@ package com.redhat.mailinglistOnline.client;
 
 
 import javax.ejb.Stateful;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
+
 import com.redhat.mailinglistOnline.client.entities.User;
 
-
-@Stateful(name="userSession")
+@Named("userSession")
+@Stateful()
 public class UserManager {
 	
 	@Inject
