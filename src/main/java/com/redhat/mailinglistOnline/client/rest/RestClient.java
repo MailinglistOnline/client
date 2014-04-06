@@ -2,6 +2,7 @@ package com.redhat.mailinglistOnline.client.rest;
 
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -57,17 +58,13 @@ public class RestClient {
 		return emailClient.getMailingListRoots(mailingList);
 	}
 	
-	public List<Email> getEmailReplies(MiniEmail email) {
-		return emailClient.getEmailReplies(email.getId());
-	}
-
 	public void addTagToEmail(String id, String tag) {
 		emailClient.addTag(id, tag);
 		
 	}
 	
 	public List<Email> getMailinglistLatest(String mailinglist, int number) {
-		return emailClient.getMailinglistLatest(mailinglist,number);
+		return emailClient.getEmails(null, mailinglist, null, number, Collections.singletonList("date"), null);
 	}
 	
 	public List<MiniEmail> searchEmailsByContent(String content) {
@@ -75,13 +72,6 @@ public class RestClient {
 		return emails;
 	
 	}
-
-	// this method should be after some time always used instead of getEmailById etc...
-	public List<Email> getEmails(String selectedMailinglist, String fromString,
-			List<String> tagString) {
-		return emailClient.getEmails(selectedMailinglist,fromString,tagString);
-	}
-
 
 }
 

@@ -37,8 +37,7 @@ public class ResponseLoader {
 			searchResponse.addEmails(miniEmails);
 			searchResponse.filter(selectedMailinglist, fromString, tags);
 		} else {
-			List<Email> emails=client.getEmails(selectedMailinglist,fromString,tags);
-			response.addEmails(emails);
+			return;
 		}
 		
 	}

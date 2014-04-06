@@ -61,6 +61,8 @@
 							<h:outputLabel value="#{email.from}" />
 							<br /> <b>Date: </b>
 							<h:outputLabel render="#{email.date}" value="#{email.date}" />
+							<br /> <b>Mailing list: </b>
+							<h:outputLabel value="#{email.mailinglist}" />
 							<br /> <b>Subject: </b>
 							<h:outputLabel value="#{email.subject}" />
 							<br /> <br />
@@ -109,13 +111,15 @@
 							
 							<br /> <b>Id: </b>
 							<pretty:link mappingId="email">
-									<f:param value="#{mailinglist}" />
+									<f:param value="#{email.mailinglist}" />
 									<f:param value="#{email.getId()}" />
 									<h:outputLabel value="#{email.id}" />
 								</pretty:link> 
 							<br /> <b>Subject: </b>
 							<h:outputLabel rendered="#{email.highlighted.get('subject') == null}" value="#{email.subject}" />
 							<h:outputLabel rendered="#{email.highlighted.get('subject') != null}" value="#{email.highlighted.get('subject')}" escape="false" />
+							<br /> <b>Mailing list: </b>
+							<h:outputLabel value="#{email.mailinglist}" />
 							<br /> <b>Body: </b>
 							<ui:repeat rendered="#{email.highlighted.get('main_content') != null}" value="#{email.highlighted.get('main_content')}" var="highlight">
 								 ...<h:outputLabel value="#{highlight}" escape="false"/>... 
