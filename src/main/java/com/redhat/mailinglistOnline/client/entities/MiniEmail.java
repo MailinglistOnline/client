@@ -3,14 +3,19 @@ package com.redhat.mailinglistOnline.client.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import org.bson.types.ObjectId;
+import javax.xml.bind.annotation.XmlElement;
+
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MiniEmail implements Serializable {
 
 	private static final long serialVersionUID = 9069501944384263364L;
 	public static final String ID_MONGO_TAG = "_id";
+	public static final String SEARCHISKO_MONGO_ID_TAG = "mongo_id";
 	public static final String MAILINGLIST_MONGO_TAG = "mailinglist";
 	public static final String MESSAGE_ID_MONGO_TAG = "message_id";
 	public static final String SUBJECT_MONGO_TAG = "subject";
@@ -19,7 +24,7 @@ public class MiniEmail implements Serializable {
 	// message snippet is the first x letters from the email
 	public static final String MESSAGE_SNIPPET_MONGO_TAG = "message_snippet";
 	public static final String TAGS_MONGO_TAG = "tags";
-	private static final String HIGHLIGHTED_MAIN_CONTENT = "highlighted_main_content";
+	private static final String HIGHLIGHTED = "highlighted";
 	
 	@JsonProperty(ID_MONGO_TAG)
 	private String id;
@@ -30,7 +35,7 @@ public class MiniEmail implements Serializable {
 	private String mailinglist;
 	private List<String> tags = new ArrayList<String>();
 	private String messageSnippet;
-	private List<String> highlightedTexts;
+	private Map<String,List<String>> highlighted;
 
 	public MiniEmail() {
 		super();
@@ -50,17 +55,14 @@ public class MiniEmail implements Serializable {
 		setTags(email.getTags());
 	}
 
-	@JsonProperty(HIGHLIGHTED_MAIN_CONTENT)
-	public List<String> getHighlightedTexts() {
-		return highlightedTexts;
-	}
-
-	public void setHighlightedTexts(List<String> texts) {
-		highlightedTexts = texts;
-	}
-
-	public void addHighLight(String highLight) {
-		highlightedTexts.add(highLight);
+	@JsonProperty(HIGHLIGHTED)
+    public Map<String,List<String>> getHighlighted() {
+		return highlighted;
+    }
+    
+	@JsonProperty(HIGHLIGHTED)
+    public void setHighLighted(Map<String,List<String>> highlighted) {
+    	this.highlighted = highlighted;
 	}
 
 	/*
@@ -75,6 +77,10 @@ public class MiniEmail implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 
+	}
+	@JsonProperty(SEARCHISKO_MONGO_ID_TAG)
+	public void setMongoId(String id) {
+		this.id=id;
 	}
 	
 	@JsonProperty(MAILINGLIST_MONGO_TAG)

@@ -89,6 +89,10 @@ width:12%;
     
 }
 
+.hlt{
+    font-weight: bolder   ;
+}
+
 .leftContent{
     width:40%;
 	border-right: solid;

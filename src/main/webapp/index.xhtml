@@ -4,32 +4,35 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:rich="http://richfaces.org/rich"
-	xmlns:pretty="http://ocpsoft.com/prettyfaces" >
-	
+	xmlns:pretty="http://ocpsoft.com/prettyfaces">
+
 
 <body>
 
 	<f:metadata>
 		<f:viewParam name="mailinglist"
 			value="#{selectedMailinglist.mailinglist}" />
-	<!-- <f:event type="postAddToView"
+		<!-- <f:event type="postAddToView"
 			listener="#{client.getMailinglistLatest(#{mailinglist},10)}" /> r -->
 	</f:metadata>
-	
+
 
 	<ui:composition template="/templates/mainTemplate.xhtml">
 		<ui:define name="leftcolumnMenu">
-			
+
 		</ui:define>
 		<ui:define name="content">
-		<center><h:outputLabel value="#{mailinglist}" /></center>
-    
+			<center>
+				<h:outputLabel value="#{mailinglist}" />
+			</center>
+
 			<h:form id="form">
 				<rich:tabPanel style="border:none" switchType="server"
-					headerAlignment="left"  itemChangeListener="#{panelChangeListener.processItemChange}">
-					<rich:tab style="" name="latest" header="Latest" >
+					headerAlignment="left"
+					itemChangeListener="#{panelChangeListener.processItemChange}">
+					<rich:tab style="" name="latest" header="Latest">
 					</rich:tab>
-					<rich:tab style="" name="topics" header="Topics"  >
+					<rich:tab style="" name="topics" header="Topics">
 					</rich:tab>
 
 					<rich:tab style="" name="search" header="Search">
@@ -38,92 +41,94 @@
 							<h:inputText value="#{panelChangeListener.searchString}" />
 							<h:outputLabel value="Specify tags (separated by commas):" />
 							<h:inputText value="#{panelChangeListener.tagString}" />
-							<h:commandButton value="search" type="search" action="#{panelChangeListener.search}" />
+							<h:commandButton value="search" type="search"
+								action="#{panelChangeListener.search}" />
 						</center>
 					</rich:tab>
 
 				</rich:tabPanel>
 			</h:form>
-
+			<br />
 			<div>
 				<ul>
-					<ui:repeat value="#{contentResponse.emails}" var="email">
+					<ui:repeat rendered="#{contentResponse.emails != null}"
+						value="#{contentResponse.emails}" var="email">
 						<div style="border-bottom: solid #E8E8E8;" id="email-list">
-						<h:messages/>
+							<h:messages />
 							<b>ID: </b>
 							<!-- No idea why but email.id will not call getId... 
 							The same goes for "from", getFrom is never called -->
 							<h:outputLabel value="#{email.id}" />
 							<br /> <b>From: </b>
-							<h:outputLabel value="#{email.from}" /> <br/>
-							<b>Date: </b>
-				            <h:outputLabel render="#{email.date}" value="#{email.date}" />
+							<h:outputLabel value="#{email.from}" />
+							<br /> <b>Date: </b>
+							<h:outputLabel render="#{email.date}" value="#{email.date}" />
 							<br /> <b>Subject: </b>
 							<h:outputLabel value="#{email.subject}" />
 							<br /> <br />
-							<h:panelGroup  rendered="#{contentResponse.emails != null}" layout="block">
-							<h:form  >
-								<br />
-								<b>Content: </b>
-								<h:outputLabel
-									value="#{email.getMessageSnippet()}" />...
+							<h:panelGroup layout="block">
+								<h:form>
+									<br />
+									<b>Content: </b>
+									<h:outputLabel value="#{email.getMessageSnippet()}" />...
 									  
 							     <pretty:link mappingId="email">
-							        <f:param value="#{mailinglist}" />
-									<f:param value="#{email.getId()}" />
+										<f:param value="#{mailinglist}" />
+										<f:param value="#{email.getId()}" />
 									more
-								</pretty:link> 
-								
-						    </h:form>
-							<br />
-							<ui:repeat value="#{email.replies}" var="reply" rendered="#{email.getReplies().size() > 0}">
-								<h:form>
-									<b>Reply: </b>
-									  <pretty:link mappingId="email">
-							        <f:param value="#{mailinglist}" />
-									<f:param value="#{reply.getId()}" />
-									<h:outputLabel value="#{reply.getId()}" />
-								</pretty:link>  
+								</pretty:link>
 
-									<br />
 								</h:form>
-							</ui:repeat>
-							
-							<br />
-							<h:outputLabel value="Thread root: #{email.root}" />
-							</h:panelGroup>
-							<h:panelGroup  rendered="#{searchResponse.emails != null}" layout="block">
-							<h:form  >
 								<br />
-								<b>Search hits: </b>
-								<h:outputLabel
-									value="#{email.messageSnippet}" />...
-							     <pretty:link mappingId="email">
-							        <f:param value="#{mailinglist}" />
-									<f:param value="#{email.getId()}" />
-									more
-								</pretty:link> 
-						    </h:form>
-							<br />
-							<ui:repeat value="#{email.highlightedTexts}" var="highlight">
-							
-								<h:form>
-									<h:outputLabel value="#{highlight}" />...
-								</h:form>
-							</ui:repeat>
-							
-							
-							<br />
-							<h:outputLabel value="Thread root: #{email.root}" />
+								<ui:repeat value="#{email.replies}" var="reply"
+									rendered="#{email.getReplies().size() > 0}">
+									<h:form>
+										<b>Reply: </b>
+										<pretty:link mappingId="email">
+											<f:param value="#{mailinglist}" />
+											<f:param value="#{reply.getId()}" />
+											<h:outputLabel value="#{reply.getId()}" />
+										</pretty:link>
+
+										<br />
+									</h:form>
+								</ui:repeat>
+
+								<br />
+								<h:outputLabel value="Thread root: #{email.root}" />
 							</h:panelGroup>
-							
+
+
 							<br />
 						</div>
 					</ui:repeat>
+					
+					<ui:repeat rendered="#{searchResponse.emails != null}"
+						value="#{searchResponse.emails}" var="email">
+						<h:panelGroup layout="block">
+							      
+
+							
+							<br /> <b>Id: </b>
+							<pretty:link mappingId="email">
+									<f:param value="#{mailinglist}" />
+									<f:param value="#{email.getId()}" />
+									<h:outputLabel value="#{email.id}" />
+								</pretty:link> 
+							<br /> <b>Subject: </b>
+							<h:outputLabel value="#{email.subject}" />
+							<br /> <b>Body: </b>
+							<ui:repeat value="#{email.highlighted.get(main_content).toArray}" var="highlight">
+								 ...<h:outputLabel value="#{highlight}" escape="false"/>... <br/>
+								<hr/>
+							</ui:repeat>
+							<br />
+						</h:panelGroup>
+					</ui:repeat>
 				</ul>
 			</div>
-			
-			
+
+
 
 		</ui:define>
 	</ui:composition>
