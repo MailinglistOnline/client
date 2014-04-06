@@ -36,6 +36,9 @@ public class SearchiskoResponse implements Serializable {
 		if (emails == null || emails.size() == 0) {
 			return;
 		}
+		if(MailingListsResponse.ALL_MAILINGLISTS.equals(selectedMailinglist)) {
+			return;
+		}
 		List<MiniEmail> filtered = Lists.newArrayList();
 		for (MiniEmail e : emails) {
 			if (selectedMailinglist == null

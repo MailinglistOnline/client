@@ -29,6 +29,10 @@ public class MailingListsResponse {
 	@PostConstruct
 	public void init() {
 		mailingLists=client.getAllMailingLists();
+		Mailinglist allMailinglist = new Mailinglist();
+		allMailinglist.setName(ALL_MAILINGLISTS);
+		allMailinglist.setDescription("Mailinglist representing all the mailinglists");
+		mailingLists.add(allMailinglist);
 	}
 	
 	public List<Mailinglist> getMailingLists() {

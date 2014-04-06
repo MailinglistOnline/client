@@ -71,7 +71,7 @@
 									<h:outputLabel value="#{email.getMessageSnippet()}" />...
 									  
 							     <pretty:link mappingId="email">
-										<f:param value="#{mailinglist}" />
+										<f:param value="#{email.mailinglist}" />
 										<f:param value="#{email.getId()}" />
 									more
 								</pretty:link>
@@ -83,7 +83,7 @@
 									<h:form>
 										<b>Reply: </b>
 										<pretty:link mappingId="email">
-											<f:param value="#{mailinglist}" />
+											<f:param value="#{reply.mailinglist}" />
 											<f:param value="#{reply.getId()}" />
 											<h:outputLabel value="#{reply.getId()}" />
 										</pretty:link>
