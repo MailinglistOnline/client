@@ -68,10 +68,12 @@
 
 				<h:outputText value="${detailedEmailResponse.email.mainContent[0].content}" />
 				<br /> <br />
+				<h:panelGrid rendered="#{!detailedEmailResponse.email.replies.isEmpty()}">
 				<p>
 					<strong>Replies:</strong>
 				</p>
 				<br />
+				
 				<rich:dataGrid value="#{detailedEmailResponse.email.replies}" style="border:none"
 					var="reply" columns="3" border="0">
 					<h:panelGrid>
@@ -86,11 +88,11 @@
 						</h:form>
 						<h:outputText value="From: #{reply.from}"></h:outputText>
 						<h:outputText
-							value="#{reply.mainContent[0].getShorterContent(250)}"></h:outputText>...
+							value="#{reply.messageSnippet}"></h:outputText>...
 							</h:panelGrid>
 				</rich:dataGrid>
 
-
+				</h:panelGrid>
 
 			</div>
 

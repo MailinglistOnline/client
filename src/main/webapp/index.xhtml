@@ -56,8 +56,6 @@
 						<div style="border-bottom: solid #E8E8E8;" id="email-list">
 							<h:messages />
 							<b>ID: </b>
-							<!-- No idea why but email.id will not call getId... 
-							The same goes for "from", getFrom is never called -->
 							<h:outputLabel value="#{email.id}" />
 							<br /> <b>From: </b>
 							<h:outputLabel value="#{email.from}" />
@@ -116,12 +114,13 @@
 									<h:outputLabel value="#{email.id}" />
 								</pretty:link> 
 							<br /> <b>Subject: </b>
-							<h:outputLabel value="#{email.subject}" />
+							<h:outputLabel rendered="#{email.highlighted.get('subject') == null}" value="#{email.subject}" />
+							<h:outputLabel rendered="#{email.highlighted.get('subject') != null}" value="#{email.highlighted.get('subject')}" escape="false" />
 							<br /> <b>Body: </b>
-							<ui:repeat value="#{email.highlighted.get(main_content).toArray}" var="highlight">
-								 ...<h:outputLabel value="#{highlight}" escape="false"/>... <br/>
-								<hr/>
+							<ui:repeat rendered="#{email.highlighted.get('main_content') != null}" value="#{email.highlighted.get('main_content')}" var="highlight">
+								 ...<h:outputLabel value="#{highlight}" escape="false"/>... 
 							</ui:repeat>
+							<hr/>
 							<br />
 						</h:panelGroup>
 					</ui:repeat>
