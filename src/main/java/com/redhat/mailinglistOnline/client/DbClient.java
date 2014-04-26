@@ -30,14 +30,19 @@ public class DbClient {
 	        String databaseUrl = prop.getProperty("defaultMongoUrl");
 	        String defaultDatabaseName = prop.getProperty("defaultDatabaseName");
 	        String defaultCollectionName = prop.getProperty("defaultCollection");
-	        connect(databaseUrl, defaultDatabaseName, defaultPort, defaultCollectionName);
+	        String user = prop.getProperty("user");
+	        String password = prop.getProperty("password");
+	        connect(databaseUrl, defaultDatabaseName, defaultPort, defaultCollectionName,user,password);
 
 	    }
 	    
 	    
-	    private void connect(String mongoUrl, String databaseName, int mongoPort, String collectionName) throws UnknownHostException {
+	    private void connect(String mongoUrl, String databaseName, int mongoPort, String collectionName, String user, String password) throws UnknownHostException {
 	        mongoClient = new MongoClient(mongoUrl, mongoPort);
 	        DB db = mongoClient.getDB(databaseName);
+	        if(user != null && password != null) {
+	        	db.authenticate(user, password.toCharArray());
+	        }
 	        mongoClient.setWriteConcern(WriteConcern.SAFE);
 	        coll = db.getCollection(collectionName);
 	        coll.setObjectClass(User.class);

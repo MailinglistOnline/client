@@ -3,5 +3,5 @@
 
 defaultMongoPort=27017
 defaultMongoUrl=localhost
-defaultDatabaseName=mailinglists
-defaultCollection=emails
+defaultDatabaseName=usersDatabase
+defaultCollection=users
