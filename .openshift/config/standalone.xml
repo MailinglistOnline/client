@@ -472,6 +472,13 @@
                         </login-module>
                     </authentication>
                 </security-domain>
+                <security-domain name="mongo_auth" cache-type="default">
+                    <authentication>
+                        <login-module code="com.redhat.mailinglistOnline.security.MongoDbLoginModule" flag="required">
+                            <module-option name="hashAlgorithm" value="SHA-256"/>
+                        </login-module>
+                    </authentication>
+                </security-domain>
             </security-domains>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:threads:1.1"/>
