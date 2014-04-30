@@ -1,12 +1,8 @@
 package com.redhat.mailinglistOnline.security;
 
-import java.io.IOException;
-import java.net.UnknownHostException;
 import java.security.acl.Group;
 import java.util.Map;
 
-import javax.ejb.EJB;
-import javax.inject.Inject;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.security.auth.Subject;
@@ -34,11 +30,11 @@ public class MongoDbLoginModule extends UsernamePasswordLoginModule{
 	{
 		super.initialize(subject, callbackHandler, sharedState, options);
 		try {
-			dbClient = (DbClient) new InitialContext().lookup("java:app/client/dbClient");
+			dbClient = (DbClient) new InitialContext().lookup("java:module/dbClient");
 		} catch (NamingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	@Override
@@ -76,10 +72,6 @@ public class MongoDbLoginModule extends UsernamePasswordLoginModule{
 	protected boolean validatePassword(String inputPassword, String expectedPassword) {
 		boolean result= super.validatePassword(inputPassword, expectedPassword);
 		return result;
-		
 	}
 	
-	
-	 //validatePassword(String inputPassword, String expectedPassword) for hash
-
 }

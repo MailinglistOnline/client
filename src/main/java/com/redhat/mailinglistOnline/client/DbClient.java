@@ -15,7 +15,7 @@ import com.mongodb.WriteConcern;
 import com.redhat.mailinglistOnline.client.entities.User;
 
 
-@Stateless(name="dbClient")
+@Stateless(mappedName="dbClient",name="dbClient")
 public class DbClient {
 
 	  private static String DATABASE_PROPERTIES_FILE_NAME = "userDatabase.properties";
