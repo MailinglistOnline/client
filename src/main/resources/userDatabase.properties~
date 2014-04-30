@@ -2,6 +2,9 @@
 # and open the template in the editor.
 
 defaultMongoPort=27017
-defaultMongoUrl=localhost
-defaultDatabaseName=usersDatabase
+defaultMongoUrl=127.12.96.130
+defaultDatabaseName=client
 defaultCollection=users
+
+user=admin
+password=IHgMTAmbqNrl

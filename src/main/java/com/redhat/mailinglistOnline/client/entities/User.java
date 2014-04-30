@@ -16,10 +16,7 @@ import com.mongodb.BasicDBObject;
 @SessionScoped
 public class User extends BasicDBObject{
 
-    
 	private static final long serialVersionUID = -6858919384286693764L;
-
-	
 	public static final String ROOT_NAME_TAG = "username";
 	public static final String ROOT_PASSWORD_TAG = "password";
 	public static final String ROOT_ROLES_TAG = "roles";
