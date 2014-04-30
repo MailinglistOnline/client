@@ -33,9 +33,7 @@ public class DbClient {
 	        String user = prop.getProperty("user");
 	        String password = prop.getProperty("password");
 	        connect(databaseUrl, defaultDatabaseName, defaultPort, defaultCollectionName,user,password);
-
 	    }
-	    
 	    
 	    private void connect(String mongoUrl, String databaseName, int mongoPort, String collectionName, String user, String password) throws UnknownHostException {
 	        mongoClient = new MongoClient(mongoUrl, mongoPort);
