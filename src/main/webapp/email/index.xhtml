@@ -65,8 +65,9 @@
 				<br /> <b>Subject: </b>
 							<h:outputLabel value="#{detailedEmailResponse.email.subject}" />
 				<br /> <br /> <b>Content: </b>
-
+				<pre>
 				<h:outputText value="${detailedEmailResponse.email.mainContent[0].content}" />
+				</pre>
 				<br /> <br />
 				<h:panelGrid rendered="#{!detailedEmailResponse.email.replies.isEmpty()}">
 				<p>
