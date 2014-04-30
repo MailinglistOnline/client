@@ -39,7 +39,7 @@
 						<center>
 							<h:outputLabel value="Text:" />
 							<h:inputText value="#{panelChangeListener.searchString}" />
-							<br/>
+							<br />
 							<h:outputLabel value="Specify tags (separated by commas):" />
 							<h:inputText value="#{panelChangeListener.tagString}" />
 							<h:commandButton value="search" type="search"
@@ -58,10 +58,10 @@
 							<h:messages />
 							<b>ID: </b>
 							<pretty:link mappingId="email">
-										<f:param value="#{email.mailinglist}" />
-										<f:param value="#{email.getId()}" />
-									<h:outputLabel value="#{email.id}" />
-								</pretty:link>
+								<f:param value="#{email.mailinglist}" />
+								<f:param value="#{email.getId()}" />
+								<h:outputLabel value="#{email.id}" />
+							</pretty:link>
 							<br /> <b>From: </b>
 							<h:outputLabel value="#{email.from}" />
 							<br /> <b>Date: </b>
@@ -98,38 +98,53 @@
 										<br />
 									</h:form>
 								</ui:repeat>
-
-								<br />
-								<h:outputLabel value="Thread root: #{email.root}" />
+								<h:panelGroup rendered="#{email.root != null}">
+									<b>Thread root: </b>
+									<pretty:link mappingId="email">
+											<f:param value="#{email.root.mailinglist}" />
+											<f:param value="#{email.root.id}" />
+											<h:outputLabel value="#{email.root.id}" />
+										</pretty:link>
+								</h:panelGroup>
 							</h:panelGroup>
 
 
 							<br />
 						</div>
 					</ui:repeat>
-					
+
 					<ui:repeat rendered="#{searchResponse.emails != null}"
 						value="#{searchResponse.emails}" var="email">
 						<h:panelGroup layout="block">
-							      
 
-							
-							<br /> <b>Id: </b>
+
+
+							<br />
+							<b>Id: </b>
 							<pretty:link mappingId="email">
-									<f:param value="#{email.mailinglist}" />
-									<f:param value="#{email.getId()}" />
-									<h:outputLabel value="#{email.id}" />
-								</pretty:link> 
-							<br /> <b>Subject: </b>
-							<h:outputLabel rendered="#{email.highlighted.get('subject') == null}" value="#{email.subject}" />
-							<h:outputLabel rendered="#{email.highlighted.get('subject') != null}" value="#{email.highlighted.get('subject')}" escape="false" />
-							<br /> <b>Mailing list: </b>
+								<f:param value="#{email.mailinglist}" />
+								<f:param value="#{email.getId()}" />
+								<h:outputLabel value="#{email.id}" />
+							</pretty:link>
+							<br />
+							<b>Subject: </b>
+							<h:outputLabel
+								rendered="#{email.highlighted.get('subject') == null}"
+								value="#{email.subject}" />
+							<h:outputLabel
+								rendered="#{email.highlighted.get('subject') != null}"
+								value="#{email.highlighted.get('subject')}" escape="false" />
+							<br />
+							<b>Mailing list: </b>
 							<h:outputLabel value="#{email.mailinglist}" />
-							<br /> <b>Body: </b>
-							<ui:repeat rendered="#{email.highlighted.get('main_content') != null}" value="#{email.highlighted.get('main_content')}" var="highlight">
-								 ...<h:outputLabel value="#{highlight}" escape="false"/>... 
+							<br />
+							<b>Body: </b>
+							<ui:repeat
+								rendered="#{email.highlighted.get('main_content') != null}"
+								value="#{email.highlighted.get('main_content')}" var="highlight">
+								 ...<h:outputLabel value="#{highlight}" escape="false" />... 
 							</ui:repeat>
-							<hr/>
+							<hr />
 							<br />
 						</h:panelGroup>
 					</ui:repeat>
