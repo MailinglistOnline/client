@@ -28,7 +28,7 @@
 
 			<h:form id="form">
 				<rich:tabPanel style="border:none" switchType="server"
-					headerAlignment="left"
+					headerAlignment="left" selectedTab="latest"
 					itemChangeListener="#{panelChangeListener.processItemChange}">
 					<rich:tab style="" name="latest" header="Latest">
 					</rich:tab>
@@ -116,9 +116,6 @@
 					<ui:repeat rendered="#{searchResponse.emails != null}"
 						value="#{searchResponse.emails}" var="email">
 						<h:panelGroup layout="block">
-
-
-
 							<br />
 							<b>Id: </b>
 							<pretty:link mappingId="email">
