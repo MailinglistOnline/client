@@ -9,8 +9,6 @@
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Development</param-value>
 	</context-param>
-	
-	
 
 	<context-param>
 		<param-name>javax.faces.SKIP_COMMENTS</param-name>
@@ -30,13 +28,7 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
-	
 
-	<!-- Resource Servlet - serves static resources and resources for specific 
-		components -->
-
-	<!-- Resource Mapping - resources will be served compressed and packed in 
-		production -->
 	<context-param>
 		<param-name>org.richfaces.resourceMapping.enabled</param-name>
 		<param-value>true</param-value>
@@ -46,7 +38,7 @@
 		<session-timeout>30</session-timeout>
 	</session-config>
 
-    <security-role>
+	<security-role>
 		<description>Administrators</description>
 		<role-name>admin</role-name>
 	</security-role>
@@ -54,7 +46,6 @@
 		<description>Users</description>
 		<role-name>user</role-name>
 	</security-role>
-
 
 	<security-constraint>
 		<web-resource-collection>
@@ -84,12 +75,8 @@
 		</form-login-config>
 	</login-config>
 
-
-
-
-
-	 <welcome-file-list>
+	<welcome-file-list>
 		<welcome-file>index.xhtml</welcome-file>
-	</welcome-file-list> 
+	</welcome-file-list>
 
 </web-app>

@@ -56,7 +56,11 @@
 						<div style="border-bottom: solid #E8E8E8;" id="email-list">
 							<h:messages />
 							<b>ID: </b>
-							<h:outputLabel value="#{email.id}" />
+							<pretty:link mappingId="email">
+										<f:param value="#{email.mailinglist}" />
+										<f:param value="#{email.getId()}" />
+									<h:outputLabel value="#{email.id}" />
+								</pretty:link>
 							<br /> <b>From: </b>
 							<h:outputLabel value="#{email.from}" />
 							<br /> <b>Date: </b>
