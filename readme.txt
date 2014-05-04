@@ -1,5 +1,5 @@
 
-.... will need to do: 
+.... will need to do when deploying: 
 add to standalone.xml :
 
  		<security-domain name="mongo_auth" cache-type="default">
