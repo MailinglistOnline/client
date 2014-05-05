@@ -1,19 +1,16 @@
 package com.redhat.mailinglistOnline.jsf;
 
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.security.auth.login.LoginException;
 import javax.validation.constraints.Size;
-
 
 import org.apache.log4j.Logger;
 import org.jboss.security.auth.spi.Util;
@@ -22,9 +19,9 @@ import com.redhat.mailinglistOnline.client.DbClient;
 import com.redhat.mailinglistOnline.client.entities.User;
 import com.redhat.mailinglistOnline.security.MongoDbLoginModule;
 
-@ManagedBean(name = "reg")
+@Named("reg")
 @ViewScoped
-public class RegisterUser {
+public class RegisterUser implements Serializable{
 
 	@Size(min=3, message="Username must have at least 3 characters")
 	private String username;

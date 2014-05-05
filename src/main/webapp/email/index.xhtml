@@ -12,7 +12,8 @@
 		<f:viewParam name="id" />
 		<f:viewParam name="mailinglist"
 			value="#{selectedMailinglist.mailinglist}" />
-		<f:event type="preRenderView" listener="#{loader.getDetailedMessage(id)}" />
+		<f:event type="preRenderView"
+			listener="#{loader.getDetailedMessage(id)}" />
 
 	</f:metadata>
 
@@ -22,76 +23,83 @@
 
 			<div style="font-size: 16px; margin-top: 30px;" id="email">
 				<b>ID: </b>
-				<h:outputLabel value="#{detailedEmailResponse.email.getId()}" /> <br/>
-				<b>Date: </b> 
-				<h:outputLabel value="#{detailedEmailResponse.email.getDateInString()}" />
-				
+				<h:outputLabel value="#{detailedEmailResponse.email.getId()}" />
+				<br /> <b>Date: </b>
+				<h:outputLabel
+					value="#{detailedEmailResponse.email.getDateInString()}" />
 				<br /> <b>Tags: </b>
 				<ui:repeat value="#{detailedEmailResponse.email.tags}" var="tag">
-					<h:outputLabel value="#{tag} " />
+					<h:form>
+						<h:outputLabel value="#{tag}" />
+						<h:commandLink action="#{detailedEmailResponse.removeTag(tag)}">
+							<h:graphicImage style="height:15px;width:15px;"
+								value="/resources/images/remove-icon.png" />
+						</h:commandLink>
+					</h:form>
 				</ui:repeat>
 				<h:outputLink value="#" id="ll">
-				<rich:componentControl event="click" operation="show" target="pp">
-				 <a4j:param name="event" value="event" noEscape="true" />
-                <rich:hashParam>
-                    <a4j:param noEscape="true" name="top"
-                        value="jQuery(#{rich:element('ll')}).offset().top " />
-                    <a4j:param noEscape="true" name="left" value="jQuery(#{rich:element('ll')}).offset().left" />
-                </rich:hashParam>
-				</rich:componentControl>
+					<rich:componentControl event="click" operation="show" target="pp">
+						<a4j:param name="event" value="event" noEscape="true" />
+						<rich:hashParam>
+							<a4j:param noEscape="true" name="top"
+								value="jQuery(#{rich:element('ll')}).offset().top " />
+							<a4j:param noEscape="true" name="left"
+								value="jQuery(#{rich:element('ll')}).offset().left" />
+						</rich:hashParam>
+					</rich:componentControl>
 				add tag
 				</h:outputLink>
 				<rich:popupPanel id="pp" autosized="true" modal="false"
 					moveable="false" resizeable="false" followByScroll="true">
 					<h:form>
-					<h:panelGrid columns="1">
-						<h:outputText value="New Tag:" />
-						<h:inputText id="newTag" value="#{detailedEmailResponse.newTag}"/>
-					</h:panelGrid>
-					<h:outputLink
-						onclick="#{rich:component('pp')}.hide(event); return false;"
-						value="#">cancel
+						<h:panelGrid columns="1">
+							<h:outputText value="New Tag:" />
+							<h:inputText id="newTag" value="#{detailedEmailResponse.newTag}" />
+						</h:panelGrid>
+						<h:outputLink
+							onclick="#{rich:component('pp')}.hide(event); return false;"
+							value="#">cancel
                     </h:outputLink>
-                    
-                    <h:commandLink style="float:right;"
-					    action="#{detailedEmailResponse.addTag(id)}" 
-						value="#">add
-                    </h:commandLink>
-                    </h:form>
+
+						<h:commandLink style="float:right;"
+							action="#{detailedEmailResponse.addTag()}" value="add">
+						</h:commandLink>
+					</h:form>
 				</rich:popupPanel>
-				
+
 				<br /> <b>From: </b>
 				<h:outputLabel value="#{detailedEmailResponse.email.from}" />
 				<br /> <b>Subject: </b>
-							<h:outputLabel value="#{detailedEmailResponse.email.subject}" />
+				<h:outputLabel value="#{detailedEmailResponse.email.subject}" />
 				<br /> <br /> <b>Content: </b>
 				<pre>
-				<h:outputText value="${detailedEmailResponse.email.mainContent[0].content}" />
+				<h:outputText
+						value="${detailedEmailResponse.email.mainContent[0].content}" />
 				</pre>
 				<br /> <br />
-				<h:panelGrid rendered="#{!detailedEmailResponse.email.replies.isEmpty()}">
-				<p>
-					<strong>Replies:</strong>
-				</p>
-				<br />
-				
-				<rich:dataGrid value="#{detailedEmailResponse.email.replies}" style="border:none"
-					var="reply" columns="3" border="0">
-					<h:panelGrid>
-						<h:form>
-							<strong>ID:</strong>
-							<pretty:link mappingId="email">
-								<f:param value="#{mailinglist}" />
-								<f:param value="#{reply.getId()}" />
-								<h:outputLabel value="#{reply.getId()}" />
-							</pretty:link>
+				<h:panelGrid
+					rendered="#{!detailedEmailResponse.email.replies.isEmpty()}">
+					<p>
+						<strong>Replies:</strong>
+					</p>
+					<br />
 
-						</h:form>
-						<h:outputText value="From: #{reply.from}"></h:outputText>
-						<h:outputText
-							value="#{reply.messageSnippet}"></h:outputText>...
+					<rich:dataGrid value="#{detailedEmailResponse.email.replies}"
+						style="border:none" var="reply" columns="3" border="0">
+						<h:panelGrid>
+							<h:form>
+								<strong>ID:</strong>
+								<pretty:link mappingId="email">
+									<f:param value="#{mailinglist}" />
+									<f:param value="#{reply.getId()}" />
+									<h:outputLabel value="#{reply.getId()}" />
+								</pretty:link>
+
+							</h:form>
+							<h:outputText value="From: #{reply.from}"></h:outputText>
+							<h:outputText value="#{reply.messageSnippet}"></h:outputText>...
 							</h:panelGrid>
-				</rich:dataGrid>
+					</rich:dataGrid>
 
 				</h:panelGrid>
 

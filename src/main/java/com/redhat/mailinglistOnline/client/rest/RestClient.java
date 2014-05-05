@@ -2,12 +2,14 @@ package com.redhat.mailinglistOnline.client.rest;
 
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
-import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.jboss.resteasy.client.ProxyFactory;
 import org.jboss.resteasy.plugins.providers.RegisterBuiltin;
@@ -19,8 +21,9 @@ import com.redhat.mailinglistOnline.client.entities.Mailinglist;
 import com.redhat.mailinglistOnline.client.entities.MiniEmail;
 import com.redhat.mailinglistOnline.client.responses.EmailsResponse;
 
-@Stateless(name="client")
-public class RestClient {
+@ApplicationScoped
+@Named("client")
+public class RestClient implements Serializable{
 	
 	private static String SERVER_PROPERTIES_FILE_NAME = "server.properties";
 	private String serverUrl;
@@ -41,7 +44,6 @@ public class RestClient {
 	}
 	
 	public EmailsResponse getAllEmails() {
-		
 		response.addEmails(emailClient.getAllEmails());
 		return response;
 	}
@@ -60,7 +62,14 @@ public class RestClient {
 	
 	public void addTagToEmail(String id, String tag) {
 		emailClient.addTag(id, tag);
-		
+	}
+	
+	public void removeTagFromEmail(String id, String tag) {
+		emailClient.removeTag(id, tag);
+	}
+	
+	public void doNothing(){
+		System.out.println("nothing");
 	}
 	
 	public List<Email> getMailinglistLatest(String mailinglist, int number) {
