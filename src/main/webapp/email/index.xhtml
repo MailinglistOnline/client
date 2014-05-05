@@ -28,15 +28,6 @@
 				<h:outputLabel
 					value="#{detailedEmailResponse.email.getDateInString()}" />
 				<br /> <b>Tags: </b>
-				<ui:repeat value="#{detailedEmailResponse.email.tags}" var="tag">
-					<h:form>
-						<h:outputLabel value="#{tag}" />
-						<h:commandLink action="#{detailedEmailResponse.removeTag(tag)}">
-							<h:graphicImage style="height:15px;width:15px;"
-								value="/resources/images/remove-icon.png" />
-						</h:commandLink>
-					</h:form>
-				</ui:repeat>
 				<h:outputLink value="#" id="ll">
 					<rich:componentControl event="click" operation="show" target="pp">
 						<a4j:param name="event" value="event" noEscape="true" />
@@ -47,8 +38,18 @@
 								value="jQuery(#{rich:element('ll')}).offset().left" />
 						</rich:hashParam>
 					</rich:componentControl>
-				add tag
+				<h:graphicImage style="height:15px;width:15px;"
+								value="/resources/images/add-button.png" />
 				</h:outputLink>
+				<ui:repeat value="#{detailedEmailResponse.email.tags}" var="tag">
+					<h:form>
+						<h:outputLabel value="#{tag}" />
+						<h:commandLink action="#{detailedEmailResponse.removeTag(tag)}">
+							<h:graphicImage style="height:15px;width:15px;"
+								value="/resources/images/remove-icon.png" />
+						</h:commandLink>
+					</h:form>
+				</ui:repeat>
 				<rich:popupPanel id="pp" autosized="true" modal="false"
 					moveable="false" resizeable="false" followByScroll="true">
 					<h:form>

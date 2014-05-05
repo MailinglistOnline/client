@@ -44,6 +44,9 @@ public class ResponseLoader {
 
 	public void getMailinglistLatest(String selectedMailinglist,
 			int number) {
+		if((selectedMailinglist == null) || (selectedMailinglist.equals(""))) {
+			return;
+		}
 		List<Email> emails=client.getMailinglistLatest(selectedMailinglist, number);
 		response.addEmails(emails);
 	}
