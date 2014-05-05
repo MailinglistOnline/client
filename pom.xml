@@ -116,6 +116,12 @@
 			<artifactId>jboss-as-security</artifactId>
 			<version>7.1.1.Final</version>
 		</dependency>
+		<!-- Seam Faces needed for the JSF ViewScoped -->
+		<dependency>
+	<groupId>org.jboss.seam.faces</groupId>
+	<artifactId>seam-faces</artifactId>
+	<version>3.0.0.Alpha3</version>
+</dependency>
 		<dependency>
 			<groupId>org.richfaces.core</groupId>
 			<artifactId>richfaces-core-impl</artifactId>

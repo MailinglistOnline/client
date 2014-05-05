@@ -3,16 +3,13 @@ package com.redhat.mailinglistOnline.client.entities;
 
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.inject.Named;
 
 import com.mongodb.BasicDBObject;
 
 
-@ManagedBean(name="user")
+@Named("user")
 @SessionScoped
 public class User extends BasicDBObject{
 
