@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 import javax.faces.event.AbortProcessingException;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -23,7 +24,7 @@ import com.redhat.mailinglistOnline.client.rest.RestClient;
  * Selection on the top from latest, search, roots of the selected mailinglist
  */
 @Named("panelChangeListener")
-@RequestScoped
+@ViewScoped
 public class PanelChangeListener implements ItemChangeListener, Serializable {
 
 	private static int LATEST_EMAIL_COUNT = 10;
@@ -46,17 +47,25 @@ public class PanelChangeListener implements ItemChangeListener, Serializable {
 	
 	@Inject 
 	CurrentlySelectedMailinglist selectedMailinglist;
-
+	
+	private String selectedTab;
+	
+	private int currentRootsStartNumber = 0;
+	private int allRootsInMailinglist =0;
 	@Override
 	public void processItemChange(ItemChangeEvent event)
 			throws AbortProcessingException {
+		selectedTab=event.getNewItemName();
 		if (event.getNewItemName().equals("latest")) {
 			loader.getMailinglistLatest(selectedMailinglist.getMailinglist(), LATEST_EMAIL_COUNT);
 			/*List<Email> miniEmails = (List<Email>)contentEmails.getEmails();
 			List<MiniEmail> replies = miniEmails.get(1).getReplies();
 			System.out.println(); only for debug purposes*/
 		} else if (event.getNewItemName().equals("topics")) {
-			loader.getMailingListRoot(selectedMailinglist.getMailinglist());
+			if(allRootsInMailinglist == 0) {
+				allRootsInMailinglist = client.getMailingListRootNumber(selectedMailinglist.getMailinglist());
+			}
+			loader.getMailingListRoot(selectedMailinglist.getMailinglist(),currentRootsStartNumber, currentRootsStartNumber+10);
 		}
 	}
 
@@ -65,6 +74,21 @@ public class PanelChangeListener implements ItemChangeListener, Serializable {
 				fromString, Arrays.asList(tagString.split("\\s*,\\s*")));
 
 	}
+	
+	public void nextRootsList() {
+		if(currentRootsStartNumber +10 < allRootsInMailinglist) {
+			currentRootsStartNumber = currentRootsStartNumber+10;
+		}
+		loader.getMailingListRoot(selectedMailinglist.getMailinglist(),currentRootsStartNumber, currentRootsStartNumber+10);
+	}
+	
+	public void previousRootsList() {
+		if(currentRootsStartNumber > 0) {
+			currentRootsStartNumber = currentRootsStartNumber-10;
+		}
+		loader.getMailingListRoot(selectedMailinglist.getMailinglist(),currentRootsStartNumber, currentRootsStartNumber + 10);
+	}
+	
 
 	
 	public EmailsResponse getContentEmails() {
@@ -97,6 +121,30 @@ public class PanelChangeListener implements ItemChangeListener, Serializable {
 
 	public void setTagString(String tagString) {
 		this.tagString = tagString;
+	}
+	
+	public int getCurrentRootsStartNumber() {
+		return currentRootsStartNumber;
+	}
+
+	public void setCurrentRootsStartNumber(int currentRootsStartNumber) {
+		this.currentRootsStartNumber = currentRootsStartNumber;
+	}
+
+	public int getAllRootsInMailinglist() {
+		return allRootsInMailinglist;
+	}
+
+	public void setAllRootsInMailinglist(int allRootsInMailinglist) {
+		this.allRootsInMailinglist = allRootsInMailinglist;
+	}
+	
+	public String getSelectedTab() {
+		return selectedTab;
+	}
+
+	public void setSelectedTab(String selectedTab) {
+		this.selectedTab = selectedTab;
 	}
 
 }

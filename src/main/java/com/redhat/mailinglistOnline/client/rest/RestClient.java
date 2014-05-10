@@ -60,16 +60,20 @@ public class RestClient implements Serializable{
 		return emailClient.getMailingListRoots(mailingList);
 	}
 	
+	public List<Email> getMailingListRoot(String mailingList, int from, int to) {
+		return emailClient.getMailingListRoots(from, to, mailingList);
+	}
+	
+	public int getMailingListRootNumber(String mailingList) {
+		return emailClient.getMailingListRootCount(mailingList);
+	}
+	
 	public void addTagToEmail(String id, String tag) {
 		emailClient.addTag(id, tag);
 	}
 	
 	public void removeTagFromEmail(String id, String tag) {
 		emailClient.removeTag(id, tag);
-	}
-	
-	public void doNothing(){
-		System.out.println("nothing");
 	}
 	
 	public List<Email> getMailinglistLatest(String mailinglist, int number) {

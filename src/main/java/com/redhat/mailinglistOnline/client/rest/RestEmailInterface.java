@@ -13,6 +13,7 @@ import javax.ws.rs.QueryParam;
 
 
 
+
 import com.redhat.mailinglistOnline.client.entities.Email;
 import com.redhat.mailinglistOnline.client.entities.MiniEmail;
 
@@ -57,7 +58,12 @@ public interface RestEmailInterface {
 	@Produces("application/json")
 	public List<Email> getMailingListRoots(@QueryParam("from") int fromNumber,
 			@QueryParam("to") int toNumber,
-			@QueryParam("mailinglist") String mailinglist);
+			@PathParam("mailinglist") String mailinglist);
+	
+	@GET
+	@Path("/{mailinglist}/roots/count")
+	@Produces("application/json")
+	public Integer getMailingListRootCount(@PathParam("mailinglist") String mailinglist);
 
 	@GET
 	@Path("/thread/")
@@ -97,4 +103,6 @@ public interface RestEmailInterface {
 	@Path("/email/tag/")
 	public void removeTag(@QueryParam("id") String id,
 			@QueryParam("tag") String tag);
+
+	
 }

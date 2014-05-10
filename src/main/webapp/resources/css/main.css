@@ -62,7 +62,37 @@ border-right :none !important;
 	height:0px !important;
 }
 
+#container {
+    width:100%;
+    text-align:center;
+}
 
+#container:left {
+    float:left;
+    width:100px;
+    height: 20px;
+    font-size:18px;
+    margin-right:10px;
+}
+
+#container:center {
+    display: inline-block;
+    margin:0 auto;
+    width:100px;
+    height: 20px;
+    margin-right:10px;
+     margin-left:10px;
+     padding-left:10px;
+     padding-right:10px;
+}
+
+#container:right {
+    float:right;
+    width:100px;
+    height: 20px;
+    font-size:18px;
+    margin-left:10px;
+}
 /*
 .rf-tab-hdr-tabline-vis.rf-tab-hdr-tabline-top{ content menu
 	margin-left:auto !important;

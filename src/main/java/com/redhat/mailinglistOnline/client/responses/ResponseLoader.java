@@ -56,6 +56,11 @@ public class ResponseLoader {
 		response.addEmails(emails);
 	}
 	
+	public void getMailingListRoot(String selectedMailinglist, int from, int to) {
+		List<Email> emails=client.getMailingListRoot(selectedMailinglist, from,  to);
+		response.addEmails(emails);
+	}
+	
 	public void getDetailedMessage(String id){
 		Email email =client.getEmailById(id);
 		detailedResponse.setEmail(email);

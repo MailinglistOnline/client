@@ -51,7 +51,18 @@
 			</h:form>
 			<br />
 			<div>
+			<center>
+			<h:form rendered="#{(panelChangeListener.selectedTab != null) &amp;&amp; panelChangeListener.selectedTab.equals('topics')}">
+						<h:commandLink  style="padding-right:40px; font-size:18px;" rendered="#{panelChangeListener.currentRootsStartNumber >0}"  action="#{panelChangeListener.previousRootsList}" value="previous">
+						</h:commandLink>
+						<h:outputLabel  value="#{panelChangeListener.currentRootsStartNumber} - #{panelChangeListener.currentRootsStartNumber + contentResponse.emails.size()} out of #{panelChangeListener.allRootsInMailinglist} emails" />
+						<h:commandLink style="padding-left:40px; font-size:18px;" rendered="#{panelChangeListener.allRootsInMailinglist > panelChangeListener.currentRootsStartNumber +10}" action="#{panelChangeListener.nextRootsList}" value="next">
+						</h:commandLink>
+					</h:form>
+					</center>
+					<br/>
 				<ul>
+					
 					<ui:repeat rendered="#{contentResponse.emails != null}"
 						value="#{contentResponse.emails}" var="email">
 						<div style="border-bottom: solid #E8E8E8;" id="email-list">
@@ -149,6 +160,15 @@
 						</h:panelGroup>
 					</ui:repeat>
 				</ul>
+				<center>
+			<h:form rendered="#{(panelChangeListener.selectedTab != null) &amp;&amp; panelChangeListener.selectedTab.equals('topics')}">
+						<h:commandLink  style="padding-right:40px; font-size:18px;" rendered="#{panelChangeListener.currentRootsStartNumber >0}"  action="#{panelChangeListener.previousRootsList}" value="previous">
+						</h:commandLink>
+						<h:outputLabel  value="#{panelChangeListener.currentRootsStartNumber} - #{panelChangeListener.currentRootsStartNumber + contentResponse.emails.size()} out of #{panelChangeListener.allRootsInMailinglist} emails" />
+						<h:commandLink style="padding-left:40px; font-size:18px;" rendered="#{panelChangeListener.allRootsInMailinglist > panelChangeListener.currentRootsStartNumber +10}" action="#{panelChangeListener.nextRootsList}" value="next">
+						</h:commandLink>
+					</h:form>
+					</center>
 			</div>
 
 
