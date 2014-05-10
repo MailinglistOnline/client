@@ -29,8 +29,8 @@
 	<div id="header">
 		<rich:toolbar height="35px" itemClass="myHeader">
 			<rich:menuItem itemClass="myHeaderDropDown" submitMode="client"
-				onclick="document.location.href='#{request.contextPath}'">
-				<h:outputText value="MailingListOnline" />
+				>
+				<h:link style="text-decoration: none;color:#000000; " value="MailingListOnline" outcome="/index.xhtml" />
 			</rich:menuItem>
 
 			
