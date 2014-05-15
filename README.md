@@ -1,4 +1,4 @@
-
+# read-package-json
 .... will need to do: 
 add to standalone.xml :
 
