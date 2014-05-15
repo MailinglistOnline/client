@@ -9,6 +9,11 @@ import javax.inject.Named;
 
 import com.redhat.mailinglistOnline.client.entities.User;
 
+/**
+ * The object saved in the session handling the user creation and logging out..
+ * 
+ * @author Matej Briškár
+ */
 @Named("userSession")
 @Stateful()
 public class UserManager {

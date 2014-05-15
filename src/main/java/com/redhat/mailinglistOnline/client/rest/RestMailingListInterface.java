@@ -10,12 +10,16 @@ import javax.ws.rs.Produces;
 
 import com.redhat.mailinglistOnline.client.entities.Mailinglist;
 
+/**
+ * A rest interface to communicate with the server component about the processed mailinglists.
+ * 
+ * @author Matej Briškár
+ */
 @Path("/mailinglists")
 public interface RestMailingListInterface {
 		@GET
 	    @Path("/all")
 	    @Produces("application/json")
-	    //@Wrapped(element="mailinglists")
 	    public List<Mailinglist> getAllMailingLists();
 }
 

@@ -19,6 +19,11 @@ import com.redhat.mailinglistOnline.client.DbClient;
 import com.redhat.mailinglistOnline.client.entities.User;
 import com.redhat.mailinglistOnline.security.MongoDbLoginModule;
 
+/**
+ * The bean handling the registration and storing the registration data of the user.
+ * 
+ * @author Matej Briškár
+ */
 @Named("reg")
 @ViewScoped
 public class RegisterUser implements Serializable{

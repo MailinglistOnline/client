@@ -8,7 +8,11 @@ import javax.inject.Named;
 
 import com.mongodb.BasicDBObject;
 
-
+/**
+ * Entity used to handle information about the logged user.
+ * 
+ * @author Matej Briškár
+ */
 @Named("user")
 @SessionScoped
 public class User extends BasicDBObject{

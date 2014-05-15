@@ -10,6 +10,11 @@ import javax.inject.Named;
 import com.google.common.collect.Lists;
 import com.redhat.mailinglistOnline.client.entities.MiniEmail;
 
+/**
+ * A response from the searchClient deployed on the server.
+ * 
+ * @author Matej Briškár
+ */
 @Named("searchResponse")
 @RequestScoped
 public class SearchiskoResponse implements Serializable {

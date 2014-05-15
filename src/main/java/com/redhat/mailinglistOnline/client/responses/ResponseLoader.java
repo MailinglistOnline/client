@@ -11,8 +11,12 @@ import com.redhat.mailinglistOnline.client.entities.Email;
 import com.redhat.mailinglistOnline.client.entities.MiniEmail;
 import com.redhat.mailinglistOnline.client.rest.RestClient;
 
-/*
- * Class is needed as there is no other way to load the response. By passing the object to rest or having a logic in entities..
+
+/**
+ * Object responsible to load the response from the server. The responses are {@link EmailsResponse}, {@link DetailedEmailResponse}, {@link SearchiskoResponse}.
+ * Class is needed as there is no other way to load the response (other options are passing the object directly from restClient or having a logic in entities..).
+ * 
+ * @author Matej Briškár
  */
 @RequestScoped
 @Named("loader")

@@ -19,6 +19,11 @@ import com.redhat.mailinglistOnline.client.DbClient;
 //http://java.dzone.com/articles/creating-custom-login-modules
 import com.redhat.mailinglistOnline.client.entities.User;
 
+/**
+ * The class implementing the login module for the container-based security for MongoDB.
+ * 
+ * @author Matej Briškár
+ */
 public class MongoDbLoginModule extends UsernamePasswordLoginModule{
 
 	

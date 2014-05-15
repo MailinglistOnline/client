@@ -21,6 +21,11 @@ import com.redhat.mailinglistOnline.client.entities.Mailinglist;
 import com.redhat.mailinglistOnline.client.entities.MiniEmail;
 import com.redhat.mailinglistOnline.client.responses.EmailsResponse;
 
+/**
+ * A rest client handling the communication with the server.
+ * 
+ * @author Matej Briškár
+ */
 @ApplicationScoped
 @Named("client")
 public class RestClient implements Serializable{

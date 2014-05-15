@@ -10,7 +10,11 @@ import javax.inject.Named;
 import com.redhat.mailinglistOnline.client.entities.Mailinglist;
 import com.redhat.mailinglistOnline.client.rest.RestClient;
 
-
+/**
+ * A response from the server containing the processed mailinglists.
+ * 
+ * @author Matej Briškár
+ */
 @Named("mailinglists")
 @SessionScoped
 public class MailingListsResponse {

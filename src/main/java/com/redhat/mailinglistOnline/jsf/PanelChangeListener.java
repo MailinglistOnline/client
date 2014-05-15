@@ -20,8 +20,10 @@ import com.redhat.mailinglistOnline.client.responses.EmailsResponse;
 import com.redhat.mailinglistOnline.client.responses.ResponseLoader;
 import com.redhat.mailinglistOnline.client.rest.RestClient;
 
-/*
- * Selection on the top from latest, search, roots of the selected mailinglist
+/**
+ * The bean handling the selection on the top (latest, search, roots).
+ * 
+ * @author Matej Briškár
  */
 @Named("panelChangeListener")
 @ViewScoped

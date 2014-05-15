@@ -10,8 +10,11 @@ import com.redhat.mailinglistOnline.client.entities.Email;
 import com.redhat.mailinglistOnline.client.rest.RestClient;
 
 
-/*
- * Emails response is not good enough, because we need to have methods like addTag etc.
+/**
+ * The @ViewScoped instance used for the interaction with the user when the detailed email is shown in the URL form /malinglist/email_id.
+ * {@link EmailsResponse} is not good enough, because we need to have email-oriented methods like addTag etc.
+ * 
+ * @author Matej Briškár
  */
 @Named("detailedEmailResponse")
 @ViewScoped

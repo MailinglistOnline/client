@@ -17,6 +17,11 @@ import javax.ws.rs.QueryParam;
 import com.redhat.mailinglistOnline.client.entities.Email;
 import com.redhat.mailinglistOnline.client.entities.MiniEmail;
 
+/**
+ * A rest interface to communicate with the server component about the emails.
+ * 
+ * @author Matej Briškár
+ */
 @Path("/emails")
 public interface RestEmailInterface {
 

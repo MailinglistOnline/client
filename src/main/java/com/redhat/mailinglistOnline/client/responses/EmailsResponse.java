@@ -11,8 +11,11 @@ import com.google.common.collect.Lists;
 import com.redhat.mailinglistOnline.client.entities.Email;
 import com.redhat.mailinglistOnline.client.entities.MiniEmail;
 
-/*
+
+/**
  * A response from the server containing the list of emails as the result for the given query (latest, search etc).
+ * 
+ * @author Matej Briškár
  */
 @Named("contentResponse")
 @RequestScoped

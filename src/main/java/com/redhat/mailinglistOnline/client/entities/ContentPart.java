@@ -4,6 +4,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
+/**
+ * Entity used to save information about the content,attachments(files, signature etc.) of the email.
+ * 
+ * @author Matej Briškár
+ */
 @XmlRootElement(name = "ContentPart")
 public class ContentPart{
 

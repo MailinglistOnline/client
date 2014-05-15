@@ -10,7 +10,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
-
+/**
+ * The main entity used to store the emails.
+ * 
+ * @author Matej Briškár
+ */
 @XmlRootElement(name = "email")
 public class Email extends MiniEmail{
 

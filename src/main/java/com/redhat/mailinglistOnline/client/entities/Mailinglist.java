@@ -3,6 +3,11 @@ package com.redhat.mailinglistOnline.client.entities;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Entity used to handle information about the mailinglists being processed.
+ * 
+ * @author Matej Briškár
+ */
 @XmlRootElement(name = "mailinglist")
 public class Mailinglist{
 	private String name;

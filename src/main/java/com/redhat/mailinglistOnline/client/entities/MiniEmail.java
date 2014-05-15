@@ -10,6 +10,11 @@ import javax.xml.bind.annotation.XmlElement;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+/**
+ * Entity used to handle basic information about the email. This entity is good when only part of the information is needed.
+ * 
+ * @author Matej Briškár
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MiniEmail implements Serializable {
 

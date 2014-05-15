@@ -14,7 +14,11 @@ import com.mongodb.MongoClient;
 import com.mongodb.WriteConcern;
 import com.redhat.mailinglistOnline.client.entities.User;
 
-
+/**
+ * The class handling the communication with the database.
+ * 
+ * @author Matej Briškár
+ */
 @Stateless(mappedName="dbClient",name="dbClient")
 public class DbClient {
 

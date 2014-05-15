@@ -6,6 +6,11 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+/**
+ * Instance having the information about the currently selected mailinglist.
+ * 
+ * @author Matej Briškár
+ */
 @Named("selectedMailinglist")
 @ViewScoped
 public class CurrentlySelectedMailinglist implements Serializable{
