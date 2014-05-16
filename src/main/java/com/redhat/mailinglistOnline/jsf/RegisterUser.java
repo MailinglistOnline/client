@@ -37,8 +37,6 @@ public class RegisterUser implements Serializable{
 
 	@Inject
 	DbClient dbClient;
-	@Inject
-	private Logger logger;
 	
 	MongoDbLoginModule module;
 	
@@ -60,8 +58,8 @@ public class RegisterUser implements Serializable{
 				user.setRoles(roles);
 				dbClient.saveUser(user);
 				facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Successfully registered", null);
-				logger.info("User " + user.getName() + " registered");
-				logger.debug("this is a message debug");   
+				//logger.info("User " + user.getName() + " registered");
+				//logger.debug("this is a message debug");   
 			} else {
 				facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "User already exists", null);
 			}
